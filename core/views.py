@@ -11,5 +11,5 @@ from .models import UploadedFile
 def my_uploads(request):
     user = request.user
     uploaded_files = UploadedFile.objects.filter(user=user)
-    data = serializers.serialize('json', uploaded_files)
-    return HttpResponse(data, content_type='application/json')
+    data = serializers.serialize("json", uploaded_files)
+    return HttpResponse(data, content_type="application/json")
