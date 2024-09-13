@@ -33,7 +33,7 @@ async function handleSubmit(event: Event): Promise<void> {
   } else {
     loading.value = true
     const result = await fetchWrapper
-      .post(`${baseUrl}/register`, { username, email, password: password1 })
+      .post(`${baseUrl}/register/`, { username, email, password: password1 })
       .catch((err) => {
         error.value = err
         console.log(err)

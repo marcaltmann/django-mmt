@@ -63,7 +63,7 @@ export const useAuthStore = defineStore({
     async setLocale(locale: string) {
       this.error = null
 
-      const user = await fetchWrapper.post(`${baseUrl}/user/`, { locale }).catch((err) => {
+      const user = await fetchWrapper.post(`${baseUrl}/update/`, { locale }).catch((err) => {
         this.error = err
         return null
       })
