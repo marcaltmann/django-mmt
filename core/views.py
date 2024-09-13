@@ -1,15 +1,24 @@
 from datetime import datetime, timezone
+import logging
 import mimetypes
 import os
+import threading
 
+import aiofiles
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
-from django.http import HttpResponse, JsonResponse, FileResponse
+from django.http import HttpResponse, JsonResponse, FileResponse, StreamingHttpResponse
 from django.views.decorators.http import require_GET
 from django.conf import settings
 
 from .models import UploadedFile
 
+logger = logging.getLogger(__name__)
+
+
+def debug(msg):
+    logger.info(msg)
+    print(msg)
 
 @require_GET
 @login_required
@@ -69,22 +78,29 @@ def download_file(request, filename):
     user_files_path = settings.BASE_DIR / "user_files"
     user_directory = user_files_path / username
     downloads_directory = user_directory / "downloads"
-
-    # TODO: We should not return JSON here.
-    if not downloads_directory.is_dir():
-        return JsonResponse(
-            {
-                "message": "Downloads directory does not exist for the user.",
-                "code": "no_downloads_directory",
-            },
-            status=404,
-        )
-
     file_path = downloads_directory / filename
 
+    # TODO: We should not return JSON here.
     if not file_path.is_file():
         return JsonResponse({"message": "File does not exist."}, status=404)
 
-    # Use aiofiles in the future for async downloads.
-    file = file_path.open("rb")
-    return FileResponse(file, as_attachment=True, filename=filename)
+    debug(f"Requested {filename} which stats {os.stat(file_path)=}.")
+
+    response = StreamingHttpResponse(
+        file_data(file_path), content_type="application/octet-stream"
+    )
+    response["Content-Disposition"] = f'attachment; filename="{filename}"'
+    return response
+
+
+async def file_data(file_path, chunk_size=65536):
+    debug(f"Current threads are {threading.active_count()} opening file {file_path}.")
+    async with aiofiles.open(file_path, mode="rb") as f:
+        teller = 0
+        while chunk := await f.read(chunk_size):
+            teller += 1
+            if teller % 1000 == 0:
+                debug(
+                    f"Current threads are {threading.active_count()} yielding chunk nr.{teller}."
+                )
+            yield chunk
