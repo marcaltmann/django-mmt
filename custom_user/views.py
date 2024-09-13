@@ -8,6 +8,24 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 
 
+@require_GET
+def user(request):
+    current_user = request.user
+
+    if current_user.is_authenticated:
+        return JsonResponse({
+            "username": current_user.username,
+            "email": current_user.email,
+            "locale": "en",
+            "admin": current_user.is_superuser,
+            "can_upload": True,
+        })
+    else:
+        return JsonResponse({
+            "error": "You are not logged in.",
+        }, status=401)
+
+
 @require_POST
 @csrf_exempt
 def sign_in(request):
@@ -20,6 +38,9 @@ def sign_in(request):
         data = {
             "username": username,
             "email": user.email,
+            "locale": "en",
+            "admin": user.is_superuser,
+            "can_upload": True,
         }
         return JsonResponse(data)
     else:

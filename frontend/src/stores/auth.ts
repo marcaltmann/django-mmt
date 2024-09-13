@@ -25,7 +25,7 @@ export const useAuthStore = defineStore({
       this.error = null
 
       const user = await fetchWrapper
-        .post(`${baseUrl}/login`, { username, password })
+        .post(`${baseUrl}/login/`, { username, password })
         .catch((err) => {
           this.error = err
           return null
@@ -39,7 +39,7 @@ export const useAuthStore = defineStore({
       }
     },
     async logout() {
-      await fetchWrapper.post(`${baseUrl}/logout`).catch((err) => {
+      await fetchWrapper.post(`${baseUrl}/logout/`).catch((err) => {
         this.error = err
         console.log('Error while logging out.')
         return null
@@ -49,7 +49,7 @@ export const useAuthStore = defineStore({
       router.push('/log-in')
     },
     async getUser() {
-      const user = await fetchWrapper.get(`${baseUrl}/user`).catch((err) => {
+      const user = await fetchWrapper.get(`${baseUrl}/user/`).catch((err) => {
         return null
       })
 
@@ -63,7 +63,7 @@ export const useAuthStore = defineStore({
     async setLocale(locale: string) {
       this.error = null
 
-      const user = await fetchWrapper.post(`${baseUrl}/user`, { locale }).catch((err) => {
+      const user = await fetchWrapper.post(`${baseUrl}/user/`, { locale }).catch((err) => {
         this.error = err
         return null
       })
