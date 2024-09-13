@@ -8,6 +8,7 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 
+from core.filesystem import create_user_directories
 from .models import Profile
 
 User = get_user_model()
@@ -27,9 +28,9 @@ def get_preferred_language(request) -> str:
 @require_GET
 def user(request):
     current_user = request.user
-    profile = current_user.profile
 
     if current_user.is_authenticated:
+        profile = current_user.profile
         return JsonResponse({
             "username": current_user.username,
             "email": current_user.email,
@@ -90,7 +91,7 @@ def register(request):
     locale = get_preferred_language(request)
     profile = Profile.objects.create(user=user, locale=locale)
 
-    # create_user_directories(username)
+    create_user_directories(username)
     # send_mail_to_admins()
 
     return JsonResponse({
