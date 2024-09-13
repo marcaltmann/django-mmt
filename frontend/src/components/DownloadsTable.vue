@@ -52,7 +52,7 @@ const items: Item[] = props.downloads.map((download) => ({
     <template #item-actions="item">
       <a
         class="icon-link"
-        :href="`${baseUrl}/downloads/${item.filename}`"
+        :href="`${baseUrl}/downloads/${item.filename}/`"
         download
         :aria-label="$t('components.DownloadsTable.download')"
         :title="$t('components.DownloadsTable.download')"

@@ -16,7 +16,7 @@ User = get_user_model()
 
 def get_preferred_language(request) -> str:
     result = "en"
-    langs = parse_accept_lang_header(request.headers.get('Accept-Language'))
+    langs = parse_accept_lang_header(request.headers.get("Accept-Language"))
     for lang in reversed(langs):
         loc = lang[0][:2]
         if loc == "en" or loc == "de":
@@ -31,17 +31,22 @@ def user(request):
 
     if current_user.is_authenticated:
         profile = current_user.profile
-        return JsonResponse({
-            "username": current_user.username,
-            "email": current_user.email,
-            "locale": profile.locale,
-            "admin": current_user.is_superuser,
-            "can_upload": True,
-        })
+        return JsonResponse(
+            {
+                "username": current_user.username,
+                "email": current_user.email,
+                "locale": profile.locale,
+                "admin": current_user.is_superuser,
+                "can_upload": True,
+            }
+        )
     else:
-        return JsonResponse({
-            "error": "You are not logged in.",
-        }, status=401)
+        return JsonResponse(
+            {
+                "error": "You are not logged in.",
+            },
+            status=401,
+        )
 
 
 @require_POST
@@ -94,10 +99,13 @@ def register(request):
     create_user_directories(username)
     # send_mail_to_admins()
 
-    return JsonResponse({
-        "username": username,
-        "email": email,
-    }, status=201)
+    return JsonResponse(
+        {
+            "username": username,
+            "email": email,
+        },
+        status=201,
+    )
 
 
 @require_POST
@@ -126,8 +134,11 @@ def update(request):
     profile.locale = locale
     profile.save()
 
-    return JsonResponse({
-        "username": user.username,
-        "email": user.email,
-        "locale": profile.locale,
-    }, status=200)
+    return JsonResponse(
+        {
+            "username": user.username,
+            "email": user.email,
+            "locale": profile.locale,
+        },
+        status=200,
+    )
