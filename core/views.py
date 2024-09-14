@@ -12,6 +12,7 @@ from django.views.decorators.http import require_GET, require_POST
 from django.conf import settings
 
 from .models import UploadedFile
+from .filesystem import  get_download_path, get_upload_path
 
 logger = logging.getLogger(__name__)
 
@@ -46,13 +47,8 @@ def my_uploads(request):
 @require_GET
 @login_required
 def my_downloads(request):
-    user = request.user
-    username = user.username
-
-    user_files_path = settings.BASE_DIR / "user_files"
-    user_directory = user_files_path / username
-    downloads_directory = user_directory / "downloads"
-
+    username = request.user.username
+    downloads_directory = get_download_path(username)
     if not downloads_directory.is_dir():
         return JsonResponse(
             {
@@ -86,12 +82,8 @@ def my_downloads(request):
 @require_GET
 @login_required
 def download_file(request, filename):
-    user = request.user
-    username = user.username
-
-    user_files_path = settings.BASE_DIR / "user_files"
-    user_directory = user_files_path / username
-    downloads_directory = user_directory / "downloads"
+    username = request.user.username
+    downloads_directory = get_download_path(username)
     file_path = downloads_directory / filename
 
     # TODO: We should not return JSON here.
@@ -150,6 +142,32 @@ def create_upload(request):
         "id": file.id,
         "filename": file.filename,
     }, status=201)
+
+
+@require_POST
+@login_required
+async def upload_file(request, upload_id):
+    upload = UploadedFile.objects.get(id=upload_id)
+    if upload.user != request.user:
+        return JsonResponse({"message": "You are not allowed to update this file."}, status=403)
+
+    username = request.user.username
+    uploads_directory = get_upload_path(username)
+    file_path = uploads_directory / upload.filename
+
+    file = request.FILES["file"]
+    await handle_uploaded_file(file)
+
+    # Generate server checksum.
+    # Send emails to admins and the user.
+
+
+async def handle_uploaded_file(file, file_path):
+    print("handle uploaded file", file.name)
+    async with aiofiles.open(file_path, "wb") as f:
+        for chunk in file.chunks():
+            print("handle chunk", file.name)
+            await f.write(chunk)
 
 
 @require_POST

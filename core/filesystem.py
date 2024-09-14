@@ -23,3 +23,11 @@ def generate_file_md5(path: Path, block_size=2**20) -> str:
                 break
             m.update(buf)
     return m.hexdigest()
+
+
+def get_upload_path(username: str) -> Path:
+    return settings.BASE_DIR / "user_files" / username / "uploads"
+
+
+def get_download_path(username: str) -> Path:
+    return settings.BASE_DIR / "user_files" / username / "downloads"
