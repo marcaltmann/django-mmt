@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+import json
 import logging
 import mimetypes
 import os
@@ -6,9 +7,8 @@ import threading
 
 import aiofiles
 from django.contrib.auth.decorators import login_required
-from django.core import serializers
 from django.http import HttpResponse, JsonResponse, FileResponse, StreamingHttpResponse
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_POST
 from django.conf import settings
 
 from .models import UploadedFile
@@ -20,13 +20,27 @@ def debug(msg):
     logger.info(msg)
     print(msg)
 
+
 @require_GET
 @login_required
 def my_uploads(request):
     user = request.user
-    uploaded_files = UploadedFile.objects.filter(user=user)
-    data = serializers.serialize("json", uploaded_files)
-    return HttpResponse(data, content_type="application/json")
+    uploaded_files = UploadedFile.objects.filter(user=user).order_by("-created_at")
+    data = [
+        {
+            "id": file.id,
+            "filename": file.filename,
+            "content_type": file.media_type,
+            "size": file.size,
+            "state": "created",
+            "created": file.created_at,
+            "checksum_client": file.checksum_client,
+            "checksum_server": file.checksum_server,
+        }
+        for file in uploaded_files
+    ]
+
+    return JsonResponse(data, safe=False)
 
 
 @require_GET
@@ -104,3 +118,64 @@ async def file_data(file_path, chunk_size=65536):
                     f"Current threads are {threading.active_count()} yielding chunk nr.{teller}."
                 )
             yield chunk
+
+
+@require_POST
+@login_required
+def create_upload(request):
+    json_data = json.loads(request.body)
+    filename = json_data["filename"]
+    content_type = json_data["content_type"]
+    size = json_data["size"]
+
+    error = None
+    if not filename:
+        error = "Filename is required."
+    elif not content_type:
+        error = "Content_type is required."
+    elif not size:
+        error = "Size is required."
+
+    if error:
+        return JsonResponse({"message": error}, status=400)
+
+    file = UploadedFile.objects.create(
+        user=request.user,
+        filename=filename,
+        media_type=content_type,
+        size=size,
+    )
+
+    return JsonResponse({
+        "id": file.id,
+        "filename": file.filename,
+    }, status=201)
+
+
+@require_POST
+@login_required
+def update_upload(request, upload_id):
+    upload = UploadedFile.objects.get(id=upload_id)
+    if upload.user != request.user:
+        return JsonResponse({"message": "You are not allowed to update this file."}, status=403)
+
+    json_data = json.loads(request.body)
+    checksum_client = json_data["checksum_client"]
+
+    if checksum_client:
+        upload.checksum_client = checksum_client
+        upload.save()
+
+    return JsonResponse({"message": "Upload successfully updated."}, status=200)
+
+
+@require_POST
+@login_required
+def delete_upload(request, upload_id):
+    upload = UploadedFile.objects.get(id=upload_id)
+
+    if upload.user != request.user:
+        return JsonResponse({"message": "You are not allowed to delete this file."}, status=403)
+
+    upload.delete()
+    return HttpResponse(status=204)
