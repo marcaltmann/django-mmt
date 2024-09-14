@@ -14,6 +14,7 @@ def create_user_directories(username: str) -> None:
     downloads_directory.mkdir(parents=True, exist_ok=True)
 
 
+# Should be async too.
 def generate_file_md5(path: Path, block_size=2**20) -> str:
     m = hashlib.md5()
     with open(path, "rb") as f:

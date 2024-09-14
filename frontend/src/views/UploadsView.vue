@@ -47,7 +47,7 @@ async function handleDeleteClick(uploadId: number, filename: string) {
     return
   }
 
-  const result = await fetchWrapper.post(`${baseUrl}/uploads/${uploadId}/delete`).catch((err) => {
+  const result = await fetchWrapper.post(`${baseUrl}/uploads/${uploadId}/delete/`).catch((err) => {
     error.value = err
     return null
   })

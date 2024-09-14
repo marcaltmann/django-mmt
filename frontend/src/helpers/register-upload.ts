@@ -10,7 +10,7 @@ export default function registerUpload(file: File) {
     size: file.size
   }
 
-  const resultPromise = fetchWrapper.post(`${baseUrl}/uploads/create`, fileInfo).catch((err) => {
+  const resultPromise = fetchWrapper.post(`${baseUrl}/uploads/create/`, fileInfo).catch((err) => {
     console.log(err) // TODO: Associate error with upload.
     return null
   })

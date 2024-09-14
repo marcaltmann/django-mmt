@@ -5,7 +5,7 @@ const baseUrl = `${import.meta.env.VITE_API_URL}`
 export default function addFile(options: AddFileOptions): XMLHttpRequest {
   const { fileId, file, filename, onProgress, onEnd, onAbort } = options
 
-  const uploadEndPoint = `${baseUrl}/uploads/${fileId}/upload`
+  const uploadEndPoint = `${baseUrl}/uploads/${fileId}/upload/`
 
   const request = new XMLHttpRequest()
   request.withCredentials = true

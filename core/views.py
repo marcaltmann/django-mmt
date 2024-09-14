@@ -8,11 +8,12 @@ import threading
 import aiofiles
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse, FileResponse, StreamingHttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from django.conf import settings
 
 from .models import UploadedFile
-from .filesystem import  get_download_path, get_upload_path
+from .filesystem import get_download_path, get_upload_path, generate_file_md5
 
 logger = logging.getLogger(__name__)
 
@@ -114,6 +115,7 @@ async def file_data(file_path, chunk_size=65536):
 
 @require_POST
 @login_required
+@csrf_exempt
 def create_upload(request):
     json_data = json.loads(request.body)
     filename = json_data["filename"]
@@ -138,28 +140,46 @@ def create_upload(request):
         size=size,
     )
 
-    return JsonResponse({
-        "id": file.id,
-        "filename": file.filename,
-    }, status=201)
+    return JsonResponse(
+        {
+            "id": file.id,
+            "filename": file.filename,
+        },
+        status=201,
+    )
 
 
 @require_POST
 @login_required
+@csrf_exempt
 async def upload_file(request, upload_id):
-    upload = UploadedFile.objects.get(id=upload_id)
-    if upload.user != request.user:
-        return JsonResponse({"message": "You are not allowed to update this file."}, status=403)
+    upload = await UploadedFile.objects.aget(pk=upload_id)
+    user = await request.auser()
+    if upload.user_id != user.id:
+        return JsonResponse(
+            {"message": "You are not allowed to update this file."}, status=403
+        )
 
-    username = request.user.username
-    uploads_directory = get_upload_path(username)
+    uploads_directory = get_upload_path(user.username)
     file_path = uploads_directory / upload.filename
 
     file = request.FILES["file"]
-    await handle_uploaded_file(file)
+    await handle_uploaded_file(file, file_path)
 
     # Generate server checksum.
+    checksum_server = generate_file_md5(file_path)
+    await UploadedFile.objects.filter(pk=upload_id).aupdate(
+        checksum_server=checksum_server
+    )
+
     # Send emails to admins and the user.
+
+    return JsonResponse(
+        {
+            "success": True,
+            "checksum_server": checksum_server,
+        }
+    )
 
 
 async def handle_uploaded_file(file, file_path):
@@ -172,28 +192,39 @@ async def handle_uploaded_file(file, file_path):
 
 @require_POST
 @login_required
+@csrf_exempt
 def update_upload(request, upload_id):
     upload = UploadedFile.objects.get(id=upload_id)
-    if upload.user != request.user:
-        return JsonResponse({"message": "You are not allowed to update this file."}, status=403)
+    if upload.user_id != request.user.id:
+        return JsonResponse(
+            {"message": "You are not allowed to update this file."}, status=403
+        )
 
     json_data = json.loads(request.body)
     checksum_client = json_data["checksum_client"]
 
-    if checksum_client:
-        upload.checksum_client = checksum_client
-        upload.save()
+    if not checksum_client:
+        return JsonResponse({"message": "checksum_client is required."}, status=400)
+
+    upload.checksum_client = checksum_client
+    upload.save()
 
     return JsonResponse({"message": "Upload successfully updated."}, status=200)
 
 
 @require_POST
 @login_required
+@csrf_exempt
 def delete_upload(request, upload_id):
     upload = UploadedFile.objects.get(id=upload_id)
 
     if upload.user != request.user:
-        return JsonResponse({"message": "You are not allowed to delete this file."}, status=403)
+        return JsonResponse(
+            {"message": "You are not allowed to delete this file."}, status=403
+        )
 
     upload.delete()
+
+    # TODO: Delete file too...
+
     return HttpResponse(status=204)
