@@ -89,7 +89,7 @@ def register(request):
         return JsonResponse({"error": "Password is required."}, status=400)
 
     try:
-        user = User.objects.create_user(username, email, password)
+        user = User.objects.create_user(username, email, password, is_active=False)
     except IntegrityError:
         return JsonResponse({"error": "Username already taken."}, status=400)
 
