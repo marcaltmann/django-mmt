@@ -1,3 +1,4 @@
+/.env.prod
 /.idea
 /.venv
 /db.sqlite3
