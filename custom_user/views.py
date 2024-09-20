@@ -94,7 +94,7 @@ def register(request):
         return JsonResponse({"error": "Username already taken."}, status=400)
 
     locale = get_preferred_language(request)
-    profile = Profile.objects.create(user=user, locale=locale)
+    Profile.objects.create(user=user, locale=locale)
 
     create_user_directories(username)
     # send_mail_to_admins()
