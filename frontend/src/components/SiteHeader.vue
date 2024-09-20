@@ -22,9 +22,6 @@ const store = useAuthStore()
         <RouterLink to="/downloads" class="primary-nav__link">
           {{ $t('components.SiteHeader.downloads') }}
         </RouterLink>
-        <RouterLink v-if="store.user?.admin" to="/admin" class="primary-nav__link">
-          {{ $t('components.SiteHeader.admin') }}
-        </RouterLink>
       </nav>
 
       <nav v-if="store.user" class="site-header__nav site-header__nav--last primary-nav">
