@@ -1,8 +1,9 @@
 /.idea
 /.venv
+
 /db.sqlite3
+/frontend
 /user_files
 
 __pycache__
-node_modules
 *.tar
