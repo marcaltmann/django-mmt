@@ -50,13 +50,31 @@
 
     - name: Update apt and install docker-ce
       apt:
-        name: docker-ce
+        pkg:
+          - docker-ce
+          - docker-compose-plugin
         state: latest
         update_cache: true
 
     - name: Install Docker Module for Python
       apt:
         name: python3-docker
+
+
+    - name: Clone Github repo (or checkout?)
+      git:
+        repo: 'https://github.com/marcaltmann/django-mmt.git'
+        dest: /home/deploy/django-mmt
+        single_branch: yes
+        version: master
+
+    - name: Tear down existing services
+      community.docker.docker_compose_v2:
+        files:
+          - docker-compose.prod.yml
+        project_src: /home/deploy/django-mmt
+        state: absent
+
 
     - name: Pull default Docker image
       community.docker.docker_image:
