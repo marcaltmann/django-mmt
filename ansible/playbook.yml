@@ -2,11 +2,6 @@
 - name: My first play
   hosts: all
   become: true
-  vars:
-    container_count: 4
-    default_container_name: docker
-    default_container_image: ubuntu
-    default_container_command: sleep 1
   tasks:
     - name: Ping my hosts
       ansible.builtin.ping:
@@ -70,21 +65,11 @@
 
     - name: Tear down existing services
       community.docker.docker_compose_v2:
-        files:
-          - docker-compose.prod.yml
+        files: [docker-compose.prod.yml]
         project_src: /home/deploy/django-mmt
         state: absent
 
-
-    - name: Pull default Docker image
-      community.docker.docker_image:
-        name: "{{ default_container_image }}"
-        source: pull
-
-    - name: Create default containers
-      community.docker.docker_container:
-        name: "{{ default_container_name }}{{ item }}"
-        image: "{{ default_container_image }}"
-        command: "{{ default_container_command }}"
-        state: present
-      with_sequence: count={{ container_count }}
+    - name: Create and start services
+      community.docker.docker_compose_v2:
+        files: [docker-compose.prod.yml]
+        project_src: /home/deploy/django-mmt
