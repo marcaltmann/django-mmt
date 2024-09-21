@@ -13,7 +13,7 @@ export default defineConfig({
   },
   //base: '/app',
   build: {
-    outDir: '../app',
+    outDir: '../staticfiles',
     emptyOutDir: true,
   }
 })

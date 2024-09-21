@@ -14,7 +14,7 @@ ENV PYTHONUNBUFFERED=1
 
 # install system dependencies
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends gcc
+    apt-get install -y --no-install-recommends gcc curl
 
 # lint
 RUN pip install --upgrade pip
@@ -25,6 +25,14 @@ RUN flake8 --ignore=E501,F401 .
 # install python dependencies
 COPY ./requirements.txt .
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
+
+# Install JavaScript dependencies.
+RUN npm install --prefix ./frontend \
+    && npm run build --prefix ./frontend
 
 
 #########
@@ -51,6 +59,7 @@ WORKDIR $APP_HOME
 RUN apt-get update && apt-get install -y --no-install-recommends netcat-traditional
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
+COPY --from=builder /usr/src/app/staticfiles .
 RUN pip install --upgrade pip
 RUN pip install --no-cache /wheels/*
 

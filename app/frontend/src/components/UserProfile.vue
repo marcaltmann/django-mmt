@@ -26,6 +26,7 @@ function handleChange(event: Event) {
       <form class="u-flex u-gap-1/2">
         <span v-for="loc in LOCALES" :key="loc">
           <input
+            v-if="store.user"
             type="radio"
             :id="loc"
             :value="loc"

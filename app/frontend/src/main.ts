@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import Vue3EasyDataTable from 'vue3-easy-data-table'
+import * as Vue3EasyDataTable from 'vue3-easy-data-table'
 
 import App from './App.vue'
 import router from './router'
