@@ -68,9 +68,15 @@
         files: [docker-compose.prod.yml]
         project_src: /home/deploy/django-mmt
         state: absent
+        remove_volumes: true
 
     - name: Create and start services
       community.docker.docker_compose_v2:
         files: [docker-compose.prod.yml]
         project_src: /home/deploy/django-mmt
         build: always
+      register: output
+
+    - name: Show results
+      debug:
+        var: output
