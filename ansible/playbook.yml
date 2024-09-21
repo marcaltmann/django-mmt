@@ -73,3 +73,4 @@
       community.docker.docker_compose_v2:
         files: [docker-compose.prod.yml]
         project_src: /home/deploy/django-mmt
+        build: always
