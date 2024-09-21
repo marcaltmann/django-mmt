@@ -1,15 +1,8 @@
 ---
-- name: My first play
+- name: Deploy django-mmt
   hosts: all
   become: true
   tasks:
-    - name: Ping my hosts
-      ansible.builtin.ping:
-
-    - name: Print message
-      ansible.builtin.debug:
-        msg: Hello world
-
     - name: Install aptitude
       apt:
         name: aptitude
@@ -22,16 +15,13 @@
           - apt-transport-https
           - ca-certificates
           - curl
+          - git
           - software-properties-common
           - python3-pip
           - virtualenv
           - python3-setuptools
         state: latest
         update_cache: true
-
-    - name: Install git
-      apt:
-        name: git
 
     - name: Add Docker GPG apt Key
       apt_key:
@@ -43,7 +33,7 @@
         repo: deb https://download.docker.com/linux/ubuntu focal stable
         state: present
 
-    - name: Update apt and install docker-ce
+    - name: Update apt and install docker packages
       apt:
         pkg:
           - docker-ce
