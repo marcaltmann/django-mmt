@@ -65,8 +65,3 @@
         files: [docker-compose.prod.yml]
         project_src: /home/deploy/django-mmt
         build: always
-      register: output
-
-    - name: Show results
-      debug:
-        var: output
