@@ -4,6 +4,9 @@ import core.views as core_views
 
 app_name = "core"
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
 urlpatterns = [
     path("uploads/", core_views.my_uploads, name="my_uploads"),
     path("uploads/create/", core_views.create_upload, name="create_upload"),
@@ -20,4 +23,5 @@ urlpatterns = [
     ),
     path("downloads/", core_views.my_downloads, name="my_downloads"),
     path("downloads/<str:filename>/", core_views.download_file, name="download_file"),
+    path("debug/", trigger_error),
 ]
