@@ -35,8 +35,6 @@ async function fetchUploads() {
     return null
   })
 
-  console.log(uploads.value)
-
   loading.value = false
 }
 
@@ -81,9 +79,5 @@ async function handleButtonClick(e: Event) {
       :loading="loading"
       :on-delete="handleDeleteClick"
     />
-
-    <p v-for="upload in uploads" :key="upload.filename">
-      {{ upload.filename }}
-    </p>
   </main>
 </template>
