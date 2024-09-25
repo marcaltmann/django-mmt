@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -24,6 +26,14 @@ class Profile(models.Model):
         null=False,
         default=LOCALE_ENGLISH,
     )
+
+    def upload_path(self) -> Path:
+        username = self.user.username
+        return settings.BASE_DIR / "user_files" / username / "uploads"
+
+    def download_path(self) -> Path:
+        username = self.user.username
+        return settings.BASE_DIR / "user_files" / username / "downloads"
 
     def __str__(self):
         return self.full_name

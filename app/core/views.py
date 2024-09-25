@@ -10,10 +10,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse, FileResponse, StreamingHttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
-from django.conf import settings
 
 from .models import UploadedFile
-from .filesystem import get_download_path, get_upload_path, generate_file_md5
+from .filesystem import generate_file_md5
 
 logger = logging.getLogger(__name__)
 
@@ -48,8 +47,8 @@ def my_uploads(request):
 @require_GET
 @login_required
 def my_downloads(request):
-    username = request.user.username
-    downloads_directory = get_download_path(username)
+    user = request.user
+    downloads_directory = user.profile.download_path()
     if not downloads_directory.is_dir():
         return JsonResponse(
             {
@@ -83,8 +82,8 @@ def my_downloads(request):
 @require_GET
 @login_required
 def download_file(request, filename):
-    username = request.user.username
-    downloads_directory = get_download_path(username)
+    user = request.user
+    downloads_directory = user.profile.download_path()
     file_path = downloads_directory / filename
 
     # TODO: We should not return JSON here.
@@ -160,7 +159,7 @@ async def upload_file(request, upload_id):
             {"message": "You are not allowed to update this file."}, status=403
         )
 
-    uploads_directory = get_upload_path(user.username)
+    uploads_directory = user.profile.upload_path()
     file_path = uploads_directory / upload.filename
 
     file = request.FILES["file"]
