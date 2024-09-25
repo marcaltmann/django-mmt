@@ -30,7 +30,7 @@ def user(request):
     current_user = request.user
 
     if current_user.is_authenticated:
-        profile = current_user.profile
+        profile, created = Profile.objects.get_or_create(user=current_user)
         return JsonResponse(
             {
                 "username": current_user.username,
@@ -58,7 +58,7 @@ def sign_in(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        profile = user.profile
+        profile, created = Profile.objects.get_or_create(user=user)
         data = {
             "username": username,
             "email": user.email,
@@ -120,7 +120,7 @@ def sign_out(request):
 @login_required()
 def update(request):
     user = request.user
-    profile = user.profile
+    profile, created = Profile.objects.get_or_create(user=user)
 
     json_data = json.loads(request.body)
     locale = json_data["locale"]
