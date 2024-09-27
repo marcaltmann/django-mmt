@@ -28,10 +28,12 @@ class Profile(models.Model):
     )
 
     def upload_path(self) -> Path:
+        """Does not work with async."""
         username = self.user.username
         return settings.BASE_DIR / "user_files" / username / "uploads"
 
     def download_path(self) -> Path:
+        """Does not work with async."""
         username = self.user.username
         return settings.BASE_DIR / "user_files" / username / "downloads"
 

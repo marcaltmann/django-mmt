@@ -6,6 +6,7 @@ import os
 import threading
 
 import aiofiles
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse, StreamingHttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -160,8 +161,7 @@ async def upload_file(request, upload_id):
             {"message": "You are not allowed to update this file."}, status=403
         )
 
-    profile = await Profile.objects.aget(user_id=user.id)
-    uploads_directory = profile.upload_path()
+    uploads_directory = settings.BASE_DIR / "user_files" / user.username / "uploads"
     file_path = uploads_directory / upload.filename
 
     file = request.FILES["file"]
