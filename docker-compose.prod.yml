@@ -5,7 +5,9 @@ services:
       dockerfile: Dockerfile.prod
     command: gunicorn mmt.wsgi:application --bind 0.0.0.0:8000
     volumes:
+      - db:/home/app/web/db
       - static_volume:/home/app/web/staticfiles
+      - user_files:/home/app/web/user_files
     expose:
       - 8000
     env_file:
@@ -20,4 +22,6 @@ services:
       - web
 
 volumes:
+  db:
   static_volume:
+  user_files:
