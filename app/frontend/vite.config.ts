@@ -3,7 +3,8 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
+const isDevelopment = process.env.NODE_ENV === 'development'
+
 export default defineConfig({
   plugins: [vue()],
   resolve: {
@@ -11,7 +12,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  base: '/static/',
+  base: isDevelopment ? '/' : '/static/',
   build: {
     outDir: '../staticfiles',
     emptyOutDir: true,

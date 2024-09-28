@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import useSWRV from 'swrv'
 
 import { useQueueStore } from '@/stores/queue'
 import { fetchWrapper } from '@/helpers/fetch-wrapper'
@@ -11,19 +11,16 @@ import InlineMessage from '@/components/InlineMessage.vue'
 import truncateText from '@/helpers/truncate-text'
 import type { Upload } from '@/types'
 
+const baseUrl = import.meta.env.VITE_API_URL
+
 const { t } = useI18n()
 const store = useQueueStore()
 
-const baseUrl = import.meta.env.VITE_API_URL
-
-const route = useRoute()
+const { data, error: swrError } = useSWRV(`${baseUrl}/uploads/`, fetchWrapper.get)
 
 const loading = ref(false)
 const uploads = ref<Array<Upload> | null>(null)
 const error = ref<string>('')
-
-// watch the params of the route to fetch the data again
-watch(() => route.params.id, fetchUploads, { immediate: true })
 
 async function fetchUploads() {
   uploads.value = null
@@ -73,9 +70,9 @@ async function handleButtonClick(e: Event) {
 
     <UploadButton :on-change="handleButtonClick" class="u-mt" />
     <UploadsTable
-      v-if="uploads"
+      v-if="data"
       class="u-mt"
-      :uploads="uploads"
+      :uploads="data"
       :loading="loading"
       :on-delete="handleDeleteClick"
     />

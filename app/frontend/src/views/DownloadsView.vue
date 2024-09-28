@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref } from 'vue'
+import useSWRV from 'swrv'
 
 import { fetchWrapper } from '@/helpers/fetch-wrapper'
 import InlineMessage from '@/components/InlineMessage.vue'
@@ -8,15 +8,11 @@ import DownloadsTable from '@/components/DownloadsTable.vue'
 import type { DownloadableFile } from '@/types'
 
 const baseUrl = `${import.meta.env.VITE_API_URL}`
-
-const route = useRoute()
+const { data, error: swrError } = useSWRV(`${baseUrl}/downloads/`, fetchWrapper.get)
 
 const loading = ref(false)
 const downloads = ref<Array<DownloadableFile> | null>(null)
 const error = ref<string>('')
-
-// watch the params of the route to fetch the data again
-watch(() => route.params.id, fetchDownloads, { immediate: true })
 
 async function fetchDownloads() {
   downloads.value = null
@@ -42,6 +38,11 @@ async function fetchDownloads() {
       {{ $t(`${error}`) }}
     </InlineMessage>
 
-    <DownloadsTable v-if="downloads" class="u-mt" :downloads="downloads" :loading="loading" />
+    <DownloadsTable
+      v-if="data"
+      class="u-mt"
+      :downloads="data"
+      :loading="loading"
+    />
   </main>
 </template>
