@@ -184,10 +184,8 @@ async def upload_file(request, upload_id):
 
 
 async def handle_uploaded_file(file, file_path):
-    print("handle uploaded file", file.name)
     async with aiofiles.open(file_path, "wb") as f:
         for chunk in file.chunks():
-            print("handle chunk", file.name)
             await f.write(chunk)
 
 
@@ -218,14 +216,21 @@ def update_upload(request, upload_id):
 @csrf_exempt
 def delete_upload(request, upload_id):
     upload = UploadedFile.objects.get(id=upload_id)
+    user = request.user
 
-    if upload.user != request.user:
+    if upload.user_id != user.id:
         return JsonResponse(
             {"message": "You are not allowed to delete this file."}, status=403
         )
 
-    upload.delete()
+    downloads_directory = user.profile.download_path()
+    file_path = downloads_directory / upload.filename
 
-    # TODO: Delete file too...
+    try:
+        file_path.unlink()
+    except FileNotFoundError:
+        print(f"File {upload.filename} does not exist.")
+
+    upload.delete()
 
     return HttpResponse(status=204)
