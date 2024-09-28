@@ -27,7 +27,7 @@ COPY ./requirements.txt .
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
 
 # Install Node.js
-#RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+#RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
 #    && apt-get install -y nodejs
 
 # Install JavaScript dependencies.
@@ -72,7 +72,7 @@ COPY . $APP_HOME
 
 
 # Install Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs
 
 # Install JavaScript dependencies.
