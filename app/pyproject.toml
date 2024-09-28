@@ -16,4 +16,5 @@ dev-dependencies = [
     "pytest>=8.3.3",
     "pytest-django>=4.9.0",
     "ruff>=0.6.4",
+    "django-dotenv>=1.4.2",
 ]

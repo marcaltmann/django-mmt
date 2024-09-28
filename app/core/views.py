@@ -8,6 +8,7 @@ import threading
 import aiofiles
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.http import HttpResponse, JsonResponse, StreamingHttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
@@ -174,6 +175,13 @@ async def upload_file(request, upload_id):
     )
 
     # Send emails to admins and the user.
+    send_mail(
+        "Subject here",
+        "Here is the message.",
+        "from@example.com",
+        [user.email],
+        fail_silently=False,
+    )
 
     return JsonResponse(
         {
