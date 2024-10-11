@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import useSWRV from 'swrv'
 
 import { useQueueStore } from '@/stores/queue'
 import { fetchWrapper } from '@/helpers/fetch-wrapper'
@@ -9,34 +8,13 @@ import UploadButton from '@/components/UploadButton.vue'
 import UploadsTable from '@/components/UploadsTable.vue'
 import InlineMessage from '@/components/InlineMessage.vue'
 import truncateText from '@/helpers/truncate-text'
-import type { Upload } from '@/types'
+
+const baseUrl = import.meta.env.VITE_API_URL
 
 const { t } = useI18n()
 const store = useQueueStore()
 
-const baseUrl = import.meta.env.VITE_API_URL
-
-const route = useRoute()
-
-const loading = ref(false)
-const uploads = ref<Array<Upload> | null>(null)
-const error = ref<string>('')
-
-// watch the params of the route to fetch the data again
-watch(() => route.params.id, fetchUploads, { immediate: true })
-
-async function fetchUploads() {
-  uploads.value = null
-  error.value = ''
-  loading.value = true
-
-  uploads.value = await fetchWrapper.get(`${baseUrl}/uploads/`).catch((err) => {
-    error.value = err
-    return null
-  })
-
-  loading.value = false
-}
+const { data, error, isValidating } = useSWRV(`${baseUrl}/uploads/`, fetchWrapper.get)
 
 async function handleDeleteClick(uploadId: number, filename: string) {
   const confirmed = confirm(
@@ -47,10 +25,7 @@ async function handleDeleteClick(uploadId: number, filename: string) {
     return
   }
 
-  const result = await fetchWrapper.post(`${baseUrl}/uploads/${uploadId}/delete/`).catch((err) => {
-    error.value = err
-    return null
-  })
+  await fetchWrapper.post(`${baseUrl}/uploads/${uploadId}/delete/`)
 }
 
 async function handleButtonClick(e: Event) {
@@ -68,15 +43,15 @@ async function handleButtonClick(e: Event) {
     </h2>
 
     <InlineMessage v-if="error" type="error" class="u-mt">
-      {{ $t(`${error}`) }}
+      {{ $t(`${error.message}`) }}
     </InlineMessage>
 
     <UploadButton :on-change="handleButtonClick" class="u-mt" />
     <UploadsTable
-      v-if="uploads"
+      v-if="data"
       class="u-mt"
-      :uploads="uploads"
-      :loading="loading"
+      :uploads="data"
+      :loading="isValidating"
       :on-delete="handleDeleteClick"
     />
   </main>
