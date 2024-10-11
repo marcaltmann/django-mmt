@@ -1,8 +1,5 @@
 aiofiles==24.1.0
-black==24.10.0
 django-cors-headers==4.4.0
 django==5.1.2
-flake8==7.1.1
-pytest==8.3.3,
-pytest-django==4.9.0
+Hypercorn==0.17.3
 sentry-sdk[django]==2.16.0
