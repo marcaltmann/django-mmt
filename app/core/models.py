@@ -1,5 +1,8 @@
 from django.conf import settings
 from django.db import models
+from django.db.models.signals import post_delete
+
+from .filesystem import remove_file
 
 
 class UploadJob(models.Model):
@@ -16,7 +19,7 @@ class UploadJob(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        pass
+        return self.title
 
 
 class UploadedFile(models.Model):
@@ -33,3 +36,8 @@ class UploadedFile(models.Model):
 
     def __str__(self):
         return self.filename
+
+
+post_delete.connect(
+    remove_file, sender=UploadedFile, dispatch_uid="core.uploaded_file.remove_file"
+)

@@ -12,16 +12,30 @@ def trigger_error(request):
 urlpatterns = [
     path("uploads/", core_views.my_uploads, name="my_uploads"),
     path("uploads/create/", core_views.create_upload, name="create_upload"),
-    path("uploads/<int:upload_id>/upload/", core_views.upload_file, name="upload_file"),
-    path(
-        "uploads/<int:upload_id>/update/",
-        core_views.update_upload,
-        name="update_upload",
-    ),
     path(
         "uploads/<int:upload_id>/delete/",
         core_views.delete_upload,
         name="delete_upload",
+    ),
+    path(
+        "uploads/<int:upload_id>/create-uploaded-file/",
+        core_views.create_uploaded_file,
+        name="create_uploaded_file",
+    ),
+    path(
+        "uploaded-files/<int:uploaded_file_id>/upload/",
+        core_views.upload_file,
+        name="upload_file",
+    ),
+    path(
+        "uploaded-files/<int:uploaded_file_id>/update/",
+        core_views.update_uploaded_file,
+        name="update_uploaded_file",
+    ),
+    path(
+        "uploaded-files/<int:uploaded_file_id>/delete/",
+        core_views.delete_uploaded_file,
+        name="delete_uploaded_file",
     ),
     path("downloads/", core_views.my_downloads, name="my_downloads"),
     path("downloads/<str:filename>/", core_views.download_file, name="download_file"),
