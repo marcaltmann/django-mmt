@@ -28,7 +28,31 @@ def debug(msg):
 
 @require_GET
 @login_required
-def my_uploads(request):
+def upload_index(request):
+    user = request.user
+    uploads = UploadJob.objects.filter(user=user).order_by("-created_at")
+    data = [
+        {
+            "id": upload.id,
+            "title": upload.title,
+            "description": upload.description,
+            "make_available_on_platform": upload.make_available_on_platform,
+            "transcribe": upload.transcribe,
+            "check_media_files": upload.check_media_files,
+            "replace_existing_files": upload.replace_existing_files,
+            "language": upload.language,
+            "created_at": upload.created_at,
+            "uploaded_at": upload.uploaded_at,
+        }
+        for upload in uploads
+    ]
+
+    return JsonResponse(data, safe=False)
+
+
+@require_GET
+@login_required
+def uploaded_files_index(request):
     user = request.user
     uploaded_files = UploadedFile.objects.filter(user=user).order_by("-created_at")
     data = [

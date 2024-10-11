@@ -10,7 +10,7 @@ def trigger_error(request):
 
 
 urlpatterns = [
-    path("uploads/", core_views.my_uploads, name="my_uploads"),
+    path("uploads/", core_views.upload_index, name="upload_index"),
     path("uploads/create/", core_views.create_upload, name="create_upload"),
     path(
         "uploads/<int:upload_id>/delete/",

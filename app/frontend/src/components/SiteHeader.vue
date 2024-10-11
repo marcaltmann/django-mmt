@@ -16,6 +16,9 @@ const store = useAuthStore()
       </RouterLink>
 
       <nav class="site-header__nav primary-nav">
+        <RouterLink v-if="store.user?.can_upload" to="/new-upload" class="primary-nav__link">
+          {{ $t('components.SiteHeader.newUpload') }}
+        </RouterLink>
         <RouterLink v-if="store.user?.can_upload" to="/uploads" class="primary-nav__link">
           {{ $t('components.SiteHeader.uploads') }}
         </RouterLink>

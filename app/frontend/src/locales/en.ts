@@ -50,11 +50,22 @@ export default {
       downloads: 'Downloads',
       logIn: 'Log in',
       logOut: 'Log out',
+      newUpload: 'New Upload',
       register: 'Register',
       uploads: 'Uploads'
     },
     UploadButton: {
       label: 'Select files to upload'
+    },
+    UploadForm: {
+      title: 'Title',
+      description: 'Description',
+      language: 'Language',
+      makeAvailableOnPlatform: 'Make available on platform',
+      transcribe: 'Transcribe',
+      checkMediaFiles: 'Check media files',
+      replaceExistingFiles: 'Replace existing files',
+      submit: 'Submit and upload',
     },
     UploadQueue: {
       cancel: 'Cancel',
@@ -130,6 +141,9 @@ export default {
     },
     LoginView: {
       title: 'Login'
+    },
+    NewUploadView: {
+      title: 'New Upload'
     },
     NotFoundView: {
       message: 'Sorry, we could not find this page.',

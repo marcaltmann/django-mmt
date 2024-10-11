@@ -13,6 +13,19 @@ export interface FileInfo {
   size: number
 }
 
+export interface UploadJob {
+  id: number
+  title: string
+  description: string
+  make_available_on_platform: boolean
+  transcribe: boolean
+  check_media_files: boolean
+  replace_existing_files: boolean
+  language: string
+  created_at: Date
+  updated_at: Date
+}
+
 export interface Upload {
   id: number
   filename: string

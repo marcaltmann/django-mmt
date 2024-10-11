@@ -9,6 +9,7 @@ import LoginView from '@/views/LoginView.vue'
 import PrivacyView from '@/views/PrivacyView.vue'
 import RegistrationView from '@/views/RegistrationView.vue'
 import UploadsView from '@/views/UploadsView.vue'
+import NewUploadView from '@/views/NewUploadView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 
@@ -31,6 +32,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/new-upload',
+      name: 'new-upload',
+      component: NewUploadView
     },
     {
       path: '/uploads',

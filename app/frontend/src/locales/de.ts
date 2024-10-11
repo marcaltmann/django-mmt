@@ -50,11 +50,22 @@ export default {
       downloads: 'Downloads',
       logIn: 'Anmelden',
       logOut: 'Abmelden',
+      newUpload: 'Neuer Upload',
       register: 'Registrieren',
       uploads: 'Uploads'
     },
     UploadButton: {
       label: 'Dateien zum Hochladen auswählen'
+    },
+    UploadForm: {
+      title: 'Titel',
+      description: 'Beschreibung',
+      language: 'Sprache',
+      makeAvailableOnPlatform: 'Auf der Plattform bereitstellen',
+      transcribe: 'Transkribieren',
+      checkMediaFiles: 'Mediendateien überprüfen',
+      replaceExistingFiles: 'Vorhandene Dateien austauschen',
+      submit: 'Absenden und hochladen',
     },
     UploadQueue: {
       cancel: 'Abbrechen',
@@ -130,6 +141,9 @@ export default {
     },
     LoginView: {
       title: 'Anmelden'
+    },
+    NewUploadView: {
+      title: 'Neuer Upload'
     },
     NotFoundView: {
       message: 'Entschuldigung, wir konnten diese Seite nicht finden.',
