@@ -66,6 +66,7 @@ export default {
       checkMediaFiles: 'Mediendateien überprüfen',
       replaceExistingFiles: 'Vorhandene Dateien austauschen',
       submit: 'Absenden und hochladen',
+      reset: 'Zurücksetzen'
     },
     UploadQueue: {
       cancel: 'Abbrechen',

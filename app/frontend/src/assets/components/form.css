@@ -22,6 +22,10 @@
   opacity: 0.5;
 }
 
+.form__button--secondary {
+  background-color: var(--primary-color);
+}
+
 .form__help {
   color: var(--subdued-text-color);
   font-size: var(--font-size-small);

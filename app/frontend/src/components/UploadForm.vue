@@ -1,16 +1,27 @@
 <script setup lang="ts">
 import InlineMessage from '@/components/InlineMessage.vue'
 
-defineProps<{
-  loading: boolean
-  error: string | null
-  selectedFiles: Array<File>
+const ACCEPTED_FILES = 'video/*,audio/*,image/*,model/vnd.mts,application/mxf'
+const FILESIZE_LIMIT = 1 * 1024 * 1024 * 1024 * 1024  // 1 TB
+
+const { onFileChange } = defineProps<{
+  loading: boolean,
+  error: string | null,
+  selectedFiles: Array<File>,
   onSubmit: (payload: Event) => void
-  onChange: (payload: Event) => void
+  onFileChange: (files: Array<File>) => void
 }>()
 
-const ACCEPTED_FILES = 'video/*,audio/*,image/*,model/vnd.mts,application/mxf'
-const FILESIZE_LIMIT = 1 * 1024 * 1024 * 1024 * 1024 // 1 TB
+function handleFileChange(event: Event): Array<File> {
+  const fileInput = event.target as HTMLInputElement
+  const files = fileInput.files as FileList
+  const fileList = [...files]
+  onFileChange(fileList)
+}
+
+function resetForm(event: Event): void {
+  onFileChange([])
+}
 </script>
 
 <template>
@@ -18,7 +29,7 @@ const FILESIZE_LIMIT = 1 * 1024 * 1024 * 1024 * 1024 // 1 TB
     {{ $t(`${error}`) }}
   </InlineMessage>
 
-  <form @submit="onSubmit">
+  <form @submit="onSubmit" @reset="resetForm">
     <div class="u-mt">
       <label for="file-input" class="form__label">
         {{ $t('components.UploadButton.label') }}
@@ -31,7 +42,7 @@ const FILESIZE_LIMIT = 1 * 1024 * 1024 * 1024 * 1024 // 1 TB
           id="file-input"
           :accept="ACCEPTED_FILES"
           multiple
-          @change="onChange"
+          @change="handleFileChange"
         />
       </div>
     </div>
@@ -134,6 +145,11 @@ const FILESIZE_LIMIT = 1 * 1024 * 1024 * 1024 * 1024 // 1 TB
     <div class="field u-mt">
       <button type="submit" class="form__button" :disabled="loading">
         {{ $t('components.UploadForm.submit') }}
+      </button>
+
+      <button type="reset"
+        class="form__button form__button--secondary u-ml-1/2">
+        {{ $t('components.UploadForm.reset') }}
       </button>
     </div>
   </form>
