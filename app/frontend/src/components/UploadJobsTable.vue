@@ -28,7 +28,7 @@ const items: Item[] = props.uploadJobs.map((uploadJob) => ({
   id: uploadJob.id,
   title: uploadJob.title,
   language: uploadJob.language,
-  files: uploadJob.num_files,
+  files: uploadJob.files_count,
   created: new Date(uploadJob.created_at),
   actions: `<button>X</button`
 }))

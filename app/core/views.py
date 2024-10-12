@@ -41,6 +41,7 @@ def upload_index(request):
             "check_media_files": upload.check_media_files,
             "replace_existing_files": upload.replace_existing_files,
             "language": upload.language,
+            "files_count": upload.uploaded_files.count(),
             "created_at": upload.created_at,
             "updated_at": upload.updated_at,
         }
