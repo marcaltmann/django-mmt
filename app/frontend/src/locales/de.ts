@@ -86,6 +86,15 @@ export default {
       checksumMatch: 'Prüfsumme: {checksum}',
       checksumMismatch: 'Server: {checksumServer}\nBrowser: {checksumClient}',
     },
+    UploadJobsTable: {
+      id: 'ID',
+      title: 'Titel',
+      language: 'Sprache',
+      numFiles: 'Dateien',
+      createdAt: 'Erstellt',
+      actions: 'Aktionen',
+      delete: 'Löschen',
+    },
     UploadTray: {
       title: 'Upload-Warteschlange',
       toggle: 'Upload-Warteschlange umschalten'
@@ -159,7 +168,11 @@ export default {
     UploadsView: {
       confirmDelete: 'Möchten Sie die Datei {filename} wirklich löschen?',
       title: 'Uploads'
-    }
+    },
+    UploadJobsView: {
+      confirmDelete: 'Möchten Sie den Job {title} und dessen Dateien wirklich löschen?',
+      title: 'Upload-Jobs'
+    },
   },
   password_mismatch: 'Die Passwörter stimmen nicht überein.',
   username_password_mismatch: 'Benutzername und Passwort stimmen nicht überein.',

@@ -8,7 +8,8 @@ import LegalNoticeView from '@/views/LegalNoticeView.vue'
 import LoginView from '@/views/LoginView.vue'
 import PrivacyView from '@/views/PrivacyView.vue'
 import RegistrationView from '@/views/RegistrationView.vue'
-import UploadsView from '@/views/UploadsView.vue'
+import UploadJobsView from '@/views/UploadJobsView.vue'
+import UploadedFilesView from '@/views/UploadedFilesView.vue'
 import NewUploadView from '@/views/NewUploadView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import ProfileView from '@/views/ProfileView.vue'
@@ -44,7 +45,12 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/UploadsView.vue')
+      component: () => import('../views/UploadJobsView.vue')
+    },
+    {
+      path: '/uploads/:id',
+      name: 'upload-detail',
+      component: UploadedFilesView,
     },
     {
       path: '/downloads',

@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import useSWRV from 'swrv'
 
 import { fetchWrapper } from '@/helpers/fetch-wrapper'
-import UploadsTable from '@/components/UploadsTable.vue'
+import UploadJobsTable from '@/components/UploadJobsTable.vue'
 import InlineMessage from '@/components/InlineMessage.vue'
 import truncateText from '@/helpers/truncate-text'
 
@@ -15,7 +15,7 @@ const { data, error, isValidating } = useSWRV(`${baseUrl}/uploads/`, fetchWrappe
 
 async function handleDeleteClick(uploadId: number, filename: string) {
   const confirmed = confirm(
-    t('views.UploadsView.confirmDelete', { filename: truncateText(filename, 20) })
+    t('views.UploadJobsView.confirmDelete', { filename: truncateText(filename, 20) })
   )
 
   if (!confirmed) {
@@ -30,17 +30,17 @@ async function handleDeleteClick(uploadId: number, filename: string) {
 <template>
   <main class="container u-mt u-mb-2">
     <h2>
-      {{ $t('views.UploadsView.title') }}
+      {{ $t('views.UploadJobsView.title') }}
     </h2>
 
     <InlineMessage v-if="error" type="error" class="u-mt">
       {{ $t(`${error.message}`) }}
     </InlineMessage>
 
-    <UploadsTable
+    <UploadJobsTable
       v-if="data"
       class="u-mt"
-      :uploads="data"
+      :upload-jobs="data"
       :loading="isValidating"
       :on-delete="handleDeleteClick"
     />

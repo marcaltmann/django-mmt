@@ -42,7 +42,7 @@ def upload_index(request):
             "replace_existing_files": upload.replace_existing_files,
             "language": upload.language,
             "created_at": upload.created_at,
-            "uploaded_at": upload.uploaded_at,
+            "updated_at": upload.updated_at,
         }
         for upload in uploads
     ]

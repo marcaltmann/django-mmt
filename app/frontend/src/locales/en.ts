@@ -86,6 +86,15 @@ export default {
       checksumMatch: 'Checksum: {checksum}',
       checksumMismatch: 'Server: {checksumServer}\nBrowser: {checksumClient}',
     },
+    UploadJobsTable: {
+      id: 'Id',
+      title: 'Title',
+      language: 'Language',
+      numFiles: 'Files',
+      createdAt: 'Created',
+      actions: 'Actions',
+      delete: 'Delete',
+    },
     UploadTray: {
       title: 'Upload queue',
       toggle: 'Toggle upload queue'
@@ -159,7 +168,11 @@ export default {
     UploadsView: {
       confirmDelete: 'Do you really want to delete the file {filename}?',
       title: 'Uploads'
-    }
+    },
+    UploadJobsView: {
+      confirmDelete: 'Do you really want to delete the job {title} and its files?',
+      title: 'Upload jobs'
+    },
   },
   password_mismatch: 'The passwords do not match.',
   username_password_mismatch: 'Username and password do not match.',

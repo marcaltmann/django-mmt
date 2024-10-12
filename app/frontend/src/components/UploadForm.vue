@@ -12,7 +12,7 @@ const { onFileChange } = defineProps<{
   onFileChange: (files: Array<File>) => void
 }>()
 
-function handleFileChange(event: Event): Array<File> {
+function handleFileChange(event: Event): void {
   const fileInput = event.target as HTMLInputElement
   const files = fileInput.files as FileList
   const fileList = [...files]
@@ -59,10 +59,11 @@ function resetForm(event: Event): void {
       </label>
       <div class="control">
         <input
+          id="title"
           name="title"
           type="text"
+          required
           class="form__input"
-          id="title"
         />
       </div>
     </div>

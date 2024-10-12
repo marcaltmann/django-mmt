@@ -22,6 +22,7 @@ export interface UploadJob {
   check_media_files: boolean
   replace_existing_files: boolean
   language: string
+  num_files: number
   created_at: Date
   updated_at: Date
 }
