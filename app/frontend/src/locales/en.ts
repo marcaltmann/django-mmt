@@ -144,7 +144,10 @@ export default {
       title: 'Downloads'
     },
     HomeView: {
-      title: 'Welcome to MMT'
+      title: 'Welcome to MMT',
+      newUpload: 'Start a new upload',
+      uploads: 'View existing uploads',
+      downloads: 'View existing downloads',
     },
     LegalNoticeView: {
       title: 'Legal Notice'
@@ -171,7 +174,7 @@ export default {
     },
     UploadJobsView: {
       confirmDelete: 'Do you really want to delete the job {title} and its files?',
-      title: 'Upload jobs'
+      title: 'Uploads'
     },
   },
   password_mismatch: 'The passwords do not match.',

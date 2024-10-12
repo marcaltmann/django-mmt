@@ -13,3 +13,7 @@
 .u-gap-1\/2 {
   gap: calc(var(--base-unit) / 2) !important;
 }
+
+.u-font-large {
+  font-size: var(--font-size-large) !important;
+}
