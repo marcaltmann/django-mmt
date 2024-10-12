@@ -165,9 +165,9 @@ export default {
     ProfileView: {
       title: 'Profile'
     },
-    UploadsView: {
+    UploadJobDetailView: {
       confirmDelete: 'Do you really want to delete the file {filename}?',
-      title: 'Uploads'
+      uploads: 'Uploads'
     },
     UploadJobsView: {
       confirmDelete: 'Do you really want to delete the job {title} and its files?',

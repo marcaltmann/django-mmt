@@ -9,7 +9,7 @@ import LoginView from '@/views/LoginView.vue'
 import PrivacyView from '@/views/PrivacyView.vue'
 import RegistrationView from '@/views/RegistrationView.vue'
 import UploadJobsView from '@/views/UploadJobsView.vue'
-import UploadedFilesView from '@/views/UploadedFilesView.vue'
+import UploadJobDetailView from '@/views/UploadJobDetailView.vue'
 import NewUploadView from '@/views/NewUploadView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import ProfileView from '@/views/ProfileView.vue'
@@ -50,7 +50,7 @@ const router = createRouter({
     {
       path: '/uploads/:id',
       name: 'upload-detail',
-      component: UploadedFilesView,
+      component: UploadJobDetailView,
     },
     {
       path: '/downloads',

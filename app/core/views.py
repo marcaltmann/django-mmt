@@ -52,10 +52,31 @@ def upload_index(request):
 
 @require_GET
 @login_required
-def uploaded_files_index(request):
+def upload_job_detail(request, pk):
     user = request.user
-    uploaded_files = UploadedFile.objects.filter(user=user).order_by("-created_at")
-    data = [
+    upload_job = UploadJob.objects.get(pk=pk)
+
+    if upload_job.user_id != user.id:
+        return JsonResponse(
+            {"message": "You are not allowed to update this file."}, status=403
+        )
+
+    uploaded_files = upload_job.uploaded_files.order_by("-created_at")
+
+    job_data = {
+        "id": upload_job.id,
+        "title": upload_job.title,
+        "description": upload_job.description,
+        "make_available_on_platform": upload_job.make_available_on_platform,
+        "transcribe": upload_job.transcribe,
+        "check_media_files": upload_job.check_media_files,
+        "replace_existing_files": upload_job.replace_existing_files,
+        "language": upload_job.language,
+        "created_at": upload_job.created_at,
+        "updated_at": upload_job.updated_at,
+    }
+
+    file_data = [
         {
             "id": file.id,
             "filename": file.filename,
@@ -69,7 +90,9 @@ def uploaded_files_index(request):
         for file in uploaded_files
     ]
 
-    return JsonResponse(data, safe=False)
+    job_data["files"] = file_data
+
+    return JsonResponse(job_data, safe=False)
 
 
 @require_GET
@@ -159,9 +182,7 @@ def create_upload(request):
         )
         upload_job.user = request.user
         upload_job.save()
-        return JsonResponse({
-            "id": upload_job.id
-        }, safe=False)
+        return JsonResponse({"id": upload_job.id}, safe=False)
     else:
         return JsonResponse(form.errors, status=400)
 

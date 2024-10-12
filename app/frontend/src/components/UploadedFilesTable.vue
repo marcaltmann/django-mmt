@@ -12,7 +12,7 @@ import type { Upload } from '@/types'
 const { t } = useI18n()
 
 const props = defineProps<{
-  uploads: Array<Upload>
+  files: Array<Upload>
   loading: boolean
   onDelete: (uploadId: number, fileName: string) => Promise<void>
 }>()
@@ -28,15 +28,15 @@ const headers: Header[] = [
   { text: t('components.UploadsTable.actions'), value: 'actions' }
 ]
 
-const items: Item[] = props.uploads.map((upload) => ({
-  key: upload.id,
-  id: upload.id,
-  filename: upload.filename,
-  mediaType: upload.content_type,
-  size: upload.size,
-  state: t(`components.UploadsTable.${upload.state}`),
-  uploaded: new Date(upload.created),
-  ok: { checksumServer: upload.checksum_server, checksumClient: upload.checksum_client },
+const items: Item[] = props.files.map((file) => ({
+  key: file.id,
+  id: file.id,
+  filename: file.filename,
+  mediaType: file.content_type,
+  size: file.size,
+  state: t(`components.UploadsTable.${file.state}`),
+  uploaded: new Date(file.created),
+  ok: { checksumServer: file.checksum_server, checksumClient: file.checksum_client },
   actions: `<button>X</button`
 }))
 

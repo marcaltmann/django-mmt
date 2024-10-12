@@ -165,9 +165,9 @@ export default {
     ProfileView: {
       title: 'Profil'
     },
-    UploadsView: {
+    UploadJobDetailView: {
       confirmDelete: 'Möchten Sie die Datei {filename} wirklich löschen?',
-      title: 'Uploads'
+      uploads: 'Uploads'
     },
     UploadJobsView: {
       confirmDelete: 'Möchten Sie den Job {title} und dessen Dateien wirklich löschen?',

@@ -11,6 +11,7 @@
 @import url('objects/layout.css');
 
 /* Components */
+@import url('components/breadcrumbs.css');
 @import url('components/card.css');
 @import url('components/form.css');
 @import url('components/icon-button.css');

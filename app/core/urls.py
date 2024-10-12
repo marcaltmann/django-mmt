@@ -13,6 +13,11 @@ urlpatterns = [
     path("uploads/", core_views.upload_index, name="upload_index"),
     path("uploads/create/", core_views.create_upload, name="create_upload"),
     path(
+        "uploads/<int:pk>/",
+        core_views.upload_job_detail,
+        name="upload_job_detail",
+    ),
+    path(
         "uploads/<int:upload_id>/delete/",
         core_views.delete_upload,
         name="delete_upload",
