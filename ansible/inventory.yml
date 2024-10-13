@@ -1,5 +1,0 @@
-myhosts:
-  hosts:
-    laomake:
-      ansible_host: laomake.de
-      ansible_user: deploy
