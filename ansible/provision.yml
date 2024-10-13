@@ -61,7 +61,7 @@
         search_string: '#PasswordAuthentication yes'
         line: PasswordAuthentication no
         state: present
-      notify: Restart ssh servive
+      notify: Restart ssh service
 
     - name: Set firewall rule for SSH
       community.general.ufw:
