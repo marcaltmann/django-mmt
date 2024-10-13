@@ -23,7 +23,7 @@ class UploadJob(models.Model):
 
 
 class UploadedFile(models.Model):
-    job = models.ForeignKey(
+    upload_job = models.ForeignKey(
         UploadJob, on_delete=models.CASCADE, related_name="uploaded_files"
     )
     filename = models.CharField(max_length=255)

@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import useSWRV from 'swrv'
 
 import { useQueueStore } from '@/stores/queue'
 import { fetchWrapper } from '@/helpers/fetch-wrapper'
@@ -12,19 +10,15 @@ import type { UploadJob } from '@/types'
 
 const baseUrl = import.meta.env.VITE_API_URL
 
-const store = useQueueStore()
+const queueStore = useQueueStore()
 
 const selectedFiles: Ref<Array<File>> = ref([])
 const loading = ref(false)
 const error: Ref<string | null> = ref(null)
 const uploadJob: Ref<UploadJob | null> = ref(null)
 
-async function updateFiles(files: Array<File>): void {
-  console.log(files)
+function updateFiles(files: Array<File>): void {
   selectedFiles.value = files
-  return;
-
-  store.addJobsFromFiles(files)
 }
 
 async function handleSubmit(event: Event): Promise<void> {
@@ -62,18 +56,16 @@ async function handleSubmit(event: Event): Promise<void> {
       replace_existing_files: replaceExistingFiles,
     })
     .catch((err) => {
-      error.value = err
+      error.value = err.message
       console.log(err)
       return null
     })
   loading.value = false
+  uploadJob.value = result
 
-  if (result) {
-    uploadJob.value = result
-    console.log(uploadJob.value)
+  if (uploadJob.value) {
+    queueStore.addJobsFromFiles(selectedFiles.value, uploadJob.value.id)
   }
-
-  // store.addJobsFromFiles(selectedFiles.value)
 }
 </script>
 
@@ -84,11 +76,13 @@ async function handleSubmit(event: Event): Promise<void> {
     </h2>
 
     <InlineMessage v-if="error" type="error" class="u-mt">
-      {{ $t(`${error.message}`) }}
+      {{ $t(`${error}`) }}
     </InlineMessage>
 
     <UploadForm
       :selected-files="selectedFiles"
+      :error="error"
+      :loading="loading"
       :on-file-change="updateFiles"
       :on-submit="handleSubmit"
       class="u-mt"

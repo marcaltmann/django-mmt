@@ -32,7 +32,7 @@ function resetForm(event: Event): void {
   <form @submit="onSubmit" @reset="resetForm">
     <div class="u-mt">
       <label for="file-input" class="form__label">
-        {{ $t('components.UploadButton.label') }}
+        {{ $t('components.UploadButton.label') }}*
       </label>
       <div class="control">
         <input
@@ -42,6 +42,7 @@ function resetForm(event: Event): void {
           id="file-input"
           :accept="ACCEPTED_FILES"
           multiple
+          required
           @change="handleFileChange"
         />
       </div>
@@ -55,7 +56,7 @@ function resetForm(event: Event): void {
 
     <div class="u-mt">
       <label class="form__label" htmlFor="username">
-        {{ $t('components.UploadForm.title') }}
+        {{ $t('components.UploadForm.title') }}*
       </label>
       <div class="control">
         <input

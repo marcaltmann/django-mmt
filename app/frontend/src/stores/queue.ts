@@ -16,7 +16,8 @@ export const useQueueStore = defineStore({
   state: () => {
     return {
       pending: [] as Array<PendingUpload>,
-      active: null as null | RegisteredUpload,
+      active: null as RegisteredUpload | null,
+      currentUploadJobId: null as number | null,
       trayOpen: false,
     }
   },
@@ -45,7 +46,7 @@ export const useQueueStore = defineStore({
     },
   },
   actions: {
-    addJobsFromFiles(files: Array<File>) {
+    addJobsFromFiles(files: Array<File>, uploadJobId: number) {
       const newPendingUploads = files.map((file: File) => {
         const id = getNextFileId()
         storedFiles.storeFile(id, file)
@@ -55,8 +56,11 @@ export const useQueueStore = defineStore({
           filesize: file.size
         }
       })
+      this.currentUploadJobId = uploadJobId
       this.pending = this.pending.concat(newPendingUploads)
-      this.startNextJob()
+      if (!this.active) {
+        this.startNextJob()
+      }
       this.trayOpen = true
     },
     removeActive() {
@@ -76,7 +80,14 @@ export const useQueueStore = defineStore({
       this.pending = firstPart.concat(lastPart)
     },
     async startNextJob() {
-      if (this.active || this.pending.length === 0) {
+      if (this.pending.length === 0) {
+        /* Queue is empty, job done. */
+        this.currentUploadJobId = null
+        return
+      }
+
+      if (this.active || !this.currentUploadJobId) {
+        /* This should never be reached. */
         return
       }
 
@@ -84,7 +95,7 @@ export const useQueueStore = defineStore({
       const nextJobId = nextJob.jobId
       const nextJobFile = storedFiles.getFile(nextJobId)
 
-      const registeredUpload = await registerUpload(nextJobFile)
+      const registeredUpload = await registerUpload(nextJobFile, this.currentUploadJobId)
       if (!registeredUpload) {
         // Something did not work during upload registration
         return

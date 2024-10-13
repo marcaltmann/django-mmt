@@ -13,7 +13,6 @@ from django.http import HttpResponse, JsonResponse, StreamingHttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 
-from custom_user.models import Profile
 from .forms import UploadJobForm
 from .models import UploadedFile, UploadJob
 from .filesystem import generate_file_md5
@@ -28,24 +27,24 @@ def debug(msg):
 
 @require_GET
 @login_required
-def upload_index(request):
+def upload_job_index(request):
     user = request.user
-    uploads = UploadJob.objects.filter(user=user).order_by("-created_at")
+    upload_jobs = UploadJob.objects.filter(user=user).order_by("-created_at")
     data = [
         {
-            "id": upload.id,
-            "title": upload.title,
-            "description": upload.description,
-            "make_available_on_platform": upload.make_available_on_platform,
-            "transcribe": upload.transcribe,
-            "check_media_files": upload.check_media_files,
-            "replace_existing_files": upload.replace_existing_files,
-            "language": upload.language,
-            "files_count": upload.uploaded_files.count(),
-            "created_at": upload.created_at,
-            "updated_at": upload.updated_at,
+            "id": upload_job.id,
+            "title": upload_job.title,
+            "description": upload_job.description,
+            "make_available_on_platform": upload_job.make_available_on_platform,
+            "transcribe": upload_job.transcribe,
+            "check_media_files": upload_job.check_media_files,
+            "replace_existing_files": upload_job.replace_existing_files,
+            "language": upload_job.language,
+            "files_count": upload_job.uploaded_files.count(),
+            "created_at": upload_job.created_at,
+            "updated_at": upload_job.updated_at,
         }
-        for upload in uploads
+        for upload_job in upload_jobs
     ]
 
     return JsonResponse(data, safe=False)
@@ -167,7 +166,7 @@ async def file_data(file_path, chunk_size=65536):
 @require_POST
 @login_required
 @csrf_exempt
-def create_upload(request):
+def create_upload_job(request):
     json_data = json.loads(request.body)
     form = UploadJobForm(json_data)
     if form.is_valid():
@@ -183,7 +182,7 @@ def create_upload(request):
         )
         upload_job.user = request.user
         upload_job.save()
-        return JsonResponse({"id": upload_job.id}, safe=False)
+        return JsonResponse({"id": upload_job.pk}, safe=False)
     else:
         return JsonResponse(form.errors, status=400)
 
@@ -191,23 +190,35 @@ def create_upload(request):
 @require_POST
 @login_required
 @csrf_exempt
-def delete_upload(request, upload_id):
-    upload = UploadJob.objects.get(pk=upload_id)
+def delete_upload_job(request, upload_job_id):
+    upload_job = UploadJob.objects.get(pk=upload_job_id)
     user = request.user
 
-    if upload.user_id != user.id:
+    if upload_job.user_id != user.id:
         return JsonResponse(
-            {"message": "You are not allowed to delete this upload."}, status=403
+            {"message": "You are not allowed to delete this upload job."}, status=403
         )
 
-    upload.delete()
+    upload_job.delete()
     return HttpResponse(status=204)
 
 
 @require_POST
 @login_required
 @csrf_exempt
-def create_uploaded_file(request):
+def create_uploaded_file(request, upload_job_id):
+    user = request.user
+    upload_job = UploadJob.objects.get(pk=upload_job_id)
+
+    if upload_job is None:
+        return JsonResponse({"message": "Upload job does not exist."}, status=404)
+
+    if upload_job.user_id != user.id:
+        return JsonResponse(
+            {"message": "You are not allowed to create a file for this upload job."},
+            status=403,
+        )
+
     json_data = json.loads(request.body)
     filename = json_data["filename"]
     content_type = json_data["content_type"]
@@ -225,7 +236,7 @@ def create_uploaded_file(request):
         return JsonResponse({"message": error}, status=400)
 
     file = UploadedFile.objects.create(
-        user=request.user,
+        upload_job=upload_job,
         filename=filename,
         media_type=content_type,
         size=size,
@@ -243,16 +254,20 @@ def create_uploaded_file(request):
 @require_POST
 @login_required
 @csrf_exempt
-async def upload_file(request, uploaded_file_id):
-    upload = await UploadedFile.objects.aget(pk=uploaded_file_id)
+async def upload_uploaded_file(request, uploaded_file_id):
+    uploaded_file = await UploadedFile.objects.select_related("upload_job").aget(
+        pk=uploaded_file_id
+    )
+    upload_job = uploaded_file.upload_job
+
     user = await request.auser()
-    if upload.user_id != user.id:
+    if upload_job.user_id != user.id:
         return JsonResponse(
-            {"message": "You are not allowed to update this file."}, status=403
+            {"message": "You are not allowed to upload this file."}, status=403
         )
 
     uploads_directory = settings.BASE_DIR / "user_files" / user.username / "uploads"
-    file_path = uploads_directory / upload.filename
+    file_path = uploads_directory / uploaded_file.filename
 
     file = request.FILES["file"]
     await handle_uploaded_file(file, file_path)
@@ -290,8 +305,9 @@ async def handle_uploaded_file(file, file_path):
 @login_required
 @csrf_exempt
 def update_uploaded_file(request, uploaded_file_id):
-    upload = UploadedFile.objects.get(id=uploaded_file_id)
-    if upload.user_id != request.user.id:
+    uploaded_file = UploadedFile.objects.select_related("upload_job").get(id=uploaded_file_id)
+    upload_job = uploaded_file.upload_job
+    if upload_job.user_id != request.user.id:
         return JsonResponse(
             {"message": "You are not allowed to update this file."}, status=403
         )
@@ -302,8 +318,8 @@ def update_uploaded_file(request, uploaded_file_id):
     if not checksum_client:
         return JsonResponse({"message": "checksum_client is required."}, status=400)
 
-    upload.checksum_client = checksum_client
-    upload.save()
+    uploaded_file.checksum_client = checksum_client
+    uploaded_file.save()
 
     return JsonResponse({"message": "Upload successfully updated."}, status=200)
 
@@ -312,22 +328,23 @@ def update_uploaded_file(request, uploaded_file_id):
 @login_required
 @csrf_exempt
 def delete_uploaded_file(request, uploaded_file_id):
-    upload = UploadedFile.objects.get(id=uploaded_file_id)
+    uploaded_file = UploadedFile.objects.select_related("upload_job").get(id=uploaded_file_id)
+    upload_job = uploaded_file.upload_job
     user = request.user
 
-    if upload.user_id != user.id:
+    if upload_job.user_id != user.id:
         return JsonResponse(
             {"message": "You are not allowed to delete this file."}, status=403
         )
 
     downloads_directory = user.profile.download_path()
-    file_path = downloads_directory / upload.filename
+    file_path = downloads_directory / uploaded_file.filename
 
     try:
         file_path.unlink()
     except FileNotFoundError:
-        print(f"File {upload.filename} does not exist.")
+        print(f"File {uploaded_file.filename} does not exist.")
 
-    upload.delete()
+    uploaded_file.delete()
 
     return HttpResponse(status=204)
