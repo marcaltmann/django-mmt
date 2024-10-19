@@ -16,6 +16,7 @@ from django.views.decorators.http import require_GET, require_POST
 from .forms import UploadJobForm
 from .models import UploadedFile, UploadJob
 from .filesystem import generate_file_md5
+from .tasks import add
 
 logger = logging.getLogger(__name__)
 
@@ -98,6 +99,7 @@ def upload_job_detail(request, pk):
 @require_GET
 @login_required
 def my_downloads(request):
+    add.delay(3, 4)
     user = request.user
     downloads_directory = user.profile.download_path()
     if not downloads_directory.is_dir():
