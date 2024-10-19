@@ -14,6 +14,19 @@ services:
       - ./.env.prod
     depends_on:
       - db
+  celery:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.prod
+    command: celery -A mmt worker -l INFO
+    restart: always
+    volumes:
+      - user_files:/home/app/web/user_files
+    env_file:
+      - ./.env.prod
+    depends_on:
+      - redis
+      - db
   db:
     image: mariadb:11.6
     restart: always
@@ -23,6 +36,12 @@ services:
       - mariadb_data:/var/lib/mysql
     ports:
       - 127.0.0.1:3306:3306
+  redis:
+    image: redis/redis-stack
+    restart: always
+    ports:
+      - 127.0.0.1:6379:6379
+      - 127.0.0.1:8001:8001
   nginx:
     build: ./nginx
     volumes:
