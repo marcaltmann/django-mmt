@@ -6,7 +6,6 @@ services:
     # command: gunicorn mmt.wsgi:application --bind 0.0.0.0:8000 --workers 1 --timeout 600
     command: hypercorn mmt.asgi:application --bind '0.0.0.0:8000'
     volumes:
-      - db:/home/app/web/db
       - static_volume:/home/app/web/staticfiles
       - user_files:/home/app/web/user_files
     expose:
@@ -23,6 +22,5 @@ services:
       - web
 
 volumes:
-  db:
   static_volume:
   user_files:

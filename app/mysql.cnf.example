@@ -1,0 +1,5 @@
+[client]
+database = mmt
+user = root
+password = password
+default-character-set = utf8

@@ -12,3 +12,4 @@ db.sqlite3
 staticfiles
 *.tar
 inventory.yml
+mysql.cnf
