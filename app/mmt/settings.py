@@ -156,6 +156,6 @@ EMAIL_PORT = os.environ.get("EMAIL_PORT")
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 
-#CELERY_BACKEND = "redis://localhost"
+# CELERY_BACKEND = "redis://localhost"
 CELERY_BROKER_URL = "redis://localhost"
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True

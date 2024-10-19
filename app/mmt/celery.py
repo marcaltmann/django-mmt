@@ -3,16 +3,16 @@ import os
 from celery import Celery
 
 # Set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mmt.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mmt.settings")
 
-app = Celery('mmt')
+app = Celery("mmt")
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.
 # - namespace='CELERY' means all celery-related configuration keys
 #   should have a `CELERY_` prefix.
-app.config_from_object('django.conf:settings', namespace='CELERY')
-print('done')
+app.config_from_object("django.conf:settings", namespace="CELERY")
+print("done")
 
 # Load task modules from all registered Django apps.
 app.autodiscover_tasks()
@@ -20,4 +20,4 @@ app.autodiscover_tasks()
 
 @app.task(bind=True, ignore_result=True)
 def debug_task(self):
-    print(f'Request: {self.request!r}')
+    print(f"Request: {self.request!r}")

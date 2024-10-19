@@ -16,7 +16,7 @@ from django.views.decorators.http import require_GET, require_POST
 from .forms import UploadJobForm
 from .models import UploadedFile, UploadJob
 from .filesystem import generate_file_md5
-from .tasks import add
+from .tasks import add, calculate_server_checksum
 
 logger = logging.getLogger(__name__)
 
@@ -274,11 +274,7 @@ async def upload_uploaded_file(request, uploaded_file_id):
     file = request.FILES["file"]
     await handle_uploaded_file(file, file_path)
 
-    # Generate server checksum.
-    checksum_server = generate_file_md5(file_path)
-    await UploadedFile.objects.filter(pk=uploaded_file_id).aupdate(
-        checksum_server=checksum_server
-    )
+    calculate_server_checksum.delay(uploaded_file_id)
 
     # Send emails to admins and the user.
     send_mail(
@@ -289,12 +285,7 @@ async def upload_uploaded_file(request, uploaded_file_id):
         fail_silently=False,
     )
 
-    return JsonResponse(
-        {
-            "success": True,
-            "checksum_server": checksum_server,
-        }
-    )
+    return JsonResponse({"success": True})
 
 
 async def handle_uploaded_file(file, file_path):
@@ -307,7 +298,9 @@ async def handle_uploaded_file(file, file_path):
 @login_required
 @csrf_exempt
 def update_uploaded_file(request, uploaded_file_id):
-    uploaded_file = UploadedFile.objects.select_related("upload_job").get(id=uploaded_file_id)
+    uploaded_file = UploadedFile.objects.select_related("upload_job").get(
+        id=uploaded_file_id
+    )
     upload_job = uploaded_file.upload_job
     if upload_job.user_id != request.user.id:
         return JsonResponse(
@@ -330,7 +323,9 @@ def update_uploaded_file(request, uploaded_file_id):
 @login_required
 @csrf_exempt
 def delete_uploaded_file(request, uploaded_file_id):
-    uploaded_file = UploadedFile.objects.select_related("upload_job").get(id=uploaded_file_id)
+    uploaded_file = UploadedFile.objects.select_related("upload_job").get(
+        id=uploaded_file_id
+    )
     upload_job = uploaded_file.upload_job
     user = request.user
 
