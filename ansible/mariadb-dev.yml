@@ -1,5 +1,5 @@
 ---
-- name: Set up MariaDB 10.5 for development
+- name: Set up MariaDB for development
   hosts: localhost
   become: true
   tasks:
@@ -22,39 +22,24 @@
           - mariadb-server
           - pkg-config
           - python3-dev
+          - python3-pymysql
           - python3-pip
 
         state: latest
         update_cache: true
 
-    - name: Create a new database with name "mediaexplorer"
-      become_user: postgres
-      community.postgresql.postgresql_db:
-        name: mediaexplorer
-        comment: Media Explorer development database
+    - name: Create a new database with name "mmt"
+      community.mysql.mysql_db:
+        name: mmt
+        state: present
+        login_unix_socket: /run/mysqld/mysqld.sock
 
-    - name: Connect to database, create mediaexplorer user
-      become_user: postgres
-      community.postgresql.postgresql_user:
-        db: mediaexplorer
-        name: mediaexplorer
+    - name: Check that root user has password "password"
+      community.mysql.mysql_user:
+        check_implicit_admin: true
+        login_user: root
+        login_password: password
+        name: root
         password: password
-        configuration:
-          client_encoding: utf8
-          default_transaction_isolation: read committed
-          timezone: UTC
-
-    - name: GRANT ALL PRIVILEGES ON DATABASE mediaexplorer TO mediaexplorer
-      become_user: postgres
-      community.postgresql.postgresql_privs:
-        db: mediaexplorer
-        privs: ALL
-        type: database
-        obj: mediaexplorer
-        role: mediaexplorer
-
-    - name: ALTER DATABASE mediaexplorer OWNER TO mediaexplorer
-      become_user: postgres
-      community.postgresql.postgresql_db:
-        name: mediaexplorer
-        owner: mediaexplorer
+        state: present
+        column_case_sensitive: true
