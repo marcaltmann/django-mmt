@@ -15,7 +15,7 @@ services:
     depends_on:
       - db
   db:
-    image: mariadb:11.6
+    image: mariadb
     restart: always
     env_file:
       - ./.env.prod
