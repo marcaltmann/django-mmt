@@ -68,6 +68,9 @@ export default {
       submit: 'Absenden und hochladen',
       reset: 'Zurücksetzen'
     },
+    UploadJobCard: {
+      file: 'keine Dateien | eine Datei | {count} Dateien',
+    },
     UploadQueue: {
       cancel: 'Abbrechen',
       noJobs: 'Derzeit befinden sich keine Aufträge in der Upload-Warteschlange.',

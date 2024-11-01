@@ -68,6 +68,9 @@ export default {
       submit: 'Submit and upload',
       reset: 'Reset'
     },
+    UploadJobCard: {
+      file: 'no files | one file | {count} files',
+    },
     UploadQueue: {
       cancel: 'Cancel',
       noJobs: 'Currently, there are no jobs pending in the upload queue.',

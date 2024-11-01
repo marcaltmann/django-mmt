@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import useSWRV from 'swrv'
 
 import { fetchWrapper } from '@/helpers/fetch-wrapper'
-import UploadJobsTable from '@/components/UploadJobsTable.vue'
+import UploadJobsGrid from '@/components/UploadJobsGrid.vue'
 import InlineMessage from '@/components/InlineMessage.vue'
 import truncateText from '@/helpers/truncate-text'
 
@@ -37,7 +37,7 @@ async function handleDeleteClick(uploadId: number, filename: string) {
       {{ $t(`${error.message}`) }}
     </InlineMessage>
 
-    <UploadJobsTable
+    <UploadJobsGrid
       v-if="data"
       class="u-mt"
       :upload-jobs="data"
