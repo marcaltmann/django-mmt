@@ -16,7 +16,7 @@ from django.views.decorators.http import require_GET, require_POST
 from .forms import UploadJobForm
 from .models import UploadedFile, UploadJob
 from .filesystem import generate_file_md5
-from .tasks import add, calculate_server_checksum
+from .tasks import add, calculate_server_checksum, send_file_uploaded_emails
 
 logger = logging.getLogger(__name__)
 
@@ -274,16 +274,8 @@ async def upload_uploaded_file(request, uploaded_file_id):
     file = request.FILES["file"]
     await handle_uploaded_file(file, file_path)
 
+    send_file_uploaded_emails.delay(user.id, uploaded_file.filename)
     calculate_server_checksum.delay(uploaded_file_id)
-
-    # Send emails to admins and the user.
-    send_mail(
-        "Subject here",
-        "Here is the message.",
-        "from@example.com",
-        [user.email],
-        fail_silently=False,
-    )
 
     return JsonResponse({"success": True})
 

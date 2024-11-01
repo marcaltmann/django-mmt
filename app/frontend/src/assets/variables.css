@@ -1,9 +1,9 @@
 :root {
   /* Typography */
+  line-height: 1.5rem;
   --base-unit: 1.5rem;
   --line-height: var(--base-unit);
-  --font-stack: corbel, 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', 'Bitstream Vera Sans',
-    'Liberation Sans', verdana, 'Verdana Ref', sans-serif;
+  --font-stack: system-ui, sans-serif;
   --font-size-normal: 1rem;
   --font-size-small: 0.875rem;
   --font-size-large: 1.25rem;

@@ -12,5 +12,6 @@ node_modules
 db.sqlite3
 staticfiles
 *.tar
+*.mo
 inventory.yml
 my.cnf

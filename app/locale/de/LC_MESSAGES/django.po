@@ -1,0 +1,74 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-01 20:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: core/tasks.py:40 core/tasks.py:58
+msgid "File uploaded"
+msgstr "Datei hochgeladen"
+
+#: core/templates/file_uploaded_admin.txt:2
+#, python-format
+msgid "Hi %(admin)s,"
+msgstr "Hallo %(admin)s,"
+
+#: core/templates/file_uploaded_admin.txt:4
+#, python-format
+msgid "the user %(username)s has uploaded the following file:"
+msgstr "der Benutzer %(username)s hat die folgende Datei hochgeladen:"
+
+#: core/templates/file_uploaded_admin.txt:8
+#: core/templates/file_uploaded_user.txt:10
+msgid "Regards,"
+msgstr "Mit freundlichen Grüßen,"
+
+#: core/templates/file_uploaded_user.txt:2
+#, python-format
+msgid "Hi %(username)s,"
+msgstr "Hallo %(username)s,"
+
+#: core/templates/file_uploaded_user.txt:4
+#, python-format
+msgid "your file %(filename)s has been uploaded."
+msgstr "Ihre Datei %(filename)s wurde hochgeladen."
+
+#: core/templates/file_uploaded_user.txt:6
+msgid ""
+"The file will now undergo a technical review and will subsequently be "
+"accessible within the oh.d system."
+msgstr ""
+"Die Datei wird nun einer technischen Überprüfung unterzogen und ist "
+"anschließend im oh.d-System verfügbar."
+
+#: core/templates/file_uploaded_user.txt:8
+msgid ""
+"The technical review and transcoding process may take several working days, "
+"depending on the scope, complexity, and workload. You will receive an email "
+"notification as soon as the file becomes available in the oh.d system."
+msgstr ""
+"Der Prozess der technischen Überprüfung und Transkodierung kann je nach "
+"Umfang, Komplexität und Arbeitsaufwand mehrere Werktage in Anspruch "
+"nehmen. Sie erhalten eine E-Mail-Benachrichtigung, sobald die Datei im "
+"oh.d-System verfügbar ist."
+
+#: mmt/settings.py:119
+msgid "German"
+msgstr "Deutsch"
+
+#: mmt/settings.py:120
+msgid "English"
+msgstr "Englisch"
