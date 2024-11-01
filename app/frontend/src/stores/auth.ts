@@ -69,7 +69,10 @@ export const useAuthStore = defineStore({
       })
 
       if (user) {
-        this.user = user
+        this.user = {
+          ...this.user,
+          ...user,
+        };
         i18n.global.locale.value = user.locale
       }
     }
