@@ -10,6 +10,7 @@ from django.views.decorators.http import require_GET, require_POST
 
 from core.filesystem import create_user_directories
 from .models import Profile
+from .tasks import send_new_user_email, send_user_activation_email
 
 User = get_user_model()
 
@@ -97,7 +98,7 @@ def register(request):
     Profile.objects.create(user=user, locale=locale)
 
     create_user_directories(username)
-    # send_mail_to_admins()
+    send_new_user_email.delay(user.id)
 
     return JsonResponse(
         {

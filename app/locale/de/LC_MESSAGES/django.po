@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-01 20:08+0000\n"
+"POT-Creation-Date: 2024-11-01 20:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: core/tasks.py:40 core/tasks.py:58
 msgid "File uploaded"
 msgstr "Datei hochgeladen"
 
 #: core/templates/file_uploaded_admin.txt:2
+#: custom_user/templates/new_user.txt:2
 #, python-format
 msgid "Hi %(admin)s,"
 msgstr "Hallo %(admin)s,"
@@ -33,6 +35,7 @@ msgstr "der Benutzer %(username)s hat die folgende Datei hochgeladen:"
 
 #: core/templates/file_uploaded_admin.txt:8
 #: core/templates/file_uploaded_user.txt:10
+#: custom_user/templates/new_user.txt:7
 msgid "Regards,"
 msgstr "Mit freundlichen Grüßen,"
 
@@ -61,9 +64,117 @@ msgid ""
 "notification as soon as the file becomes available in the oh.d system."
 msgstr ""
 "Der Prozess der technischen Überprüfung und Transkodierung kann je nach "
-"Umfang, Komplexität und Arbeitsaufwand mehrere Werktage in Anspruch "
-"nehmen. Sie erhalten eine E-Mail-Benachrichtigung, sobald die Datei im "
-"oh.d-System verfügbar ist."
+"Umfang, Komplexität und Arbeitsaufwand mehrere Werktage in Anspruch nehmen. "
+"Sie erhalten eine E-Mail-Benachrichtigung, sobald die Datei im oh.d-System "
+"verfügbar ist."
+
+#: custom_user/tasks.py:21
+msgid "A new user has registered."
+msgstr "Ein neuer Benutzer hat sich registriert."
+
+#: custom_user/tasks.py:42
+msgid "Your account has been activated."
+msgstr "Ihr Konto wurde aktiviert."
+
+#: custom_user/templates/new_user.txt:4
+msgid "the user %(username)s has just registered on mmt-py."
+msgstr "der Benutzer %(username)s hat sich gerade auf mmt-py registriert."
+
+#: custom_user/templates/new_user.txt:5
+msgid "Please activate him."
+msgstr "Bitte aktivieren Sie ihn."
+
+#: custom_user/templates/user_activated.txt:2
+msgid "Hello %(username)s,"
+msgstr "Guten Tag %(username)s,"
+
+#: custom_user/templates/user_activated.txt:4
+msgid ""
+"Thank you for registering with the Media Management Tool (MMT) - the "
+"application for file uploads and downloads on the Oral-History.Digital "
+"platform."
+msgstr ""
+"vielen Dank für die Registrierung beim Media Management Tool (MMT) - der "
+"Anwendung für Datei-Uploads und -Downloads auf der Oral-History.Digital-"
+"Plattform."
+
+#: custom_user/templates/user_activated.txt:6
+#, python-format
+msgid "We have activated your account with the username %(username)s for MMT."
+msgstr "Wir haben Ihren Account mit dem Usernamen %(username)s für das MMT aktiviert."
+
+#: custom_user/templates/user_activated.txt:8
+msgid "You can now log in at:"
+msgstr "Sie können sich nun unter der Adresse"
+
+#: custom_user/templates/user_activated.txt:12
+msgid ""
+"and upload your video, audio, and image files to the Oral-History.Digital "
+"(oh.d) platform."
+msgstr ""
+"anmelden und Ihre Video-, Audio- und Bilddateien auf die Plattform "
+"Oral-History.Digital (oh.d) hochladen."
+
+#: custom_user/templates/user_activated.txt:14
+msgid ""
+"Please ensure that the final master files are uploaded using the specified "
+"file naming convention."
+msgstr ""
+"Bitte achten Sie darauf, dass die finalen Masterdateien mit der "
+"vorgegebenen Dateinamenkonvention hochgeladen werden."
+
+#: custom_user/templates/user_activated.txt:16
+msgid ""
+"After the technical review and automated transcoding into the required usage "
+"formats, the media files will be made available in the oh.d system."
+msgstr ""
+"Nach der technischen Prüfung und automatisierten Transkodierung in die "
+"erforderlichen Nutzungsformate werden die Mediendateien im oh.d-System "
+"bereitgestellt."
+
+#: custom_user/templates/user_activated.txt:18
+msgid ""
+"Through MMT, oh.d staff can also provide media files for you to download if "
+"needed."
+msgstr ""
+"Über das MMT können oh.d-Mitarbeiter*innen Ihnen zudem bei Bedarf "
+"Mediendateien zum Download bereitstellen."
+
+#: custom_user/templates/user_activated.txt:20
+msgid "Here you can find a general guide to the media workflow:"
+msgstr "Hier finden Sie eine generelle Anleitung zum Medienworkflow:"
+
+#: custom_user/templates/user_activated.txt:22
+msgid "Best regards,"
+msgstr "Viele Grüße,"
+
+#: custom_user/templates/user_activated.txt:23
+msgid "The Oral-History.Digital Team"
+msgstr "das Team von Oral-History.Digital"
+
+#: custom_user/templates/user_activated.txt:25
+msgid "Project “Oral-History.Digital”"
+msgstr "Projekt „Oral-History.Digital“"
+
+#: custom_user/templates/user_activated.txt:26
+msgid "Freie Universität Berlin"
+msgstr "Freie Universität Berlin"
+
+#: custom_user/templates/user_activated.txt:27
+msgid "University Library"
+msgstr "Universitätsbibliothek"
+
+#: custom_user/templates/user_activated.txt:28
+msgid "Digital Interview Collections Team"
+msgstr "Team Digitale Interview-Sammlungen"
+
+#: custom_user/templates/user_activated.txt:29
+msgid "Garystr. 39"
+msgstr "Garystr. 39"
+
+#: custom_user/templates/user_activated.txt:30
+msgid "14195 Berlin"
+msgstr "14195 Berlin"
 
 #: mmt/settings.py:119
 msgid "German"
