@@ -2,6 +2,7 @@
 /.env.prod
 /.idea
 /.venv
+/venv
 /app/.venv
 /app/user_files/*
 !/app/user_files/.keep
