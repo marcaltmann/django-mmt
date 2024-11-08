@@ -2,7 +2,12 @@
   --base-unit: 1.5rem;
   --line-height: var(--base-unit);
   /* Colors */
-  --primary-color: #2e4161; /* #0a3782; */
+  --primary-color: #e12118;
+  --secondary-color: #040000;
+  --ternary-color: #b78000;
+
+
+  /*--primary-color: #2e4161; /* #0a3782; */
   --color-scheme-1: #6080b3;
   --color-scheme-2: #d4dbe7; /* #c8d4e7; */
   --color-scheme-3: #050609;
@@ -17,8 +22,8 @@
   --ui-color-bright: #999;
   --ui-mid-neutral-color: #888;
   --active-color: darkgreen;
-  --header-color: var(--primary-color);
-  --footer-color: var(--color-scheme-2);
+  --header-color: var(--secondary-color);
+  --footer-color: var(--ternary-color);
   /* Spacing */
   --page-width: calc(var(--base-unit) * 48);
   --page-width-wide: calc(var(--base-unit) * 60);

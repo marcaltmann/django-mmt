@@ -3,33 +3,25 @@ table {
   border: 2px solid rgb(140 140 140);
   font-size: 0.875rem;
   line-height: 1rlh;
-  letter-spacing: 1px;
 }
 
 thead,
 tfoot {
-  background-color: rgb(228 240 245);
+  background-color: var(--ternary-color);
 }
 
 th,
 td {
   border: 1px solid rgb(160 160 160);
-  padding: 0.25rlh;
   line-height: 1rlh;
+  padding: 0.25rlh;
 }
 
-td:last-of-type {
-  text-align: center;
+td:nth-of-type(3),
+td:nth-of-type(4) {
+  text-align: right;
 }
 
 tbody > tr:nth-of-type(even) {
   background-color: rgb(237 238 242);
-}
-
-tfoot th {
-  text-align: right;
-}
-
-tfoot td {
-  font-weight: bold;
 }
