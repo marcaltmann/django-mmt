@@ -4,69 +4,35 @@
 
 .grid {
     display: grid;
-    grid-gap: var(--base-unit);
+    grid-gap: 1rlh;
 }
 
-.grid--collection {
-    grid-template-columns: 1fr;
-}
-
-@container (min-width: 25em) {
-    .grid--collection {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@container (min-width: 50em) {
-    .grid--collection {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-
-.grid--resource {
+.grid--upload-job {
     grid-template-columns: 1fr;
 }
 
 @container (min-width: 20em) {
-    .grid--resource {
+    .grid--upload-job {
         grid-template-columns: 1fr 1fr;
     }
 }
 
 @container (min-width: 40em) {
-    .grid--resource {
+    .grid--upload-job {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
 @container (min-width: 60em) {
-    .grid--resource {
+    .grid--upload-job {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
 
-.grid--collection,
 .grid--none,
-.grid--resource {
+.grid--upload-job {
     list-style-type: none;
     margin-bottom: 0;
     margin-top: 0;
     padding-left: 0;
-}
-
-.grid--resource-page {
-    gap: calc(var(--base-unit) * 2);
-    grid-template-columns: 3fr 2fr;
-}
-
-.grid--location-page {
-    grid-template-columns: 1fr 1fr;
-}
-
-.grid--search-page {
-  grid-template-columns: 1fr 4fr;
-}
-
-.grid--entities {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
 }

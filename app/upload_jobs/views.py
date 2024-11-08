@@ -32,8 +32,8 @@ def upload_job_index(request):
         }
         for upload_job in upload_jobs
     ]
-
-    return JsonResponse(data, safe=False)
+    context = {"upload_jobs": upload_jobs}
+    return render(request, "upload_jobs/upload_job_index.html", context)
 
 
 @require_GET

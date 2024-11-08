@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-08 17:47+0000\n"
+"POT-Creation-Date: 2024-11-08 23:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,7 +65,7 @@ msgstr "Passwort ändern"
 #: account/templates/account/register.html:5
 #: account/templates/account/register.html:9
 #: account/templates/account/register.html:48
-#: account/templates/registration/login.html:57 core/templates/header.html:47
+#: account/templates/registration/login.html:57 core/templates/header.html:53
 msgid "Register"
 msgstr "Registrieren"
 
@@ -86,7 +86,8 @@ msgstr "Registrierung fertig"
 msgid "Your registration is complete."
 msgstr "Sie sind fertig registriert."
 
-#: account/templates/new_user.txt:2 core/templates/file_uploaded_admin.txt:2
+#: account/templates/new_user.txt:2
+#: uploaded_files/templates/file_uploaded_admin.txt:2
 #, python-format
 msgid "Hi %(admin)s,"
 msgstr "Hallo %(admin)s,"
@@ -100,8 +101,9 @@ msgstr "der Benutzer %(username)s hat sich gerade auf mmt-py registriert."
 msgid "Please activate him."
 msgstr "Bitte aktivieren Sie ihn."
 
-#: account/templates/new_user.txt:7 core/templates/file_uploaded_admin.txt:8
-#: core/templates/file_uploaded_user.txt:10
+#: account/templates/new_user.txt:7
+#: uploaded_files/templates/file_uploaded_admin.txt:8
+#: uploaded_files/templates/file_uploaded_user.txt:10
 msgid "Regards,"
 msgstr "Mit freundlichen Grüßen,"
 
@@ -297,48 +299,14 @@ msgstr "Garystr. 39"
 msgid "14195 Berlin"
 msgstr "14195 Berlin"
 
-#: core/tasks.py:40 core/tasks.py:58
-msgid "File uploaded"
-msgstr "Datei hochgeladen"
-
 #: core/templates/base.html:13 core/templates/footer.html:5
 #: core/templates/header.html:6
 msgid "MMT Py"
 msgstr "MMT Py"
 
-#: core/templates/file_uploaded_admin.txt:4
-#, python-format
-msgid "the user %(username)s has uploaded the following file:"
-msgstr "der Benutzer %(username)s hat die folgende Datei hochgeladen:"
-
-#: core/templates/file_uploaded_user.txt:2
-#, python-format
-msgid "Hi %(username)s,"
-msgstr "Hallo %(username)s,"
-
-#: core/templates/file_uploaded_user.txt:4
-#, python-format
-msgid "your file %(filename)s has been uploaded."
-msgstr "Ihre Datei %(filename)s wurde hochgeladen."
-
-#: core/templates/file_uploaded_user.txt:6
-msgid ""
-"The file will now undergo a technical review and will subsequently be "
-"accessible within the oh.d system."
-msgstr ""
-"Die Datei wird nun einer technischen Überprüfung unterzogen und ist "
-"anschließend im oh.d-System verfügbar."
-
-#: core/templates/file_uploaded_user.txt:8
-msgid ""
-"The technical review and transcoding process may take several working days, "
-"depending on the scope, complexity, and workload. You will receive an email "
-"notification as soon as the file becomes available in the oh.d system."
-msgstr ""
-"Der Prozess der technischen Überprüfung und Transkodierung kann je nach "
-"Umfang, Komplexität und Arbeitsaufwand mehrere Werktage in Anspruch nehmen. "
-"Sie erhalten eine E-Mail-Benachrichtigung, sobald die Datei im oh.d-System "
-"verfügbar ist."
+#: core/templates/core/welcome.html:6
+msgid "Administration software for media files"
+msgstr "Verwaltungssoftware für Mediendateien"
 
 #: core/templates/footer.html:11
 msgid "Legal notice"
@@ -360,21 +328,25 @@ msgid "Contact"
 msgstr "Kontakt"
 
 #: core/templates/header.html:14
+msgid "Upload jobs"
+msgstr "Upload-Aufträge"
+
+#: core/templates/header.html:20
 #: downloads/templates/downloads/download_index.html:4
 #: downloads/templates/downloads/download_index.html:8
 #: downloads/templates/downloads/download_index.html:13
 msgid "Downloads"
 msgstr "Downloads"
 
-#: core/templates/header.html:20
+#: core/templates/header.html:26
 msgid "Admin area"
 msgstr "Admin-Bereich"
 
-#: core/templates/header.html:33
+#: core/templates/header.html:39
 msgid "Log out"
 msgstr "Abmelden"
 
-#: core/templates/header.html:41
+#: core/templates/header.html:47
 msgid "Log in"
 msgstr "Anmelden"
 
@@ -394,11 +366,11 @@ msgstr "Größe"
 msgid "Last modified"
 msgstr "Zuletzt geändert"
 
-#: mmt/settings.py:126
+#: mmt/settings.py:128
 msgid "German"
 msgstr "Deutsch"
 
-#: mmt/settings.py:127
+#: mmt/settings.py:129
 msgid "English"
 msgstr "Englisch"
 
@@ -407,6 +379,46 @@ msgstr "Englisch"
 msgid "Legal Notice"
 msgstr "Impressum"
 
-#: pages/templates/pages/welcome.html:6
-msgid "Administration software for media files"
-msgstr "Verwaltungssoftware für Mediendateien"
+#: upload_jobs/templates/upload_jobs/upload_job_index.html:4
+#: upload_jobs/templates/upload_jobs/upload_job_index.html:8
+#: upload_jobs/templates/upload_jobs/upload_job_index.html:13
+msgid "Upload Jobs"
+msgstr "Upload-Aufträge"
+
+#: uploaded_files/tasks.py:40 uploaded_files/tasks.py:58
+msgid "File uploaded"
+msgstr "Datei hochgeladen"
+
+#: uploaded_files/templates/file_uploaded_admin.txt:4
+#, python-format
+msgid "the user %(username)s has uploaded the following file:"
+msgstr "der Benutzer %(username)s hat die folgende Datei hochgeladen:"
+
+#: uploaded_files/templates/file_uploaded_user.txt:2
+#, python-format
+msgid "Hi %(username)s,"
+msgstr "Hallo %(username)s,"
+
+#: uploaded_files/templates/file_uploaded_user.txt:4
+#, python-format
+msgid "your file %(filename)s has been uploaded."
+msgstr "Ihre Datei %(filename)s wurde hochgeladen."
+
+#: uploaded_files/templates/file_uploaded_user.txt:6
+msgid ""
+"The file will now undergo a technical review and will subsequently be "
+"accessible within the oh.d system."
+msgstr ""
+"Die Datei wird nun einer technischen Überprüfung unterzogen und ist "
+"anschließend im oh.d-System verfügbar."
+
+#: uploaded_files/templates/file_uploaded_user.txt:8
+msgid ""
+"The technical review and transcoding process may take several working days, "
+"depending on the scope, complexity, and workload. You will receive an email "
+"notification as soon as the file becomes available in the oh.d system."
+msgstr ""
+"Der Prozess der technischen Überprüfung und Transkodierung kann je nach "
+"Umfang, Komplexität und Arbeitsaufwand mehrere Werktage in Anspruch nehmen. "
+"Sie erhalten eine E-Mail-Benachrichtigung, sobald die Datei im oh.d-System "
+"verfügbar ist."
