@@ -1,0 +1,41 @@
+.card {
+    border: 1px solid var(--ui-color-bright);
+    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 10%);
+}
+
+.card--collection {
+    padding: var(--base-unit);
+}
+
+.card--resource {
+    padding: calc(var(--base-unit) / 2);
+}
+
+.card__image {
+    margin-left: calc(var(--base-unit) / -2);
+    margin-right: calc(var(--base-unit) / -2);
+    margin-top: calc(var(--base-unit) / -2);
+    width: calc(100% + var(--base-unit));
+}
+
+.card__title {
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: var(--base-unit);
+    margin: 0;
+}
+
+.card__link:link,
+.card__link:visited {
+    color: #000;
+}
+
+.card__detail {
+    color: var(--ui-color);
+    font-size: 0.875rem;
+    line-height: var(--base-unit);
+    list-style-type: none;
+    margin-bottom: 0;
+    margin-top: calc(var(--base-unit) / 2);
+    padding-left: 0;
+}

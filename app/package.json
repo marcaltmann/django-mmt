@@ -1,0 +1,26 @@
+{
+    "name": "mmt-py",
+    "version": "1.0.0",
+    "description": "Administration software for media files",
+    "main": "index.js",
+    "type": "module",
+    "engines": {
+        "node": ">=18",
+        "npm": ">=10"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "vite dev",
+        "build": "vite build"
+    },
+    "author": "Marc Altmann <marcaltmann@posteo.de>",
+    "license": "AGPL-3.0",
+    "dependencies": {
+        "htmx.org": "^2.0.3",
+        "stimulus": "^3.2.2",
+        "video.js": "^8.19.1"
+    },
+    "devDependencies": {
+        "django-vite-plugin": "^4.0.4"
+    }
+}

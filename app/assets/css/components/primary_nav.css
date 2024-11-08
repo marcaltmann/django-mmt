@@ -1,0 +1,29 @@
+.primary-nav {
+    margin-left: auto;
+}
+
+.primary-nav__list {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: calc(var(--base-unit) / 2) 0;
+}
+
+.primary-nav__item {
+    margin-left: calc(var(--base-unit) / 2);
+}
+
+.primary-nav__item--active {
+    font-style: italic;
+}
+
+.primary-nav__link:link,
+.primary-nav__link:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+.primary-nav__link:hover,
+.primary-nav__link:active {
+    text-decoration: underline;
+}

@@ -34,14 +34,16 @@ CORS_ALLOW_CREDENTIALS = True
 
 INSTALLED_APPS = [
     "core.apps.CoreConfig",
-    "custom_user.apps.CustomUserConfig",
+    "pages.apps.PagesConfig",
     "corsheaders",
+    "custom_user.apps.CustomUserConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
-    "django.contrib.sessions",
     "django.contrib.messages",
+    "django.contrib.sessions",
     "django.contrib.staticfiles",
+    "django_vite_plugin",
 ]
 
 MIDDLEWARE = [
