@@ -11,8 +11,19 @@
 .header__title {
     font-size: 1rem;
     font-weight: bold;
-    line-height: var(--base-unit);
+    line-height: 1rlh;
     margin: 0;
+}
+
+.header__mmt {
+  vertical-align: bottom;
+}
+
+.header__py {
+  color: var(--color-logo);
+  font-size: 1.25rem;
+  margin-left: 1px;
+  vertical-align: bottom;
 }
 
 .header__title-link:link,

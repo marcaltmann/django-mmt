@@ -5,7 +5,7 @@
   --primary-color: #e12118;
   --secondary-color: #040000;
   --ternary-color: #b78000;
-
+  --color-logo: var(--primary-color);
 
   /*--primary-color: #2e4161; /* #0a3782; */
   --color-scheme-1: #6080b3;
