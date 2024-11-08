@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "pages.apps.PagesConfig",
     "corsheaders",
+    "widget_tweaks",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -110,9 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "account.User"
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -137,6 +135,12 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+LOGIN_REDIRECT_URL = "account:profile"
+LOGOUT_REDIRECT_URL = "pages:welcome"
+AUTH_USER_MODEL = "account.User"
+
 
 sentry_sdk.init(
     dsn=os.environ.get("SENTRY_URL"),

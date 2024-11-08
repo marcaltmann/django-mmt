@@ -5,13 +5,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("api/", include("core.urls")),
-    path("api/auth/", include("custom_user.urls")),
     path("", include("django_vite_plugin.urls")),
 ]
 
 urlpatterns += i18n_patterns(
     path("admin/", admin.site.urls),
+    path("account/", include("django.contrib.auth.urls")),
+    path("account/", include("account.urls")),
     path("", include("core.urls")),
     path("", include("pages.urls")),
 )

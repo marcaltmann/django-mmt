@@ -24,13 +24,13 @@ def register(request):
         form = RegisterForm()
 
     context = {"form": form}
-    return render(request, "accounts/register.html", context)
+    return render(request, "account/register.html", context)
 
 
 def registration_complete(request):
-    return render(request, "accounts/registration_complete.html")
+    return render(request, "account/registration_complete.html")
 
 
 @login_required()
 def profile(request):
-    return render(request, "accounts/profile.html")
+    return render(request, "account/profile.html")

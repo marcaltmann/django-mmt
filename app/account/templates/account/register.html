@@ -1,4 +1,4 @@
-% extends "base.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% load widget_tweaks %}
 {% block title %}
@@ -10,7 +10,7 @@
   </h1>
   {% if form.errors %}
   {% endif %}
-  <form method="post" action="{% url 'accounts:register' %}" class="form">
+  <form method="post" action="{% url 'account:register' %}" class="form">
     {% csrf_token %}
     <div>
       <label for="{{ form.username.id_for_label }}"

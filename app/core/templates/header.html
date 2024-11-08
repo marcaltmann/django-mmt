@@ -16,7 +16,7 @@
           </li>
         {% endif %}
         {% if user.is_authenticated %}
-          {% url 'accounts:profile' as url %}
+          {% url 'account:profile' as url %}
           <li class="primary-nav__item {% if request.path == url %}primary-nav__item--active{% endif %}">
             <a class="primary-nav__link" href="{{ url }}">{{ user.username }}</a>
           </li>
@@ -35,7 +35,7 @@
               {% translate "Log in" %}
             </a>
           </li>
-          {% url 'accounts:register' as url %}
+          {% url 'account:register' as url %}
           <li class="primary-nav__item {% if request.path == url %}primary-nav__item--active{% endif %}">
             <a class="primary-nav__link" href="{{ url }}">
               {% translate "Register" %}
