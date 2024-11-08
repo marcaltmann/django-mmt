@@ -24,6 +24,10 @@ ALLOWED_HOSTS = os.environ.get(
     "DJANGO_ALLOWED_HOSTS", default="localhost 127.0.0.1"
 ).split(" ")
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
@@ -35,9 +39,11 @@ CORS_ALLOW_CREDENTIALS = True
 INSTALLED_APPS = [
     "account.apps.AccountConfig",
     "core.apps.CoreConfig",
+    "downloads.apps.DownloadsConfig",
     "pages.apps.PagesConfig",
     "corsheaders",
     "widget_tweaks",
+    "debug_toolbar",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -48,6 +54,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

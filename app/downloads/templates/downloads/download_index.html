@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Downloads" %} | {{ block.super }}{% endblock %}
+{% block content %}
+  <nav class="breadcrumbs">
+    <p>
+      <a>{% translate "Downloads" %}</a>
+    </p>
+  </nav>
+
+  <h1 class="h1">
+    {% translate "Downloads" %}
+  </h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Filename</th>
+        <th>Type</th>
+        <th>Size</th>
+        <th>Modified</th>
+    </thead>
+    <tbody>
+      {% for file in files %}
+        <tr>
+          <td>
+            <a href="{% url 'downloads:download_file' file.filename %}">{{ file.filename }}</a>
+          </td>
+          <td>
+            {{ file.type }}
+          </td>
+          <td>
+            {{ file.size }}
+          </td>
+          <td>
+            {{ file.modified }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}

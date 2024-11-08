@@ -13,6 +13,7 @@ urlpatterns += i18n_patterns(
     path("account/", include("django.contrib.auth.urls")),
     path("account/", include("account.urls")),
     path("", include("core.urls")),
+    path("downloads/", include("downloads.urls")),
     path("", include("pages.urls")),
 )
 

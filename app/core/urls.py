@@ -44,8 +44,4 @@ urlpatterns = [
         core_views.delete_uploaded_file,
         name="delete_uploaded_file",
     ),
-    # downloads -> move to own app
-    path("downloads/", core_views.my_downloads, name="my_downloads"),
-    path("downloads/<str:filename>/", core_views.download_file, name="download_file"),
-    path("debug/", trigger_error),
 ]
