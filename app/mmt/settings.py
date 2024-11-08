@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "downloads.apps.DownloadsConfig",
     "pages.apps.PagesConfig",
+    "upload_jobs.apps.UploadJobsConfig",
+    "uploaded_files.apps.UploadedFilesConfig",
     "corsheaders",
     "widget_tweaks",
     "debug_toolbar",

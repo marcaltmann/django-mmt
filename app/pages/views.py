@@ -1,10 +1,6 @@
 from django.shortcuts import render
 
 
-def welcome(request):
-    return render(request, "pages/welcome.html")
-
-
 def legal_notice(request):
     return render(request, "pages/legal_notice.html")
 

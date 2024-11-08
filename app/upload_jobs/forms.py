@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import UploadJob, UploadedFile
+from .models import UploadJob
 
 
 class UploadJobForm(forms.ModelForm):
@@ -15,9 +15,3 @@ class UploadJobForm(forms.ModelForm):
             "replace_existing_files",
             "language",
         ]
-
-
-class UploadedFileForm(forms.ModelForm):
-    class Meta:
-        model = UploadedFile
-        fields = ["filename", "media_type", "size"]

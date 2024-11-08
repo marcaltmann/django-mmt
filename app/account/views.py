@@ -6,7 +6,7 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from account.forms import RegisterForm
 from account.models import Profile
 from account.tasks import send_new_user_email, send_user_activation_email
-from core.filesystem import create_user_directories
+from uploaded_files.filesystem import create_user_directories
 
 
 User = get_user_model()
