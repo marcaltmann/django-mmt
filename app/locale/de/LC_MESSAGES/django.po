@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-01 20:53+0000\n"
+"POT-Creation-Date: 2024-11-08 17:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,172 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: account/templates/account/profile.html:4
+#: account/templates/account/profile.html:8
+msgid "Profile"
+msgstr "Profil"
+
+#: account/templates/account/profile.html:12
+msgid "Username"
+msgstr "Benutzername"
+
+#: account/templates/account/profile.html:18
+msgid "First name"
+msgstr "Vorname"
+
+#: account/templates/account/profile.html:24
+msgid "Last name"
+msgstr "Nachname"
+
+#: account/templates/account/profile.html:30
+msgid "Email"
+msgstr "E-Mail"
+
+#: account/templates/account/profile.html:36
+msgid "Last login"
+msgstr "Letzte Anmeldung"
+
+#: account/templates/account/profile.html:42
+msgid "Date joined"
+msgstr "Registrierungsdatum"
+
+#: account/templates/account/profile.html:50
+#: account/templates/registration/password_change_form.html:5
+#: account/templates/registration/password_change_form.html:9
+#: account/templates/registration/password_reset_confirm.html:18
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: account/templates/account/register.html:5
+#: account/templates/account/register.html:9
+#: account/templates/account/register.html:48
+#: account/templates/registration/login.html:57 core/templates/header.html:47
+msgid "Register"
+msgstr "Registrieren"
+
+#: account/templates/account/register.html:54
+#: account/templates/registration/login.html:5
+#: account/templates/registration/login.html:9
+#: account/templates/registration/login.html:46
+#: account/templates/registration/password_reset_complete.html:12
+msgid "Login"
+msgstr "Anmelden"
+
+#: account/templates/account/registration_complete.html:4
+#: account/templates/account/registration_complete.html:8
+msgid "Registration complete"
+msgstr "Registrierung fertig"
+
+#: account/templates/account/registration_complete.html:11
+msgid "Your registration is complete."
+msgstr "Sie sind fertig registriert."
+
+#: account/templates/registration/login.html:13
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+"Ihr Benutzername und Ihr Passwort stimmen nicht überein. Bitte versuchen Sie "
+"es nochmals."
+
+#: account/templates/registration/login.html:19
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+"Ihr Konto hat keinen Zugang zu dieser Seite. Um fortzufahren, melden Sie "
+"sich mit einem Konto an, das Zugang hat."
+
+#: account/templates/registration/login.html:23
+msgid "Please login to see this page."
+msgstr "Bitte melden Sie sich an, um diese Seite zu sehen."
+
+#: account/templates/registration/login.html:52
+msgid "Lost password?"
+msgstr "Passwort vergessen?"
+
+#: account/templates/registration/password_change_done.html:4
+#: account/templates/registration/password_change_done.html:8
+msgid "Password change successful"
+msgstr "Passwort erfolgreich geändert"
+
+#: account/templates/registration/password_change_done.html:11
+msgid "Your password was changed."
+msgstr "Ihr Passwort wurde geändert."
+
+#: account/templates/registration/password_change_done.html:15
+msgid "Back to profile"
+msgstr "Zurück zum Profil"
+
+#: account/templates/registration/password_change_form.html:13
+msgid "Errors"
+msgstr "Fehler"
+
+#: account/templates/registration/password_change_form.html:44
+msgid "Submit"
+msgstr "Absenden"
+
+#: account/templates/registration/password_reset_complete.html:4
+msgid "Password complete"
+msgstr "Passwort fertig"
+
+#: account/templates/registration/password_reset_complete.html:8
+msgid "Your password has been set"
+msgstr "Ihr Passwort wurde eingestellt"
+
+#: account/templates/registration/password_reset_confirm.html:4
+#: account/templates/registration/password_reset_confirm.html:8
+msgid "Confirm password"
+msgstr "Passwort bestätigen"
+
+#: account/templates/registration/password_reset_confirm.html:23
+msgid "Invalid password reset link!"
+msgstr "Ungültiger Passwort-Zurücksetzen-Link!"
+
+#: account/templates/registration/password_reset_done.html:4
+#: account/templates/registration/password_reset_done.html:8
+msgid "Reset email sent"
+msgstr "Zurück-Setzen-E-Mail gesendet"
+
+#: account/templates/registration/password_reset_done.html:11
+msgid ""
+"We’ve emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+"Wir haben Ihnen Anweisungen zum Festlegen Ihres Passworts per E-Mail "
+"gesendet, falls ein Konto mit der von Ihnen eingegebenen E-Mail-Adresse "
+"existiert. Sie sollten diese in Kürze erhalten."
+
+#: account/templates/registration/password_reset_done.html:14
+msgid ""
+"If you don’t receive an email, please make sure you’ve entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+"Falls Sie keine E-Mail erhalten, stellen Sie bitte sicher, dass Sie die "
+"Adresse eingegeben haben, mit der Sie sich registriert haben, und überprüfen "
+"Sie Ihren Spam-Ordner."
+
+#: account/templates/registration/password_reset_form.html:5
+#: account/templates/registration/password_reset_form.html:9
+#: account/templates/registration/password_reset_form.html:30
+msgid "Reset password"
+msgstr "Passwort zurücksetzen"
+
+#: account/templates/registration/password_reset_form.html:12
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr ""
+"Haben Sie Ihr Passwort vergessen? Geben Sie unten Ihre E-Mail-Adresse ein, "
+"und wir senden Ihnen Anweisungen zum Festlegen eines neuen Passworts per E-"
+"Mail."
+
 #: core/tasks.py:40 core/tasks.py:58
 msgid "File uploaded"
 msgstr "Datei hochgeladen"
+
+#: core/templates/base.html:13 core/templates/footer.html:5
+#: core/templates/header.html:6
+msgid "MMT Py"
+msgstr "MMT Py"
 
 #: core/templates/file_uploaded_admin.txt:2
 #: custom_user/templates/new_user.txt:2
@@ -68,6 +231,44 @@ msgstr ""
 "Sie erhalten eine E-Mail-Benachrichtigung, sobald die Datei im oh.d-System "
 "verfügbar ist."
 
+#: core/templates/footer.html:11
+msgid "Legal notice"
+msgstr "Impressum"
+
+#: core/templates/footer.html:16 pages/templates/pages/privacy.html:4
+#: pages/templates/pages/privacy.html:8
+msgid "Privacy"
+msgstr "Datenschutz"
+
+#: core/templates/footer.html:21 pages/templates/pages/accessibility.html:4
+#: pages/templates/pages/accessibility.html:8
+msgid "Accessibility"
+msgstr "Barrierefreiheit"
+
+#: core/templates/footer.html:26 pages/templates/pages/contact.html:4
+#: pages/templates/pages/contact.html:8
+msgid "Contact"
+msgstr "Kontakt"
+
+#: core/templates/header.html:14
+#: downloads/templates/downloads/download_index.html:4
+#: downloads/templates/downloads/download_index.html:8
+#: downloads/templates/downloads/download_index.html:13
+msgid "Downloads"
+msgstr "Downloads"
+
+#: core/templates/header.html:20
+msgid "Admin"
+msgstr "Admin"
+
+#: core/templates/header.html:33
+msgid "Log out"
+msgstr "Abmelden"
+
+#: core/templates/header.html:41
+msgid "Log in"
+msgstr "Anmelden"
+
 #: custom_user/tasks.py:21
 msgid "A new user has registered."
 msgstr "Ein neuer Benutzer hat sich registriert."
@@ -77,6 +278,7 @@ msgid "Your account has been activated."
 msgstr "Ihr Konto wurde aktiviert."
 
 #: custom_user/templates/new_user.txt:4
+#, python-format
 msgid "the user %(username)s has just registered on mmt-py."
 msgstr "der Benutzer %(username)s hat sich gerade auf mmt-py registriert."
 
@@ -85,6 +287,7 @@ msgid "Please activate him."
 msgstr "Bitte aktivieren Sie ihn."
 
 #: custom_user/templates/user_activated.txt:2
+#, python-format
 msgid "Hello %(username)s,"
 msgstr "Guten Tag %(username)s,"
 
@@ -101,7 +304,8 @@ msgstr ""
 #: custom_user/templates/user_activated.txt:6
 #, python-format
 msgid "We have activated your account with the username %(username)s for MMT."
-msgstr "Wir haben Ihren Account mit dem Usernamen %(username)s für das MMT aktiviert."
+msgstr ""
+"Wir haben Ihren Account mit dem Usernamen %(username)s für das MMT aktiviert."
 
 #: custom_user/templates/user_activated.txt:8
 msgid "You can now log in at:"
@@ -112,16 +316,16 @@ msgid ""
 "and upload your video, audio, and image files to the Oral-History.Digital "
 "(oh.d) platform."
 msgstr ""
-"anmelden und Ihre Video-, Audio- und Bilddateien auf die Plattform "
-"Oral-History.Digital (oh.d) hochladen."
+"anmelden und Ihre Video-, Audio- und Bilddateien auf die Plattform Oral-"
+"History.Digital (oh.d) hochladen."
 
 #: custom_user/templates/user_activated.txt:14
 msgid ""
 "Please ensure that the final master files are uploaded using the specified "
 "file naming convention."
 msgstr ""
-"Bitte achten Sie darauf, dass die finalen Masterdateien mit der "
-"vorgegebenen Dateinamenkonvention hochgeladen werden."
+"Bitte achten Sie darauf, dass die finalen Masterdateien mit der vorgegebenen "
+"Dateinamenkonvention hochgeladen werden."
 
 #: custom_user/templates/user_activated.txt:16
 msgid ""
@@ -176,10 +380,35 @@ msgstr "Garystr. 39"
 msgid "14195 Berlin"
 msgstr "14195 Berlin"
 
-#: mmt/settings.py:119
+#: downloads/templates/downloads/download_index.html:19
+msgid "Filename"
+msgstr "Dateiname"
+
+#: downloads/templates/downloads/download_index.html:20
+msgid "Type"
+msgstr "Typ"
+
+#: downloads/templates/downloads/download_index.html:21
+msgid "Size"
+msgstr "Größe"
+
+#: downloads/templates/downloads/download_index.html:22
+msgid "Last modified"
+msgstr "Zuletzt geändert"
+
+#: mmt/settings.py:126
 msgid "German"
 msgstr "Deutsch"
 
-#: mmt/settings.py:120
+#: mmt/settings.py:127
 msgid "English"
 msgstr "Englisch"
+
+#: pages/templates/pages/legal_notice.html:4
+#: pages/templates/pages/legal_notice.html:8
+msgid "Legal Notice"
+msgstr "Impressum"
+
+#: pages/templates/pages/welcome.html:6
+msgid "Administration software for media files"
+msgstr "Verwaltungssoftware für Mediendateien"

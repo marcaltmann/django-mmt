@@ -17,7 +17,7 @@ def register(request):
                 password=form.cleaned_data["password1"],
             )
 
-            return redirect("accounts:registration_complete")
+            return redirect("account:registration_complete")
         else:
             pass
     else:
