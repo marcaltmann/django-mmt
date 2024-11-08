@@ -1,10 +1,26 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
+from django.utils.translation.trans_real import parse_accept_lang_header
 
-from .forms import RegisterForm
+from account.forms import RegisterForm
+from account.models import Profile
+from account.tasks import send_new_user_email, send_user_activation_email
+from core.filesystem import create_user_directories
+
 
 User = get_user_model()
+
+
+def get_preferred_language(request) -> str:
+    result = "en"
+    langs = parse_accept_lang_header(request.headers.get("Accept-Language"))
+    for lang in reversed(langs):
+        loc = lang[0][:2]
+        if loc == "en" or loc == "de":
+            result = loc
+
+    return result
 
 
 def register(request):
@@ -16,6 +32,10 @@ def register(request):
                 email=form.cleaned_data["email"],
                 password=form.cleaned_data["password1"],
             )
+            locale = get_preferred_language(request)
+            Profile.objects.create(user=user, locale=locale)
+            create_user_directories(user.username)
+            send_new_user_email.delay(user.id)
 
             return redirect("account:registration_complete")
         else:
