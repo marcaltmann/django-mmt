@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+  {% translate "Profile" %} | {{ block.super }}
+{% endblock %}
+{% block content %}
+  <h1 class="h1">
+    {% translate "Profile" %}
+  </h1>
+  <dl>
+    <dt>
+      {% translate "Username" %}
+    </dt>
+    <dd>
+      {{ user.username }}
+    </dd>
+    <dt>
+      {% translate "First name" %}
+    </dt>
+    <dd>
+      {{ user.first_name }}
+    </dd>
+    <dt>
+      {% translate "Last name" %}
+    </dt>
+    <dd>
+      {{ user.last_name }}
+    </dd>
+    <dt>
+      {% translate "Email" %}
+    </dt>
+    <dd>
+      {{ user.email }}
+    </dd>
+    <dt>
+      {% translate "Last login" %}
+    </dt>
+    <dd>
+      {{ user.last_login }}
+    </dd>
+    <dt>
+      {% translate "Date joined" %}
+    </dt>
+    <dd>
+      {{ user.date_joined }}
+    </dd>
+  </dl>
+  <p class="paragraph u-mt">
+    <a href="{% url 'password_change' %}">
+      {% translate "Change password" %}
+    </a>
+  </p>
+{% endblock %}

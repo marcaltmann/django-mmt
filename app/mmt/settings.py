@@ -33,10 +33,10 @@ CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
 INSTALLED_APPS = [
+    "account.apps.AccountConfig",
     "core.apps.CoreConfig",
     "pages.apps.PagesConfig",
     "corsheaders",
-    "custom_user.apps.CustomUserConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "custom_user.User"
+AUTH_USER_MODEL = "account.User"
 
 
 # Internationalization
