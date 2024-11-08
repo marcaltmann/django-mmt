@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-08 23:11+0000\n"
+"POT-Creation-Date: 2024-11-08 23:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -300,7 +300,6 @@ msgid "14195 Berlin"
 msgstr "14195 Berlin"
 
 #: core/templates/base.html:13 core/templates/footer.html:5
-#: core/templates/header.html:6
 msgid "MMT Py"
 msgstr "MMT Py"
 
@@ -328,8 +327,8 @@ msgid "Contact"
 msgstr "Kontakt"
 
 #: core/templates/header.html:14
-msgid "Upload jobs"
-msgstr "Upload-Aufträge"
+msgid "Uploads"
+msgstr "Uploads"
 
 #: core/templates/header.html:20
 #: downloads/templates/downloads/download_index.html:4
@@ -351,14 +350,17 @@ msgid "Log in"
 msgstr "Anmelden"
 
 #: downloads/templates/downloads/download_index.html:19
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:30
 msgid "Filename"
 msgstr "Dateiname"
 
 #: downloads/templates/downloads/download_index.html:20
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:31
 msgid "Type"
 msgstr "Typ"
 
 #: downloads/templates/downloads/download_index.html:21
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:32
 msgid "Size"
 msgstr "Größe"
 
@@ -379,11 +381,23 @@ msgstr "Englisch"
 msgid "Legal Notice"
 msgstr "Impressum"
 
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:9
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:4
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:8
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:13
 msgid "Upload Jobs"
 msgstr "Upload-Aufträge"
+
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:23
+#: upload_jobs/templates/upload_jobs/upload_job_index.html:26
+msgid "one file"
+msgid_plural "%(counter)s files"
+msgstr[0] "eine Datei"
+msgstr[1] "%(counter)s Dateien"
+
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:33
+msgid "Created at"
+msgstr "Erstellt am"
 
 #: uploaded_files/tasks.py:40 uploaded_files/tasks.py:58
 msgid "File uploaded"

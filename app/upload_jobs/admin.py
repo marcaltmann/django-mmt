@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import UploadJob
 from uploaded_files.models import UploadedFile
 
+
 class UploadedFileInline(admin.TabularInline):
     model = UploadedFile
     can_delete = False

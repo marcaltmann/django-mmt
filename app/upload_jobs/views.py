@@ -2,7 +2,7 @@ import json
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse, StreamingHttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 
@@ -13,79 +13,25 @@ from uploaded_files.models import UploadedFile
 
 @require_GET
 @login_required
-def upload_job_index(request):
-    user = request.user
-    upload_jobs = UploadJob.objects.filter(user=user).order_by("-created_at")
-    data = [
-        {
-            "id": upload_job.id,
-            "title": upload_job.title,
-            "description": upload_job.description,
-            "make_available_on_platform": upload_job.make_available_on_platform,
-            "transcribe": upload_job.transcribe,
-            "check_media_files": upload_job.check_media_files,
-            "replace_existing_files": upload_job.replace_existing_files,
-            "language": upload_job.language,
-            "files_count": upload_job.uploaded_files.count(),
-            "created_at": upload_job.created_at,
-            "updated_at": upload_job.updated_at,
-        }
-        for upload_job in upload_jobs
-    ]
+def index(request):
+    upload_jobs = UploadJob.objects.filter(user=request.user).order_by("-created_at")
     context = {"upload_jobs": upload_jobs}
     return render(request, "upload_jobs/upload_job_index.html", context)
 
 
 @require_GET
 @login_required
-def upload_job_detail(request, pk):
-    user = request.user
-    upload_job = UploadJob.objects.get(pk=pk)
-
-    if upload_job.user_id != user.id:
-        return JsonResponse(
-            {"message": "You are not allowed to update this file."}, status=403
-        )
-
+def detail(request, pk):
+    upload_job = get_object_or_404(UploadJob, pk=pk, user=request.user)
     uploaded_files = upload_job.uploaded_files.order_by("-created_at")
-
-    job_data = {
-        "id": upload_job.id,
-        "title": upload_job.title,
-        "description": upload_job.description,
-        "make_available_on_platform": upload_job.make_available_on_platform,
-        "transcribe": upload_job.transcribe,
-        "check_media_files": upload_job.check_media_files,
-        "replace_existing_files": upload_job.replace_existing_files,
-        "language": upload_job.language,
-        "created_at": upload_job.created_at,
-        "updated_at": upload_job.updated_at,
-    }
-
-    file_data = [
-        {
-            "id": file.id,
-            "filename": file.filename,
-            "content_type": file.media_type,
-            "size": file.size,
-            "state": "created",
-            "created": file.created_at,
-            "checksum_client": file.checksum_client,
-            "checksum_server": file.checksum_server,
-        }
-        for file in uploaded_files
-    ]
-
-    job_data["files"] = file_data
-
-    return JsonResponse(job_data, safe=False)
-
+    context = {"upload_job": upload_job, "uploaded_files": uploaded_files}
+    return render(request, "upload_jobs/upload_job_detail.html", context)
 
 
 @require_POST
 @login_required
 @csrf_exempt
-def create_upload_job(request):
+def create(request):
     json_data = json.loads(request.body)
     form = UploadJobForm(json_data)
     if form.is_valid():
@@ -109,7 +55,7 @@ def create_upload_job(request):
 @require_POST
 @login_required
 @csrf_exempt
-def delete_upload_job(request, upload_job_id):
+def delete(request, upload_job_id):
     upload_job = UploadJob.objects.get(pk=upload_job_id)
     user = request.user
 

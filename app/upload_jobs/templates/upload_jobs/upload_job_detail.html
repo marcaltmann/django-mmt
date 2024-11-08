@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ upload_job.title }} | {{ block.super }}{% endblock %}
+{% block content %}
+  <nav class="breadcrumbs">
+    <p>
+      <a class="breadcrumbs__link"
+         href="{% url 'upload_jobs:index' %}">{% translate "Upload Jobs" %}</a> ▸
+      <a>{{ upload_job.title }}</a>
+    </p>
+  </nav>
+
+  <h1 class="h1">
+    {{ upload_job.title }}
+  </h1>
+
+  <ul>
+    <li>
+      {{ upload_job.created_at }}
+    </li>
+    <li>
+      {% blocktranslate count counter=uploaded_files.count %}one file{% plural %}{{ counter }} files{% endblocktranslate %}
+    </li>
+  </ul>
+
+  <table>
+    <thead>
+      <tr>
+        <th>{% translate "Filename" %}</th>
+        <th>{% translate "Type" %}</th>
+        <th>{% translate "Size" %}</th>
+        <th>{% translate "Created at" %}</th>
+    </thead>
+    <tbody>
+      {% for file in uploaded_files %}
+        <tr>
+          <td>
+            {{ file.filename }}
+          </td>
+          <td>
+            {{ file.media_type }}
+          </td>
+          <td>
+            {{ file.size|filesizeformat }}
+          </td>
+          <td>
+            {{ file.created_at|date:"SHORT_DATE_FORMAT" }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
