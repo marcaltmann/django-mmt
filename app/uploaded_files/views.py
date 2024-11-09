@@ -3,9 +3,10 @@ import json
 import aiofiles
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, JsonResponse, StreamingHttpResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseNotFound, Http404
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.http import require_POST
 
 from .models import UploadedFile
 from .tasks import calculate_server_checksum, send_file_uploaded_emails
@@ -69,23 +70,16 @@ def update(request, pk):
 @login_required
 @csrf_exempt
 def delete(request, pk):
-    uploaded_file = UploadedFile.objects.select_related("upload_job").get(pk=pk)
-    upload_job = uploaded_file.upload_job
     user = request.user
+    uploaded_file = UploadedFile.objects.get(pk=pk, upload_job__user_id=user.id)
+    uploaded_file.delete()
 
-    if upload_job.user_id != user.id:
-        return JsonResponse(
-            {"message": "You are not allowed to delete this file."}, status=403
-        )
-
-    downloads_directory = user.profile.download_path()
-    file_path = downloads_directory / uploaded_file.filename
-
+    # Remove actual file.
+    uploads_directory = user.profile.upload_path()
+    file_path = uploads_directory / uploaded_file.filename
     try:
         file_path.unlink()
     except FileNotFoundError:
         print(f"File {uploaded_file.filename} does not exist.")
 
-    uploaded_file.delete()
-
-    return HttpResponse(status=204)
+    return HttpResponse(status=200)
