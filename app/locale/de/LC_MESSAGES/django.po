@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-09 16:53+0000\n"
+"POT-Creation-Date: 2024-11-09 19:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -309,35 +309,26 @@ msgid "Administration software for media files"
 msgstr "Verwaltungssoftware für Mediendateien"
 
 #: core/templates/core/welcome.html:9
-msgid "Welcome to MMT Py."
-msgstr "Willkommen zu MMT Py."
+msgid "Welcome to MMT Py!"
+msgstr "Willkommen zu MMT Py!"
 
-#: core/templates/core/welcome.html:13
-#, python-format
-msgid ""
-"You can <a href=\"%(upload_jobs_create)s\">create a new upload job</a> and "
-"upload media files."
-msgstr ""
-"Sie können <a href=\"%(upload_jobs_create)s\">einen neuen Upload-Auftrag "
-"erstellen</a> und Mediendateien hochladen."
+#: core/templates/core/welcome.html:14
+msgid "Create a new upload job"
+msgstr "Neuen Upload-Auftrag erstellen"
 
-#: core/templates/core/welcome.html:17
+#: core/templates/core/welcome.html:18
 #, python-format
-msgid ""
-"You can <a href=\"%(upload_jobs_index)s\">view previously created upload "
-"jobs.</a>"
-msgstr ""
-"Sie können <a href=\"%(upload_jobs_index)s\">zuvor erstellte Upload-Aufträge "
-"ansehen.</a>"
+msgid "One upload job"
+msgid_plural "%(counter)s upload jobs"
+msgstr[0] "Ein Upload-Auftrag"
+msgstr[1] "%(counter)s Upload-Aufträge"
 
-#: core/templates/core/welcome.html:21
+#: core/templates/core/welcome.html:22
 #, python-format
-msgid ""
-"You can <a href=\"%(downloads_index)s\">download files</a> that have been "
-"made available to you."
-msgstr ""
-"Sie können <a href=\"%(downloads_index)s\">Dateien herunterladen,</a> die "
-"Ihnen zur Verfügung gestellt wurden."
+msgid "One downloadable file"
+msgid_plural "%(counter)s downloadable files"
+msgstr[0] "Eine Datei zum Herunterladen"
+msgstr[1] "%(counter)s Dateien zum Herunterladen"
 
 #: core/templates/footer.html:11
 msgid "Legal notice"
@@ -385,17 +376,17 @@ msgid "Log in"
 msgstr "Anmelden"
 
 #: downloads/templates/downloads/download_index.html:19
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:30
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:38
 msgid "Filename"
 msgstr "Dateiname"
 
 #: downloads/templates/downloads/download_index.html:20
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:31
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:39
 msgid "Type"
 msgstr "Typ"
 
 #: downloads/templates/downloads/download_index.html:21
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:32
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:40
 msgid "Size"
 msgstr "Größe"
 
@@ -404,10 +395,13 @@ msgid "Last modified"
 msgstr "Zuletzt geändert"
 
 #: downloads/templates/downloads/download_index.html:25
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:45
 msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
-#: downloads/templates/downloads/download_index.html:43
+#: downloads/templates/downloads/download_index.html:44
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:31
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:64
 msgid "Delete"
 msgstr "Löschen"
 
@@ -424,31 +418,31 @@ msgstr "Englisch"
 msgid "Legal Notice"
 msgstr "Impressum"
 
-#: upload_jobs/models.py:8
+#: upload_jobs/models.py:10
 msgid "Title"
 msgstr "Titel"
 
-#: upload_jobs/models.py:9
+#: upload_jobs/models.py:12
 msgid "Description"
 msgstr "Beschreibung"
 
-#: upload_jobs/models.py:10
+#: upload_jobs/models.py:15
 msgid "Language"
 msgstr "Sprache"
 
-#: upload_jobs/models.py:11
+#: upload_jobs/models.py:18
 msgid "Make available on platform"
 msgstr "Auf der Plattform verfügbar machen"
 
-#: upload_jobs/models.py:12
+#: upload_jobs/models.py:20
 msgid "Transcribe"
 msgstr "Transkribieren"
 
-#: upload_jobs/models.py:13
+#: upload_jobs/models.py:22
 msgid "Check media files"
 msgstr "Mediendateien überprüfen"
 
-#: upload_jobs/models.py:14
+#: upload_jobs/models.py:25
 msgid "Replace existing files"
 msgstr "Vorhandene Dateien ersetzen"
 
@@ -458,7 +452,7 @@ msgid "New upload job"
 msgstr "Neuer Upload-Auftrag"
 
 #: upload_jobs/templates/upload_jobs/upload_job_create.html:10
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:9
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:10
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:4
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:8
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:13
@@ -469,7 +463,7 @@ msgstr "Upload-Aufträge"
 msgid "New job"
 msgstr "Neuer Auftrag"
 
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:23
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:24
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:26
 #, python-format
 msgid "one file"
@@ -477,7 +471,7 @@ msgid_plural "%(counter)s files"
 msgstr[0] "eine Datei"
 msgstr[1] "%(counter)s Dateien"
 
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:33
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:41
 msgid "Created at"
 msgstr "Erstellt am"
 

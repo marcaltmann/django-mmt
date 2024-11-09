@@ -5,19 +5,21 @@
   <h1 class="h1">
     {% translate "Administration software for media files" %}
   </h1>
-  <p>
-    {% translate "Welcome to MMT Py." %}
+  <p class="u-font-large">
+    {% translate "Welcome to MMT Py!" %}
   </p>
-  <p class="u-mt">
-    {% url 'upload_jobs:create' as upload_jobs_create %}
-    {% blocktranslate %}You can <a href="{{ upload_jobs_create }}">create a new upload job</a> and upload media files.{% endblocktranslate %}
-  </p>
-  <p>
-    {% url 'upload_jobs:index' as upload_jobs_index %}
-    {% blocktranslate %}You can <a href="{{ upload_jobs_index }}">view previously created upload jobs.</a>{% endblocktranslate %}
-  </p>
-  <p>
-    {% url 'downloads:download_index' as downloads_index %}
-    {% blocktranslate %}You can <a href="{{ downloads_index }}">download files</a> that have been made available to you.{% endblocktranslate %}
-  </p>
+  <ul class="dashboard u-mt">
+    <li>
+      <a href="{% url 'upload_jobs:create' %}"
+         class="dashboard__link">{% translate "Create a new upload job" %}</a>
+    </li>
+    <li class="u-mt-small">
+      <a href="{% url 'upload_jobs:index' %}"
+         class="dashboard__link">{% blocktranslate count counter=upload_job_count %}One upload job{% plural %}{{ counter }} upload jobs{% endblocktranslate %}</a>
+    </li>
+    <li class="u-mt-small">
+      <a href="{% url 'downloads:download_index' %}"
+         class="dashboard__link">{% blocktranslate count counter=upload_job_count %}One downloadable file{% plural %}{{ counter }} downloadable files{% endblocktranslate %}</a>
+    </li>
+  </ul>
 {% endblock %}

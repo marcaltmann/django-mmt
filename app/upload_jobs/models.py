@@ -4,7 +4,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class UploadJob(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="upload_jobs"
+    )
     title = models.CharField(max_length=255, verbose_name=(_("Title")))
     description = models.TextField(
         blank=True, default="", verbose_name=_("Description")
