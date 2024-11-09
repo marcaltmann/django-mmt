@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-08 23:53+0000\n"
+"POT-Creation-Date: 2024-11-09 09:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -307,6 +307,31 @@ msgstr "MMT Py"
 msgid "Administration software for media files"
 msgstr "Verwaltungssoftware für Mediendateien"
 
+#: core/templates/core/welcome.html:9
+msgid "Welcome to MMT Py."
+msgstr "Willkommen zu MMT Py."
+
+#: core/templates/core/welcome.html:12
+msgid ""
+"You can <a href=\"\">create a new upload job</a> and upload media files."
+msgstr ""
+
+#: core/templates/core/welcome.html:16
+#, python-format
+msgid ""
+"You can <a href=\"%(upload_jobs_index)s\">view previously created upload "
+"jobs.</a>"
+msgstr ""
+"Sie können <a href=\"%(upload_jobs_index)s\">zuvor erstellte Upload-Aufträge "
+"ansehen.</a>"
+
+#: core/templates/core/welcome.html:20
+#, python-format
+msgid ""
+"You can <a href=\"%(downloads_index)s\">download files</a> that have been "
+"made available to you."
+msgstr ""
+
 #: core/templates/footer.html:11
 msgid "Legal notice"
 msgstr "Impressum"
@@ -390,6 +415,7 @@ msgstr "Upload-Aufträge"
 
 #: upload_jobs/templates/upload_jobs/upload_job_detail.html:23
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:26
+#, python-format
 msgid "one file"
 msgid_plural "%(counter)s files"
 msgstr[0] "eine Datei"

@@ -5,4 +5,18 @@
   <h1 class="h1">
     {% translate "Administration software for media files" %}
   </h1>
+  <p>
+    {% translate "Welcome to MMT Py." %}
+  </p>
+  <p class="u-mt">
+    {% blocktranslate %}You can <a href="">create a new upload job</a> and upload media files.{% endblocktranslate %}
+  </p>
+  <p>
+    {% url 'upload_jobs:index' as upload_jobs_index %}
+    {% blocktranslate %}You can <a href="{{ upload_jobs_index }}">view previously created upload jobs.</a>{% endblocktranslate %}
+  </p>
+  <p>
+    {% url 'downloads:download_index' as downloads_index %}
+    {% blocktranslate %}You can <a href="{{ downloads_index }}">download files</a> that have been made available to you.{% endblocktranslate %}
+  </p>
 {% endblock %}
