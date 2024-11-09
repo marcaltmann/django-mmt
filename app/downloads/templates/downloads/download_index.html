@@ -3,15 +3,14 @@
 
 {% block title %}{% translate "Downloads" %} | {{ block.super }}{% endblock %}
 {% block content %}
+  {% translate "Downloads" as page_title %}
   <nav class="breadcrumbs">
     <p>
-      <a>{% translate "Downloads" %}</a>
+      <a>{{ page_title }}</a>
     </p>
   </nav>
 
-  <h1 class="h1">
-    {% translate "Downloads" %}
-  </h1>
+  <h1 class="h1">{{ page_title }}</h1>
 
   <table>
     <thead>

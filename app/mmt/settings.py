@@ -97,6 +97,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "OPTIONS": {
             "read_default_file": str(BASE_DIR / "my.cnf"),
+            "isolation_level": "read committed"
         },
     }
 }

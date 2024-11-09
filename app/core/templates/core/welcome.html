@@ -9,7 +9,8 @@
     {% translate "Welcome to MMT Py." %}
   </p>
   <p class="u-mt">
-    {% blocktranslate %}You can <a href="">create a new upload job</a> and upload media files.{% endblocktranslate %}
+    {% url 'upload_jobs:create' as upload_jobs_create %}
+    {% blocktranslate %}You can <a href="{{ upload_jobs_create }}">create a new upload job</a> and upload media files.{% endblocktranslate %}
   </p>
   <p>
     {% url 'upload_jobs:index' as upload_jobs_index %}

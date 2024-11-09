@@ -28,28 +28,31 @@ def detail(request, pk):
     return render(request, "upload_jobs/upload_job_detail.html", context)
 
 
-@require_POST
 @login_required
-@csrf_exempt
 def create(request):
-    json_data = json.loads(request.body)
-    form = UploadJobForm(json_data)
-    if form.is_valid():
-        data = form.cleaned_data
-        upload_job = UploadJob(
-            title=data["title"],
-            description=data["description"],
-            language=data["language"],
-            make_available_on_platform=data["make_available_on_platform"],
-            transcribe=data["transcribe"],
-            check_media_files=data["check_media_files"],
-            replace_existing_files=data["replace_existing_files"],
-        )
-        upload_job.user = request.user
-        upload_job.save()
-        return JsonResponse({"id": upload_job.pk}, safe=False)
+    if request.method == "POST":
+        json_data = json.loads(request.body)
+        form = UploadJobForm(json_data)
+        if form.is_valid():
+            data = form.cleaned_data
+            upload_job = UploadJob(
+                title=data["title"],
+                description=data["description"],
+                language=data["language"],
+                make_available_on_platform=data["make_available_on_platform"],
+                transcribe=data["transcribe"],
+                check_media_files=data["check_media_files"],
+                replace_existing_files=data["replace_existing_files"],
+            )
+            upload_job.user = request.user
+            upload_job.save()
+            return JsonResponse({"id": upload_job.pk}, safe=False)
+        else:
+            return JsonResponse(form.errors, status=400)
     else:
-        return JsonResponse(form.errors, status=400)
+        form = UploadJobForm()
+        context = {"form": form}
+        return render(request, "upload_jobs/upload_job_create.html", context)
 
 
 @require_POST
