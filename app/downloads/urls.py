@@ -6,5 +6,5 @@ app_name = "downloads"
 
 urlpatterns = [
     path("", views.download_index, name="download_index"),
-    path("<str:filename>/", views.download_file, name="download_file"),
+    path("<str:filename>/", views.download_detail, name="download_detail"),
 ]

@@ -10,9 +10,11 @@ from django.http import (
     StreamingHttpResponse,
     HttpResponseServerError,
     HttpResponseNotFound,
+    HttpResponse,
 )
 from django.shortcuts import render
-from django.views.decorators.http import require_GET
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_GET, require_http_methods
 
 from account.models import Profile
 
@@ -58,9 +60,10 @@ def download_index(request):
     return render(request, "downloads/download_index.html", context)
 
 
-@require_GET
+@require_http_methods(["GET", "DELETE"])
 @login_required
-def download_file(request, filename):
+@csrf_exempt
+def download_detail(request, filename):
     user = request.user
     downloads_directory = user.profile.download_path()
     file_path = downloads_directory / filename
@@ -68,13 +71,20 @@ def download_file(request, filename):
     if not file_path.is_file():
         return HttpResponseNotFound("File does not exist.")
 
-    debug(f"Requested {filename} which stats {os.stat(file_path)=}.")
+    if request.method == "GET":
+        # Download the file
+        debug(f"Requested {filename} which stats {os.stat(file_path)=}.")
 
-    response = StreamingHttpResponse(
-        file_data(file_path), content_type="application/octet-stream"
-    )
-    response["Content-Disposition"] = f'attachment; filename="{filename}"'
-    return response
+        response = StreamingHttpResponse(
+            file_data(file_path), content_type="application/octet-stream"
+        )
+        response["Content-Disposition"] = f'attachment; filename="{filename}"'
+        return response
+    elif request.method == "DELETE":
+        # Delete the file
+        file_path.unlink()
+
+        return HttpResponse(status=200)
 
 
 async def file_data(file_path, chunk_size=65536):

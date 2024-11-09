@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-09 16:15+0000\n"
+"POT-Creation-Date: 2024-11-09 16:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -367,8 +367,8 @@ msgid "Uploads"
 msgstr "Uploads"
 
 #: core/templates/header.html:26
-#: downloads/templates/downloads/download_index.html:4
-#: downloads/templates/downloads/download_index.html:6
+#: downloads/templates/downloads/download_index.html:5
+#: downloads/templates/downloads/download_index.html:7
 msgid "Downloads"
 msgstr "Downloads"
 
@@ -384,30 +384,38 @@ msgstr "Abmelden"
 msgid "Log in"
 msgstr "Anmelden"
 
-#: downloads/templates/downloads/download_index.html:18
+#: downloads/templates/downloads/download_index.html:19
 #: upload_jobs/templates/upload_jobs/upload_job_detail.html:30
 msgid "Filename"
 msgstr "Dateiname"
 
-#: downloads/templates/downloads/download_index.html:19
+#: downloads/templates/downloads/download_index.html:20
 #: upload_jobs/templates/upload_jobs/upload_job_detail.html:31
 msgid "Type"
 msgstr "Typ"
 
-#: downloads/templates/downloads/download_index.html:20
+#: downloads/templates/downloads/download_index.html:21
 #: upload_jobs/templates/upload_jobs/upload_job_detail.html:32
 msgid "Size"
 msgstr "Größe"
 
-#: downloads/templates/downloads/download_index.html:21
+#: downloads/templates/downloads/download_index.html:22
 msgid "Last modified"
 msgstr "Zuletzt geändert"
 
-#: mmt/settings.py:129
+#: downloads/templates/downloads/download_index.html:25
+msgid "Are you sure?"
+msgstr "Sind Sie sicher?"
+
+#: downloads/templates/downloads/download_index.html:43
+msgid "Delete"
+msgstr "Löschen"
+
+#: mmt/settings.py:132
 msgid "German"
 msgstr "Deutsch"
 
-#: mmt/settings.py:130
+#: mmt/settings.py:133
 msgid "English"
 msgstr "Englisch"
 

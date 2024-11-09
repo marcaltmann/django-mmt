@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "pages.apps.PagesConfig",
     "upload_jobs.apps.UploadJobsConfig",
     "uploaded_files.apps.UploadedFilesConfig",
+    "django_htmx",
+    "django_extensions",
     "corsheaders",
     "widget_tweaks",
     "debug_toolbar",
@@ -66,6 +68,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 ROOT_URLCONF = "mmt.urls"
@@ -97,7 +100,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "OPTIONS": {
             "read_default_file": str(BASE_DIR / "my.cnf"),
-            "isolation_level": "read committed"
+            "isolation_level": "read committed",
         },
     }
 }
