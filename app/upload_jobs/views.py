@@ -1,8 +1,8 @@
 import json
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, JsonResponse, StreamingHttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse, StreamingHttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 
@@ -57,18 +57,12 @@ def create(request):
 
 @require_POST
 @login_required
-@csrf_exempt
-def delete(request, upload_job_id):
-    upload_job = UploadJob.objects.get(pk=upload_job_id)
-    user = request.user
-
-    if upload_job.user_id != user.id:
-        return JsonResponse(
-            {"message": "You are not allowed to delete this upload job."}, status=403
-        )
-
+def delete(request, pk):
+    upload_job = get_object_or_404(UploadJob, pk=pk, user=request.user)
+    # TODO: Delete all files.
     upload_job.delete()
-    return HttpResponse(status=204)
+    # TODO: Maybe display message.
+    return redirect("upload_jobs:index")
 
 
 @require_POST

@@ -24,7 +24,14 @@
     </li>
   </ul>
 
-  <table>
+  <form action="{% url 'upload_jobs:delete' upload_job.id %}" method="POST" class="form">
+    {% csrf_token %}
+    <button type="submit" class="form__button">
+      {% translate "Delete" %}
+    </button>
+  </form>
+
+  <table class="u-mt">
     <thead>
       <tr>
         <th>{% translate "Filename" %}</th>
