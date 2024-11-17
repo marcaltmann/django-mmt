@@ -5,14 +5,22 @@ import submitChecksum from "./submit_checksum.js"
 import createChecksum from "./create_checksum.js"
 import FileStorage from "./file_storage.js"
 
-const storedFiles = new FileStorage()
-let xhrRef = null
-
 export default class UploadQueue {
-  constructor() {
-    this.pending = [];
+  constructor(files, uploadJobId) {
+    this.storedFiles = new FileStorage();
+    this.xhrRef = null;
+    this.currentUploadJobId = uploadJobId;
     this.active = null;
-    this.currentUploadJobId = null;
+    this.pending = files.map(file => {
+      const id = getNextFileId();
+      this.storedFiles.storeFile(id, file);
+      return {
+        jobId: id,
+        filename: file.name,
+        filesize: file.size,
+      };
+    });
+    this.startNextJob();
   }
 
   itemCount() {
@@ -43,26 +51,13 @@ export default class UploadQueue {
 
   // Actions
   addJobsFromFiles(files, uploadJobId) {
-    const newPendingUploads = files.map(file => {
-      const id = getNextFileId();
-      storedFiles.storeFile(id, file);
-      return {
-        jobId: id,
-        filename: file.name,
-        filesize: file.size,
-      };
-    })
-    this.currentUploadJobId = uploadJobId;
-    this.pending = this.pending.concat(newPendingUploads);
-    if (!this.active) {
-      this.startNextJob();
-    }
+
   }
 
   removeActive() {
     const activeJob = this.active;
     if (activeJob) {
-      storedFiles.removeFile(activeJob.jobId);
+      this.storedFiles.removeFile(activeJob.jobId);
     }
     this.active = null;
   }
@@ -93,7 +88,7 @@ export default class UploadQueue {
 
     const nextJob = this.pending[0];
     const nextJobId = nextJob.jobId;
-    const nextJobFile = storedFiles.getFile(nextJobId);
+    const nextJobFile = this.storedFiles.getFile(nextJobId);
 
     const registeredUpload = await registerUpload(
       nextJobFile,
@@ -132,14 +127,14 @@ export default class UploadQueue {
       onEnd: () => {
         this.active = null;
         this.startNextJob();
-        xhrRef = null;
+        this.xhrRef = null;
       },
       onAbort: () => {
         // onEnd will also catch aborted uploads.
         console.log("onAbort executed");
       }
     })
-    xhrRef = request;
+    this.xhrRef = request;
 
     const checksum = await createChecksum(nextJobFile, progress => {
       if (this.active) {
