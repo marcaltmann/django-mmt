@@ -1,3 +1,7 @@
+import getCookie from './get_cookie.js'
+
+const csrftoken = getCookie('csrftoken');
+
 export const fetchWrapper = {
   get: request("GET"),
   post: request("POST"),
@@ -10,10 +14,14 @@ function request(method) {
     const requestOptions = {
       method,
       credentials: "include",
+      headers: {},
     };
     if (body) {
-      requestOptions.headers = { "Content-Type": "application/json" };
+      requestOptions.headers['Content-Type'] = "application/json";
       requestOptions.body = JSON.stringify(body);
+    }
+    if (csrftoken) {
+      requestOptions.headers['X-CSRFToken'] = csrftoken;
     }
     return fetch(url, requestOptions).then(handleResponse);
   }

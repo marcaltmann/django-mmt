@@ -1,10 +1,10 @@
 import { formatDistance, addMilliseconds } from 'date-fns'
 import { de } from 'date-fns/locale'
 
-import CloseIcon from './close_icon.js'
-import formatBytes from './format_bytes.js'
+import CloseIcon from '../close_icon.js'
+import formatBytes from '../format_bytes.js'
 import ProgressBar from './progress_bar.js'
-import remainingTime from './remaining_time.js'
+import remainingTime from '../remaining_time.js'
 
 export default {
   components: {

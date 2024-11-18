@@ -67,7 +67,6 @@ def delete(request, pk):
 
 @require_POST
 @login_required
-@csrf_exempt
 def create_uploaded_file(request, upload_job_id):
     user = request.user
     upload_job = UploadJob.objects.get(pk=upload_job_id)
