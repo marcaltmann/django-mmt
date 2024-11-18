@@ -52,12 +52,7 @@ def create(request):
         else:
             return JsonResponse(form.errors, status=400)
     else:
-        form = UploadJobForm()
-        context = {
-            "form": form,
-            "ACCEPTED_FILES": ",".join(ACCEPTED_FILES),
-        }
-        return render(request, "upload_jobs/upload_job_create.html", context)
+        return render(request, "upload_jobs/upload_job_create.html")
 
 
 @require_POST
