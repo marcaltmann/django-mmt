@@ -1,5 +1,0 @@
-<template>
-  <div class="container u-mt">
-    <h2>{{ $t('views.PrivacyView.title') }}</h2>
-  </div>
-</template>
