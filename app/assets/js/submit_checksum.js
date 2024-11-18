@@ -4,7 +4,7 @@ const baseUrl = import.meta.env.VITE_API_URL;
 
 export default async function submitChecksum(uploadedFileId, checksum) {
   const resultPromise = fetchWrapper
-    .post(`${baseUrl}/uploaded-files/${uploadedFileId}/update/`, {
+    .post(`/de/uploaded-files/${uploadedFileId}/update/`, {
       checksum_client: checksum
     })
     .catch(err => {

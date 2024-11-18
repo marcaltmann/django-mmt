@@ -48,7 +48,7 @@ export default {
       this.loading = true;
 
       const result = await fetchWrapper
-        .post(`/${this.$i18n.locale}/upload-jobs/create/}`, {
+        .post(`/${this.$i18n.locale}/upload-jobs/create/`, {
           title,
           description,
           language,

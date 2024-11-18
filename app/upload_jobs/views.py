@@ -67,9 +67,9 @@ def delete(request, pk):
 
 @require_POST
 @login_required
-def create_uploaded_file(request, upload_job_id):
+def create_uploaded_file(request, pk):
     user = request.user
-    upload_job = UploadJob.objects.get(pk=upload_job_id)
+    upload_job = UploadJob.objects.get(pk=pk)
 
     if upload_job is None:
         return JsonResponse({"message": "Upload job does not exist."}, status=404)

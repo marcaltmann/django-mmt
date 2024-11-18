@@ -156,16 +156,17 @@ LOGOUT_REDIRECT_URL = "pages:welcome"
 AUTH_USER_MODEL = "account.User"
 
 
-sentry_sdk.init(
-    dsn=os.environ.get("SENTRY_URL"),
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for tracing.
-    traces_sample_rate=1.0,
-    # Set profiles_sample_rate to 1.0 to profile 100%
-    # of sampled transactions.
-    # We recommend adjusting this value in production.
-    profiles_sample_rate=1.0,
-)
+if not DEBUG:
+    sentry_sdk.init(
+        dsn=os.environ.get("SENTRY_URL"),
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for tracing.
+        traces_sample_rate=1.0,
+        # Set profiles_sample_rate to 1.0 to profile 100%
+        # of sampled transactions.
+        # We recommend adjusting this value in production.
+        profiles_sample_rate=1.0,
+    )
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
