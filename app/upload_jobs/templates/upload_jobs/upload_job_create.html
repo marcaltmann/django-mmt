@@ -14,7 +14,7 @@
 
   <h1 class="h1">{% translate "New upload job" %}</h1>
 
-  <form class="form" method="POST">
+  <form id="upload-job-form" class="form" method="POST">
     {% csrf_token %}
 
     {# Files #}
