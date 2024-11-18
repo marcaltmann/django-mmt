@@ -11,9 +11,22 @@ export default {
     CloseIcon,
     ProgressBar,
   },
+  props: ['upload'],
   computed: {
     sizeStr() {
       return formatBytes(this.upload.filesize, this.$i18n.locale);
+    },
+    filePercentage() {
+      if (!this.upload) {
+        return 0;
+      }
+      return (this.upload.transferred / this.upload.filesize) * 100;
+    },
+    checksumPercentage() {
+      if (!this.upload) {
+        return 0;
+      }
+      return (this.upload.checksumProgress / 1) * 100;
     },
     timeToGo() {
       const localeOptions = {}
@@ -24,11 +37,11 @@ export default {
       let remainingMilliseconds;
       let now = new Date()
       let futureDate = new Date()
-      if (store.active && store.active.transferred) {
+      if (this.upload && this.upload.transferred) {
         remainingMilliseconds = remainingTime(
-          store.active.startedAt,
-          store.active.filesize,
-          store.active.transferred
+          this.upload.startedAt,
+          this.upload.filesize,
+          this.upload.transferred
         )
         futureDate = addMilliseconds(now, remainingMilliseconds)
       }
@@ -42,21 +55,21 @@ export default {
     <li class="queue-item queue-item--is-active">
       <div class="queue-item__body">
         <h3 class="queue-item__name">
-          {{ store.active?.serverFilename }}
+          {{ this.upload?.serverFilename }}
         </h3>
         <p class="queue-item__details">
           {{ sizeStr }} <span>– {{ timeToGo }}</span>
         </p>
         <ProgressBar
           id="upload-progress"
-          :percentage="store.percentageFile"
-          color=" #bed7ff"
+          :percentage="filePercentage"
+          color="#bed7ff"
           :label="$t('components.CurrentUpload.upload')"
         />
         <ProgressBar
           id="checksum-progress"
-          :percentage="store.percentageChecksum"
-          color=" #c7ffbe"
+          :percentage="checksumPercentage"
+          color="#c7ffbe"
           :label="$t('components.CurrentUpload.checksum')"
         />
       </div>

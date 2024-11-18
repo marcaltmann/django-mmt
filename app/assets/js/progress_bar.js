@@ -13,7 +13,7 @@ export default {
       <progress
         :id="id"
         class="progress-bar__bar"
-        :style="\`--bar-color: ${color}\`"
+        :style="'--bar-color: ' + color + ';'"
         :value="percentage"
         max="100"
       >

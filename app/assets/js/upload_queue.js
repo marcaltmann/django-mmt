@@ -1,3 +1,4 @@
+import CurrentUpload from './current_upload.js'
 import UploadQueueItem from './upload_queue_item.js'
 import FileStorage from './file_storage.js'
 import getNextFileId from './get_next_file_id.js'
@@ -11,12 +12,14 @@ const storedFiles = new FileStorage();
 
 export default {
   components: {
+    CurrentUpload,
     UploadQueueItem
   },
   props: ['files', 'currentUploadJobId'],
   data() {
+    const files = this.files || [];
     return {
-      pending: this.files.map(file => {
+      pending: files.map(file => {
         const id = getNextFileId();
         storedFiles.storeFile(id, file);
         return {
@@ -39,20 +42,8 @@ export default {
       }
       return result;
     },
-    percentageFile() {
-      if (!this.active) {
-        return 0;
-      }
-      return (this.active.transferred / this.active.filesize) * 100;
-    },
-    percentageChecksum() {
-      if (!this.active) {
-        return 0;
-      }
-      return (this.active.checksumProgress / 1) * 100;
-    },
     isEmpty() {
-      return this.itemCount() === 0;
+      return this.itemCount === 0;
     },
   },
   methods: {
@@ -157,7 +148,7 @@ export default {
   },
   template: `
     <ul>
-      <CurrentUpload v-if="active" />
+      <CurrentUpload v-if="active" :upload="active" />
       <UploadQueueItem v-for="job in pending" :key="job.jobId" :upload="job" />
     </ul>
   `
