@@ -17,17 +17,35 @@
   <form class="form" method="POST">
     {% csrf_token %}
 
+    {# Files #}
+    <div>
+      <label for="file-input" class="form__label">
+        {% translate "Files" %}*
+      </label>
+      <div class="control">
+        <input
+          class="upload-button__input u-mt-1/2"
+          type="file"
+          name="files"
+          id="file-input"
+          accept="{{ ACCEPTED_FILES }}"
+          multiple
+          required
+        />
+      </div>
+    </div>
+
     {# Title #}
     <div>
       <label for="{{ form.title.id_for_label }}"
-             class="form__label">{{ form.title.label }}</label>
+             class="form__label">{{ form.title.label }}*</label>
     </div>
     <div>
       {{ form.title|add_class:"form__input" }}
     </div>
 
     {# Description #}
-    <div>
+    <div class="u-mt-small">
       <label for="{{ form.description.id_for_label }}"
              class="form__label">{{ form.description.label }}</label>
     </div>

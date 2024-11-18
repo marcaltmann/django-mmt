@@ -10,6 +10,8 @@ from .forms import UploadJobForm
 from .models import UploadJob
 from uploaded_files.models import UploadedFile
 
+ACCEPTED_FILES = ["video/*", "audio/*", "image/*", "model/vnd.mts", "application/mxf"]
+
 
 @require_GET
 @login_required
@@ -51,7 +53,10 @@ def create(request):
             return JsonResponse(form.errors, status=400)
     else:
         form = UploadJobForm()
-        context = {"form": form}
+        context = {
+            "form": form,
+            "ACCEPTED_FILES": ",".join(ACCEPTED_FILES),
+        }
         return render(request, "upload_jobs/upload_job_create.html", context)
 
 
