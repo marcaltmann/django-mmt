@@ -17,6 +17,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_http_methods
 
 from account.models import Profile
+from .files import get_files_with_info
 
 logger = logging.getLogger(__name__)
 
@@ -32,28 +33,12 @@ def download_index(request):
     user = request.user
     profile, created = Profile.objects.get_or_create(user_id=user.id)
     downloads_directory = profile.download_path()
-    if not downloads_directory.is_dir():
+    try:
+        files_with_info = get_files_with_info(downloads_directory)
+    except FileNotFoundError:
         return HttpResponseServerError(
             "Downloads directory does not exist for the user."
         )
-
-    filepaths = [
-        path
-        for path in downloads_directory.iterdir()
-        if path.is_file() and path.name != ".DS_Store"
-    ]
-
-    files_with_info = []
-    for filepath in filepaths:
-        media_type = mimetypes.guess_type(filepath)[0] or "application/octet-stream"
-        statinfo = os.stat(filepath)
-        file_info = {
-            "filename": filepath.name,
-            "type": media_type,
-            "size": statinfo.st_size,
-            "modified": datetime.fromtimestamp(statinfo.st_mtime, tz=timezone.utc),
-        }
-        files_with_info.append(file_info)
 
     context = {"files": files_with_info}
 

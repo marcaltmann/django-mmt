@@ -13,13 +13,20 @@
       <a href="{% url 'upload_jobs:create' %}"
          class="dashboard__link">{% translate "Create a new upload job" %}</a>
     </li>
+    {% if user.is_authenticated %}
+      <li class="u-mt-small">
+        <a href="{% url 'upload_jobs:index' %}"
+           class="dashboard__link">{% blocktranslate count counter=upload_job_count %}One upload job{% plural %}{{ counter }} upload jobs{% endblocktranslate %}</a>
+      </li>
+    {% endif %}
     <li class="u-mt-small">
-      <a href="{% url 'upload_jobs:index' %}"
-         class="dashboard__link">{% blocktranslate count counter=upload_job_count %}One upload job{% plural %}{{ counter }} upload jobs{% endblocktranslate %}</a>
-    </li>
-    <li class="u-mt-small">
-      <a href="{% url 'downloads:download_index' %}"
-         class="dashboard__link">{% blocktranslate count counter=upload_job_count %}One downloadable file{% plural %}{{ counter }} downloadable files{% endblocktranslate %}</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'downloads:download_index' %}"
+           class="dashboard__link">{% blocktranslate count counter=download_file_count %}One downloadable file{% plural %}{{ counter }} downloadable files{% endblocktranslate %}</a>
+      {% else %}
+        <a href="{% url 'downloads:download_index' %}"
+           class="dashboard__link">{% translate "Downloadable files" %}</a>
+      {% endif %}
     </li>
   </ul>
 {% endblock %}
