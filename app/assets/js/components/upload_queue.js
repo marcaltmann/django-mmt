@@ -1,11 +1,11 @@
 import CurrentUpload from './current_upload.js'
 import UploadQueueItem from './upload_queue_item.js'
-import FileStorage from '../file_storage.js'
-import getNextFileId from '../get_next_file_id.js'
-import addFile from "../add_file.js"
-import registerUpload from "../register_upload.js"
-import submitChecksum from "../submit_checksum.js"
-import createChecksum from "../create_checksum.js"
+import FileStorage from '../helpers/file_storage.js'
+import getNextFileId from '../helpers/get_next_file_id.js'
+import addFile from '../helpers/add_file.js';
+import registerUpload from "../helpers/register_upload.js"
+import submitChecksum from "../helpers/submit_checksum.js"
+import createChecksum from "../helpers/create_checksum.js"
 
 let xhrRef = null;
 const storedFiles = new FileStorage();
@@ -147,7 +147,7 @@ export default {
     },
   },
   template: `
-    <ul>
+    <ul class="queue u-ll u-mt">
       <CurrentUpload v-if="active" :upload="active" />
       <UploadQueueItem v-for="job in pending" :key="job.jobId" :upload="job" />
     </ul>

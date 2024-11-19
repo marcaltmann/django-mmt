@@ -1,9 +1,9 @@
-const baseUrl = `${import.meta.env.VITE_API_URL}`;
+const locale = document.documentElement.lang;
 
 export default function addFile(options) {
   const { fileId, file, filename, onProgress, onEnd, onAbort } = options;
 
-  const uploadEndPoint = `/de/uploaded-files/${fileId}/upload/`;
+  const uploadEndPoint = `/${locale}/uploaded-files/${fileId}/upload/`;
 
   const request = new XMLHttpRequest();
   request.withCredentials = true;

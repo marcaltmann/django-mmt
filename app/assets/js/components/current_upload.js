@@ -1,10 +1,10 @@
 import { formatDistance, addMilliseconds } from 'date-fns'
 import { de } from 'date-fns/locale'
 
-import CloseIcon from '../close_icon.js'
-import formatBytes from '../format_bytes.js'
+import CloseIcon from './close_icon.js'
 import ProgressBar from './progress_bar.js'
-import remainingTime from '../remaining_time.js'
+import formatBytes from '../helpers/format_bytes.js'
+import remainingTime from '../helpers/remaining_time.js'
 
 export default {
   components: {
@@ -64,21 +64,21 @@ export default {
           id="upload-progress"
           :percentage="filePercentage"
           color="#bed7ff"
-          :label="$t('components.CurrentUpload.upload')"
+          :label="$t('upload')"
         />
         <ProgressBar
           id="checksum-progress"
           :percentage="checksumPercentage"
           color="#c7ffbe"
-          :label="$t('components.CurrentUpload.checksum')"
+          :label="$t('checksum')"
         />
       </div>
       <div class="queue-item__actions">
         <button
           type="button"
           class="queue-item__button icon-button"
-          :aria-label="$t('components.UploadQueue.cancel')"
-          :title="$t('components.UploadQueue.cancel')"
+          :aria-label="$t('cancel')"
+          :title="$t('cancel')"
           @click="$emit('onCancelActive')"
         >
           <CloseIcon class="queue-item__icon icon-button__icon" />

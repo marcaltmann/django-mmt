@@ -3,10 +3,10 @@
   background-color: white;
   display: flex;
   justify-content: space-between;
-  line-height: var(--base-unit);
+  line-height: 1rlh;
   min-width: 0;
   opacity: 0.5;
-  padding: calc(var(--base-unit) / 4) calc(var(--base-unit) / 2);
+  padding: 0.25rlh 0.5rlh;
   transition-property: opacity, background-color;
   transition-duration: var(--transition-duration);
 }
@@ -26,7 +26,8 @@
 .queue-item__name {
   font-size: 1rem;
   font-weight: bold;
-  line-height: var(--base-unit);
+  line-height: 1rlh;
+  margin-top: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -38,7 +39,7 @@
 
 .queue-item__actions {
   flex-shrink: 0;
-  margin-left: calc(var(--base-unit) / 2);
+  margin-left: 0.5rlh;
 }
 
 .queue-item__button {

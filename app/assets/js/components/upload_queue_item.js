@@ -1,5 +1,5 @@
-import CloseIcon from '../close_icon.js';
-import formatBytes from '../format_bytes.js'
+import CloseIcon from './close_icon.js';
+import formatBytes from '../helpers/format_bytes.js';
 
 export default {
   components: {
@@ -21,8 +21,8 @@ export default {
         <button
           type="button"
           class="queue-item__button icon-button"
-          :aria-label="$t('components.UploadQueue.cancel')"
-          :title="$t('components.UploadQueue.cancel')"
+          :aria-label="$t('cancel')"
+          :title="$t('cancel')"
           @click="$emit('onCancel', upload)"
         >
           <CloseIcon class="queue-item__icon icon-button__icon" />

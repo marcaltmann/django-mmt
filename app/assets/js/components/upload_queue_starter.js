@@ -1,4 +1,4 @@
-import { fetchWrapper } from '../fetch_wrapper.js'
+import { fetchWrapper } from '../helpers/fetch_wrapper.js'
 import UploadQueue from './upload_queue.js'
 
 const FILESIZE_LIMIT = 1 * 1024 * 1024 * 1024 * 1024  // 1 TB
@@ -46,7 +46,7 @@ export default {
   },
   template: `
     <p>
-      Processing job {{ title }}…
+      {{ $t('processing', { title }) }}
     </p>
     <UploadQueue v-if="uploadJob" :files="files"
                  :current-upload-job-id="uploadJob.id" />

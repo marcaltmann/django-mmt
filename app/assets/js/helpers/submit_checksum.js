@@ -1,10 +1,10 @@
-import { fetchWrapper } from "./fetch_wrapper"
+import { fetchWrapper } from './fetch_wrapper';
 
-const baseUrl = import.meta.env.VITE_API_URL;
+const locale = document.documentElement.lang;
 
 export default async function submitChecksum(uploadedFileId, checksum) {
   const resultPromise = fetchWrapper
-    .post(`/de/uploaded-files/${uploadedFileId}/update/`, {
+    .post(`/${locale}/uploaded-files/${uploadedFileId}/update/`, {
       checksum_client: checksum
     })
     .catch(err => {
