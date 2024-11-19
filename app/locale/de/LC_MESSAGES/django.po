@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-19 06:54+0000\n"
+"POT-Creation-Date: 2024-11-19 11:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -316,19 +316,23 @@ msgstr "Willkommen zu MMT Py!"
 msgid "Create a new upload job"
 msgstr "Neuen Upload-Auftrag erstellen"
 
-#: core/templates/core/welcome.html:18
+#: core/templates/core/welcome.html:19
 #, python-format
 msgid "One upload job"
 msgid_plural "%(counter)s upload jobs"
 msgstr[0] "Ein Upload-Auftrag"
 msgstr[1] "%(counter)s Upload-Aufträge"
 
-#: core/templates/core/welcome.html:22
+#: core/templates/core/welcome.html:25
 #, python-format
 msgid "One downloadable file"
 msgid_plural "%(counter)s downloadable files"
 msgstr[0] "Eine Datei zum Herunterladen"
 msgstr[1] "%(counter)s Dateien zum Herunterladen"
+
+#: core/templates/core/welcome.html:28
+msgid "Downloadable files"
+msgstr "Dateien zum Herunterladen"
 
 #: core/templates/footer.html:11
 msgid "Legal notice"
@@ -405,11 +409,11 @@ msgstr "Sind Sie sicher?"
 msgid "Delete"
 msgstr "Löschen"
 
-#: mmt/settings.py:132 upload_jobs/forms.py:20
+#: mmt/settings.py:132 upload_jobs/forms.py:22
 msgid "German"
 msgstr "Deutsch"
 
-#: mmt/settings.py:133 upload_jobs/forms.py:20
+#: mmt/settings.py:133 upload_jobs/forms.py:22
 msgid "English"
 msgstr "Englisch"
 
@@ -418,35 +422,35 @@ msgstr "Englisch"
 msgid "Legal Notice"
 msgstr "Impressum"
 
-#: upload_jobs/forms.py:9
+#: upload_jobs/forms.py:13
 msgid "Files"
 msgstr "Dateien"
 
-#: upload_jobs/forms.py:14 upload_jobs/models.py:10
+#: upload_jobs/forms.py:16 upload_jobs/models.py:10
 msgid "Title"
 msgstr "Titel"
 
-#: upload_jobs/forms.py:16 upload_jobs/models.py:12
+#: upload_jobs/forms.py:18 upload_jobs/models.py:12
 msgid "Description"
 msgstr "Beschreibung"
 
-#: upload_jobs/forms.py:19 upload_jobs/models.py:15
+#: upload_jobs/forms.py:21 upload_jobs/models.py:15
 msgid "Language"
 msgstr "Sprache"
 
-#: upload_jobs/forms.py:24 upload_jobs/models.py:18
+#: upload_jobs/forms.py:26 upload_jobs/models.py:18
 msgid "Make available on platform"
 msgstr "Auf der Plattform verfügbar machen"
 
-#: upload_jobs/forms.py:26 upload_jobs/models.py:20
+#: upload_jobs/forms.py:28 upload_jobs/models.py:20
 msgid "Transcribe"
 msgstr "Transkribieren"
 
-#: upload_jobs/forms.py:27 upload_jobs/models.py:22
+#: upload_jobs/forms.py:29 upload_jobs/models.py:22
 msgid "Check media files"
 msgstr "Mediendateien überprüfen"
 
-#: upload_jobs/forms.py:29 upload_jobs/models.py:25
+#: upload_jobs/forms.py:31 upload_jobs/models.py:25
 msgid "Replace existing files"
 msgstr "Vorhandene Dateien ersetzen"
 
