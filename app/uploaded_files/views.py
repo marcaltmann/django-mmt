@@ -32,7 +32,7 @@ async def upload(request, pk):
     await handle_uploaded_file(file, file_path)
 
     send_file_uploaded_emails.delay(user.id, uploaded_file.filename)
-    calculate_server_checksum.delay(uploaded_file_id)
+    calculate_server_checksum.delay(pk)
 
     return JsonResponse({"success": True})
 
