@@ -16,9 +16,20 @@
   border: none;
   border-radius: var(--border-radius);
   color: white;
-  line-height: var(--line-height);
-  padding: calc(var(--base-unit) / 4) calc(var(--base-unit) / 2);
+  line-height: 1rlh;
+  padding: 0.25rlh 0.5rlh;
   transition: filter var(--transition-duration);
+}
+
+.form__button--primary {
+  background-color: var(--primary-color);
+}
+
+.form__button--secondary {
+  background-color: transparent;
+  border: 1px solid currentColor;
+  color: var(--primary-color);
+  padding: calc(0.25rlh - 1px) calc(0.5rlh - 1px);
 }
 
 .form__button:hover {

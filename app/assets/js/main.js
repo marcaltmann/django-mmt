@@ -9,5 +9,4 @@ const uploadJobFormApp = createApp(UploadJobForm);
 uploadJobFormApp.use(i18n);
 
 document.addEventListener('DOMContentLoaded', () => {
-  uploadJobFormApp.mount('#upload-job-form');
 });

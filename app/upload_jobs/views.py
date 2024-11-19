@@ -3,7 +3,6 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, StreamingHttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 
 from .forms import UploadJobForm
@@ -52,7 +51,9 @@ def create(request):
         else:
             return JsonResponse(form.errors, status=400)
     else:
-        return render(request, "upload_jobs/upload_job_create.html")
+        form = UploadJobForm()
+        context = {"form": form}
+        return render(request, "upload_jobs/upload_job_create.html", context)
 
 
 @require_POST
