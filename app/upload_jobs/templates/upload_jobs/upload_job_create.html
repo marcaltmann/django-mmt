@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load vite %}
 {% load widget_tweaks %}
 
 {% block title %}{% translate "New upload job" %} | {{ block.super }}{% endblock %}
@@ -14,7 +15,7 @@
 
   <h1 class="h1">{% translate "New upload job" %}</h1>
 
-  <form id="upload-job-form" class="form" method="POST">
+  <form id="upload-job-form" class="form" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     {# Files #}
@@ -91,3 +92,7 @@
     </div>
   </form>
 {% endblock content %}
+
+{% block javascript %}
+  {% vite 'assets/js/upload_form.js' %}
+{% endblock javascript %}

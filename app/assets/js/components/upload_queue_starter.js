@@ -1,5 +1,4 @@
 import { fetchWrapper } from '../fetch_wrapper.js'
-import InlineMessage from './inline_message.js'
 import UploadQueue from './upload_queue.js'
 
 const FILESIZE_LIMIT = 1 * 1024 * 1024 * 1024 * 1024  // 1 TB
@@ -8,21 +7,9 @@ const FILESIZE_LIMIT = 1 * 1024 * 1024 * 1024 * 1024  // 1 TB
 export default {
   components: {
     UploadQueue,
-    InlineMessage,
   },
-  props: ['csrf-token'],
-  data() {
-    return {
-      selectedFiles: [],
-      error: false,
-      loading: false,
-      uploadJob: null,
-    };
-  },
+  props: ['title', 'files', 'csrfToken'],
   methods: {
-    handleFileChange(event) {
-      this.selectedFiles = [...event.target.files];
-    },
     async handleSubmit(event) {
       event.preventDefault();
       const form = event.target;
@@ -66,12 +53,16 @@ export default {
       this.loading = false;
       this.uploadJob = result;
     },
-    resetForm() {
-      this.selectedFiles = [];
-    },
   },
   template: `
-    <UploadQueue v-if="uploadJob" :files="selectedFiles"
-                 :current-upload-job-id="uploadJob.id" />
+    <p>
+      Processing job {{ title }}
+    </p>
+    {{ csrfToken }}
+    <p v-for="file in files">
+      {{ file.name }}
+    </p>
+    <!--<UploadQueue v-if="uploadJob" :files="selectedFiles"
+                 :current-upload-job-id="uploadJob.id" />-->
   `
 }
