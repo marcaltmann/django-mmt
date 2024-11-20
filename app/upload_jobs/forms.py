@@ -1,7 +1,11 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
+from babel import Locale
 
 ACCEPTED_FILES = ["video/*", "audio/*", "image/*", "model/vnd.mts", "application/mxf"]
+
+locales = Locale.locales()
+locale_choices = [(locale_code, locale.get_display_name('en')) for locale_code, locale in locales.items() if len(locale_code) == 2]
 
 
 class MultipleFileInput(forms.ClearableFileInput):
@@ -20,7 +24,7 @@ class UploadJobForm(forms.Form):
     )
     language = forms.ChoiceField(
         label=_("Language"),
-        choices=[("en", _("English")), ("de", _("German"))],
+        choices=locale_choices,
         required=False,
     )
     make_available_on_platform = forms.BooleanField(

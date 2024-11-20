@@ -1,5 +1,6 @@
 aiofiles==24.1.0
 ansible==11.0.0
+babel==2.16.0
 black==24.10.0
 bpython==0.24
 celery==5.4.0
