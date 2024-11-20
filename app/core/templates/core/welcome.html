@@ -28,5 +28,12 @@
            class="dashboard__link">{% translate "Downloadable files" %}</a>
       {% endif %}
     </li>
+    {% if user.is_superuser %}
+      <li class="u-mt-small">
+        <a class="dashboard__link" href="{% url 'admin:index' %}">
+          {% translate "Admin area" %}
+        </a>
+      </li>
+    {% endif %}
   </ul>
 {% endblock %}

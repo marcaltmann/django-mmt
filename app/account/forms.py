@@ -1,4 +1,4 @@
-from django import forms
+from django.forms import ModelForm, RadioSelect
 from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.contrib.auth import get_user_model
 
@@ -15,7 +15,10 @@ class RegisterForm(UserCreationForm):
         }
 
 
-class ProfileForm(forms.ModelForm):
+class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ["locale"]
+        widgets = {
+            "locale": RadioSelect(),
+        }

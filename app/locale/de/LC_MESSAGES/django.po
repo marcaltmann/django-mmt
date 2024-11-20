@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-20 13:51+0000\n"
+"POT-Creation-Date: 2024-11-20 14:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,7 +86,7 @@ msgstr "Passwort ändern"
 #: account/templates/account/register.html:5
 #: account/templates/account/register.html:9
 #: account/templates/account/register.html:48
-#: account/templates/registration/login.html:57 core/templates/header.html:61
+#: account/templates/registration/login.html:57 core/templates/header.html:54
 msgid "Register"
 msgstr "Registrieren"
 
@@ -351,6 +351,10 @@ msgstr[1] "%(counter)s Dateien zum Herunterladen"
 msgid "Downloadable files"
 msgstr "Dateien zum Herunterladen"
 
+#: core/templates/core/welcome.html:34
+msgid "Admin area"
+msgstr "Admin-Bereich"
+
 #: core/templates/footer.html:11
 msgid "Legal notice"
 msgstr "Impressum"
@@ -384,20 +388,17 @@ msgstr "Uploads"
 msgid "Downloads"
 msgstr "Downloads"
 
-#: core/templates/header.html:34
-msgid "Admin area"
-msgstr "Admin-Bereich"
-
-#: core/templates/header.html:47
+#: core/templates/header.html:40
 msgid "Log out"
 msgstr "Abmelden"
 
-#: core/templates/header.html:55
+#: core/templates/header.html:48
 msgid "Log in"
 msgstr "Anmelden"
 
 #: downloads/templates/downloads/download_index.html:19
 #: upload_jobs/templates/upload_jobs/upload_job_detail.html:36
+#: uploaded_files/models.py:12
 msgid "Filename"
 msgstr "Dateiname"
 
@@ -408,6 +409,7 @@ msgstr "Typ"
 
 #: downloads/templates/downloads/download_index.html:21
 #: upload_jobs/templates/upload_jobs/upload_job_detail.html:38
+#: uploaded_files/models.py:13
 msgid "Size"
 msgstr "Größe"
 
@@ -416,13 +418,13 @@ msgid "Last modified"
 msgstr "Zuletzt geändert"
 
 #: downloads/templates/downloads/download_index.html:25
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:43
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:45
 msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
 #: downloads/templates/downloads/download_index.html:44
 #: upload_jobs/templates/upload_jobs/upload_job_detail.html:29
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:62
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:70
 msgid "Delete"
 msgstr "Löschen"
 
@@ -493,12 +495,31 @@ msgstr[0] "eine Datei"
 msgstr[1] "%(counter)s Dateien"
 
 #: upload_jobs/templates/upload_jobs/upload_job_detail.html:39
+#: uploaded_files/models.py:19
 msgid "Created at"
 msgstr "Erstellt am"
+
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:40
+#: uploaded_files/models.py:16
+msgid "Server checksum"
+msgstr "Server-Prüfsumme"
+
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:41
+#: uploaded_files/models.py:17
+msgid "Client checksum"
+msgstr "Client-Prüfsumme"
 
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:37
 msgid "There are no upload jobs yet."
 msgstr "Es gibt noch keine Upload-Aufträge."
+
+#: uploaded_files/models.py:14
+msgid "Transferred"
+msgstr "Übertragen"
+
+#: uploaded_files/models.py:15
+msgid "Media type"
+msgstr "Medientyp"
 
 #: uploaded_files/tasks.py:40 uploaded_files/tasks.py:58
 msgid "File uploaded"
