@@ -57,6 +57,6 @@ export default {
       {{ $t('processing', { title }) }}
     </p>
     <UploadQueue v-if="uploadJob" :files="files"
-                 :current-upload-job-id="uploadJob.id" />
+                 :upload-job-id="uploadJob.id" />
   `,
 };

@@ -15,7 +15,7 @@ export default {
 		CurrentUpload,
 		UploadQueueItem,
 	},
-	props: ["files", "currentUploadJobId"],
+	props: ["files", "uploadJobId"],
 	data() {
 		const files = this.files || [];
 		return {
@@ -49,12 +49,14 @@ export default {
 	methods: {
 		removeActive() {
 			const activeJob = this.active;
+			xhrRef.abort();
 			if (activeJob) {
 				storedFiles.removeFile(activeJob.jobId);
 			}
 			this.active = null;
+			this.startNextJob();
 		},
-		removeJob(idToRemove) {
+		removeItem(idToRemove) {
 			const index = this.pending.findIndex(
 				(upload) => upload.jobId === idToRemove,
 			);
@@ -67,12 +69,18 @@ export default {
 		},
 		async startNextJob() {
 			if (this.pending.length === 0) {
-				/* Queue is empty, job done. */
-				/* TODO: Redirect or call callback */
+				/*
+				 * Queue is empty, job done.
+				 * This is where we leave the Vue.js app!
+				 * Waiting for 1 second to allow other requests to finish.
+				 */
+				setTimeout(() => {
+					window.location.href=`/${this.$i18n.locale}/upload-jobs/${this.uploadJobId}/`;
+				}, 1000);
 				return;
 			}
 
-			if (this.active || !this.currentUploadJobId) {
+			if (this.active || !this.uploadJobId) {
 				/* This should never be reached. */
 				return;
 			}
@@ -83,7 +91,7 @@ export default {
 
 			const registeredUpload = await registerUpload(
 				nextJobFile,
-				this.currentUploadJobId,
+				this.uploadJobId,
 			);
 			if (!registeredUpload) {
 				// Something did not work during upload registration
@@ -148,8 +156,8 @@ export default {
 	},
 	template: `
     <ul class="queue u-ll u-mt">
-      <CurrentUpload v-if="active" :upload="active" />
-      <UploadQueueItem v-for="job in pending" :key="job.jobId" :upload="job" />
+      <CurrentUpload v-if="active" :upload="active" @onCancelActive="removeActive" />
+      <UploadQueueItem v-for="job in pending" :key="job.jobId" :upload="job" @onCancel="removeItem" />
     </ul>
   `,
 };

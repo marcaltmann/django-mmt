@@ -23,7 +23,7 @@ export default {
           class="queue-item__button icon-button"
           :aria-label="$t('cancel')"
           :title="$t('cancel')"
-          @click="$emit('onCancel', upload)"
+          @click="$emit('onCancel', upload.jobId)"
         >
           <CloseIcon class="queue-item__icon icon-button__icon" />
         </button>
