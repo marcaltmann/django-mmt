@@ -36,9 +36,9 @@
     <p class="u-ll">
       {% translate "There are no upload jobs yet." %}
     </p>
-    <p class="u-ll u-mt-small">
-      <a href="{% url 'upload_jobs:create' %}">{% translate "Create a new upload job" %}</a>
-    </p>
   {% endif %}
 
+  <p class="u-ll u-mt">
+    <a href="{% url 'upload_jobs:create' %}">{% translate "Create a new upload job" %}</a>
+  </p>
 {% endblock content %}
