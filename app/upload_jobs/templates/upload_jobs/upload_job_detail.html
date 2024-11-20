@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load humanize %}
 {% load django_htmx %}
 
 {% block title %}{{ upload_job.title }} | {{ block.super }}{% endblock %}
@@ -16,7 +17,9 @@
 
   <ul>
     <li>
-      {{ upload_job.created_at }}
+      <time datetime="{{ upload_job.created_at|date:'c' }}">
+        {{ upload_job.created_at }}
+      </time>
     </li>
     <li>
       {% blocktranslate count counter=uploaded_files.count %}one file{% plural %}{{ counter }} files{% endblocktranslate %}
@@ -53,16 +56,25 @@
             {{ file.media_type }}
           </td>
           <td>
-            {{ file.size|filesizeformat }}
+            <span title="{{ file.size|intcomma }} Bytes">
+              {{ file.size|filesizeformat }}
+            </span>
           </td>
           <td>
-            {{ file.created_at|date:"SHORT_DATE_FORMAT" }}
+            <time datetime="{{ file.created_at|date:'c' }}"
+                  title="{{ file.created_at|date:"r" }}">
+              {{ file.created_at|naturalday:"SHORT_DATE_FORMAT" }}
+            </time>
           </td>
           <td>
-            {{ file.checksum_server }}
+            <span title="{{ file.checksum_server }}">
+              {{ file.checksum_server|truncatechars:12 }}
+            </span>
           </td>
           <td>
-            {{ file.checksum_client }}
+            <span title="{{ file.checksum_client}}">
+              {{ file.checksum_client|truncatechars:12 }}
+            </span>
           </td>
           <td>
             <button class="form__button"

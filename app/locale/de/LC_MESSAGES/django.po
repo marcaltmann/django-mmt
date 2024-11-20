@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-20 14:21+0000\n"
+"POT-Creation-Date: 2024-11-20 19:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: account/models.py:28 mmt/settings.py:133 upload_jobs/forms.py:23
+#: account/models.py:28 mmt/settings.py:134 upload_jobs/forms.py:23
 msgid "English"
 msgstr "Englisch"
 
-#: account/models.py:29 mmt/settings.py:132 upload_jobs/forms.py:23
+#: account/models.py:29 mmt/settings.py:133 upload_jobs/forms.py:23
 msgid "German"
 msgstr "Deutsch"
 
@@ -329,7 +329,7 @@ msgid "Welcome to MMT Py!"
 msgstr "Willkommen zu MMT Py!"
 
 #: core/templates/core/welcome.html:14
-#: upload_jobs/templates/upload_jobs/upload_job_index.html:42
+#: upload_jobs/templates/upload_jobs/upload_job_index.html:46
 msgid "Create a new upload job"
 msgstr "Neuen Upload-Auftrag erstellen"
 
@@ -375,16 +375,17 @@ msgid "Contact"
 msgstr "Kontakt"
 
 #: core/templates/header.html:14
-msgid "New Upload"
-msgstr "Neuer Upload"
+#: upload_jobs/templates/upload_jobs/upload_job_create.html:12
+msgid "New job"
+msgstr "Neuer Auftrag"
 
 #: core/templates/header.html:21
-msgid "Uploads"
-msgstr "Uploads"
+msgid "Upload jobs"
+msgstr "Upload-Aufträge"
 
 #: core/templates/header.html:28
-#: downloads/templates/downloads/download_index.html:5
-#: downloads/templates/downloads/download_index.html:7
+#: downloads/templates/downloads/download_index.html:6
+#: downloads/templates/downloads/download_index.html:8
 msgid "Downloads"
 msgstr "Downloads"
 
@@ -396,35 +397,35 @@ msgstr "Abmelden"
 msgid "Log in"
 msgstr "Anmelden"
 
-#: downloads/templates/downloads/download_index.html:19
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:36
+#: downloads/templates/downloads/download_index.html:20
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:39
 #: uploaded_files/models.py:12
 msgid "Filename"
 msgstr "Dateiname"
 
-#: downloads/templates/downloads/download_index.html:20
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:37
+#: downloads/templates/downloads/download_index.html:21
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:40
 msgid "Type"
 msgstr "Typ"
 
-#: downloads/templates/downloads/download_index.html:21
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:38
+#: downloads/templates/downloads/download_index.html:22
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:41
 #: uploaded_files/models.py:13
 msgid "Size"
 msgstr "Größe"
 
-#: downloads/templates/downloads/download_index.html:22
+#: downloads/templates/downloads/download_index.html:23
 msgid "Last modified"
 msgstr "Zuletzt geändert"
 
-#: downloads/templates/downloads/download_index.html:25
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:45
+#: downloads/templates/downloads/download_index.html:26
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:48
 msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
-#: downloads/templates/downloads/download_index.html:44
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:29
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:70
+#: downloads/templates/downloads/download_index.html:50
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:32
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:82
 msgid "Delete"
 msgstr "Löschen"
 
@@ -471,22 +472,18 @@ msgid "New upload job"
 msgstr "Neuer Upload-Auftrag"
 
 #: upload_jobs/templates/upload_jobs/upload_job_create.html:11
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:10
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:11
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:4
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:8
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:13
 msgid "Upload Jobs"
 msgstr "Upload-Aufträge"
 
-#: upload_jobs/templates/upload_jobs/upload_job_create.html:12
-msgid "New job"
-msgstr "Neuer Auftrag"
-
 #: upload_jobs/templates/upload_jobs/upload_job_create.html:90
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:22
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:25
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:27
 #, python-format
 msgid "one file"
@@ -494,22 +491,22 @@ msgid_plural "%(counter)s files"
 msgstr[0] "eine Datei"
 msgstr[1] "%(counter)s Dateien"
 
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:39
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:42
 #: uploaded_files/models.py:19
 msgid "Created at"
 msgstr "Erstellt am"
 
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:40
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:43
 #: uploaded_files/models.py:16
 msgid "Server checksum"
 msgstr "Server-Prüfsumme"
 
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:41
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:44
 #: uploaded_files/models.py:17
 msgid "Client checksum"
 msgstr "Client-Prüfsumme"
 
-#: upload_jobs/templates/upload_jobs/upload_job_index.html:37
+#: upload_jobs/templates/upload_jobs/upload_job_index.html:41
 msgid "There are no upload jobs yet."
 msgstr "Es gibt noch keine Upload-Aufträge."
 
@@ -558,3 +555,9 @@ msgstr ""
 "Umfang, Komplexität und Arbeitsaufwand mehrere Werktage in Anspruch nehmen. "
 "Sie erhalten eine E-Mail-Benachrichtigung, sobald die Datei im oh.d-System "
 "verfügbar ist."
+
+#~ msgid "New Upload"
+#~ msgstr "Neuer Upload"
+
+#~ msgid "Uploads"
+#~ msgstr "Uploads"
