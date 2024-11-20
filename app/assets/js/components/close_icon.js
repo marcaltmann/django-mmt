@@ -1,5 +1,5 @@
 export default {
-  template: `
+	template: `
     <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
       <path
         fill="none"
@@ -10,5 +10,5 @@ export default {
         d="M368 368L144 144M368 144L144 368"
       />
     </svg>
-  `
-}
+  `,
+};

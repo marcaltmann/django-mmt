@@ -1,17 +1,17 @@
-import CloseIcon from './close_icon.js';
-import formatBytes from '../helpers/format_bytes.js';
+import formatBytes from "../helpers/format_bytes.js";
+import CloseIcon from "./close_icon.js";
 
 export default {
-  components: {
-    CloseIcon
-  },
-  props: ['upload'],
-  computed: {
-    sizeStr() {
-      return formatBytes(this.upload.filesize, this.$i18n.locale);
-    },
-  },
-  template: `
+	components: {
+		CloseIcon,
+	},
+	props: ["upload"],
+	computed: {
+		sizeStr() {
+			return formatBytes(this.upload.filesize, this.$i18n.locale);
+		},
+	},
+	template: `
     <li class="queue-item">
       <div class="queue-item__body">
         <h3 class="queue-item__name">{{ upload.filename }}</h3>
@@ -29,5 +29,5 @@ export default {
         </button>
       </div>
     </li>
-  `
-}
+  `,
+};
