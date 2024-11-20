@@ -1,6 +1,4 @@
-from datetime import datetime, timezone
 import logging
-import mimetypes
 import os
 import threading
 
@@ -13,10 +11,8 @@ from django.http import (
     HttpResponse,
 )
 from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_http_methods
 
-from account.models import Profile
 from .files import get_files_with_info
 
 logger = logging.getLogger(__name__)
@@ -31,8 +27,7 @@ def debug(msg):
 @login_required
 def download_index(request):
     user = request.user
-    profile, created = Profile.objects.get_or_create(user_id=user.id)
-    downloads_directory = profile.download_path()
+    downloads_directory = user.download_path()
     try:
         files_with_info = get_files_with_info(downloads_directory)
     except FileNotFoundError:
@@ -47,10 +42,9 @@ def download_index(request):
 
 @require_http_methods(["GET", "DELETE"])
 @login_required
-@csrf_exempt
 def download_detail(request, filename):
     user = request.user
-    downloads_directory = user.profile.download_path()
+    downloads_directory = user.download_path()
     file_path = downloads_directory / filename
 
     if not file_path.is_file():

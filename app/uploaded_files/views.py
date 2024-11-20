@@ -4,8 +4,6 @@ import aiofiles
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse, HttpResponseNotFound, Http404
-from django.shortcuts import get_object_or_404
-from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from .models import UploadedFile
@@ -14,7 +12,6 @@ from .tasks import calculate_server_checksum, send_file_uploaded_emails
 
 @require_POST
 @login_required
-@csrf_exempt
 async def upload(request, pk):
     uploaded_file = await UploadedFile.objects.select_related("upload_job").aget(pk=pk)
     upload_job = uploaded_file.upload_job
@@ -25,8 +22,9 @@ async def upload(request, pk):
             {"message": "You are not allowed to upload this file."}, status=403
         )
 
-    uploads_directory = settings.BASE_DIR / "user_files" / user.username / "uploads"
-    file_path = uploads_directory / uploaded_file.filename
+    # User#upload_path does not work with async.
+    upload_path = settings.BASE_DIR / "user_files" / user.username / "uploads"
+    file_path = upload_path / uploaded_file.filename
 
     file = request.FILES["file"]
     await handle_uploaded_file(file, file_path)
@@ -45,7 +43,6 @@ async def handle_uploaded_file(file, file_path):
 
 @require_POST
 @login_required
-@csrf_exempt
 def update(request, pk):
     uploaded_file = UploadedFile.objects.select_related("upload_job").get(pk=pk)
     upload_job = uploaded_file.upload_job
@@ -68,14 +65,13 @@ def update(request, pk):
 
 @require_POST
 @login_required
-@csrf_exempt
 def delete(request, pk):
     user = request.user
     uploaded_file = UploadedFile.objects.get(pk=pk, upload_job__user_id=user.id)
     uploaded_file.delete()
 
     # Remove actual file.
-    uploads_directory = user.profile.upload_path()
+    uploads_directory = user.upload_path()
     file_path = uploads_directory / uploaded_file.filename
     try:
         file_path.unlink()

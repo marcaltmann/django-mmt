@@ -6,7 +6,6 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from account.forms import RegisterForm
 from account.models import Profile
 from account.tasks import send_new_user_email, send_user_activation_email
-from uploaded_files.filesystem import create_user_directories
 
 
 User = get_user_model()
@@ -34,7 +33,7 @@ def register(request):
             )
             locale = get_preferred_language(request)
             Profile.objects.create(user=user, locale=locale)
-            create_user_directories(user.username)
+            user.create_user_directories()
             send_new_user_email.delay(user.id)
 
             return redirect("account:registration_complete")

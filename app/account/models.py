@@ -7,15 +7,26 @@ from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
-    pass
+    def upload_path(self) -> Path:
+        return settings.BASE_DIR / "user_files" / self.username / "uploads"
+
+    def download_path(self) -> Path:
+        return settings.BASE_DIR / "user_files" / self.username / "downloads"
+
+    def create_user_directories(self) -> None:
+        user_directory = settings.BASE_DIR / "user_files" / self.username
+        uploads_directory = user_directory / "uploads"
+        downloads_directory = user_directory / "downloads"
+        uploads_directory.mkdir(parents=True, exist_ok=True)
+        downloads_directory.mkdir(parents=True, exist_ok=True)
 
 
 class Profile(models.Model):
     LOCALE_ENGLISH = "en"
     LOCALE_GERMAN = "de"
     LOCALE_CHOICES = (
-        (LOCALE_ENGLISH, "English"),
-        (LOCALE_GERMAN, "German"),
+        (LOCALE_ENGLISH, _("English")),
+        (LOCALE_GERMAN, _("German")),
     )
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -25,16 +36,6 @@ class Profile(models.Model):
         choices=LOCALE_CHOICES,
         default=LOCALE_ENGLISH,
     )
-
-    def upload_path(self) -> Path:
-        """Does not work with async."""
-        username = self.user.username
-        return settings.BASE_DIR / "user_files" / username / "uploads"
-
-    def download_path(self) -> Path:
-        """Does not work with async."""
-        username = self.user.username
-        return settings.BASE_DIR / "user_files" / username / "downloads"
 
     def __str__(self):
         return self.full_name

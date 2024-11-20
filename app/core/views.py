@@ -1,15 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponseServerError
 
-from account.models import Profile
 from downloads.files import get_files_with_info
 
 
 def welcome(request):
     user = request.user
     if user.is_authenticated:
-        profile, created = Profile.objects.get_or_create(user_id=user.id)
-        downloads_directory = profile.download_path()
+        downloads_directory = user.download_path()
         try:
             files_with_info = get_files_with_info(downloads_directory)
         except FileNotFoundError:
