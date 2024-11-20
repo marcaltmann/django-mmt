@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-20 08:57+0000\n"
+"POT-Creation-Date: 2024-11-20 13:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: account/models.py:28 mmt/settings.py:133 upload_jobs/forms.py:23
+msgid "English"
+msgstr "Englisch"
+
+#: account/models.py:29 mmt/settings.py:132 upload_jobs/forms.py:23
+msgid "German"
+msgstr "Deutsch"
+
+#: account/models.py:38 account/templates/account/profile.html:31
+msgid "Locale"
+msgstr "Gebietsschema"
+
 #: account/tasks.py:21
 msgid "A new user has registered."
 msgstr "Ein neuer Benutzer hat sich registriert."
@@ -26,36 +38,45 @@ msgstr "Ein neuer Benutzer hat sich registriert."
 msgid "Your account has been activated."
 msgstr "Ihr Konto wurde aktiviert."
 
+#: account/templates/account/edit_profile.html:6
+#: account/templates/account/edit_profile.html:18
+#: account/templates/account/profile.html:51
+msgid "Edit profile"
+msgstr "Profil bearbeiten"
+
+#: account/templates/account/edit_profile.html:12
 #: account/templates/account/profile.html:4
-#: account/templates/account/profile.html:8
+#: account/templates/account/profile.html:7
 msgid "Profile"
 msgstr "Profil"
 
-#: account/templates/account/profile.html:12
+#: account/templates/account/edit_profile.html:13
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: account/templates/account/edit_profile.html:34
+#: account/templates/registration/password_change_form.html:44
+#: upload_jobs/templates/upload_jobs/upload_job_create.html:87
+msgid "Submit"
+msgstr "Absenden"
+
+#: account/templates/account/profile.html:19
 msgid "Username"
 msgstr "Benutzername"
 
-#: account/templates/account/profile.html:18
-msgid "First name"
-msgstr "Vorname"
-
-#: account/templates/account/profile.html:24
-msgid "Last name"
-msgstr "Nachname"
-
-#: account/templates/account/profile.html:30
+#: account/templates/account/profile.html:25
 msgid "Email"
 msgstr "E-Mail"
 
-#: account/templates/account/profile.html:36
+#: account/templates/account/profile.html:37
 msgid "Last login"
 msgstr "Letzte Anmeldung"
 
-#: account/templates/account/profile.html:42
+#: account/templates/account/profile.html:43
 msgid "Date joined"
 msgstr "Registrierungsdatum"
 
-#: account/templates/account/profile.html:50
+#: account/templates/account/profile.html:56
 #: account/templates/registration/password_change_form.html:5
 #: account/templates/registration/password_change_form.html:9
 #: account/templates/registration/password_reset_confirm.html:18
@@ -145,11 +166,6 @@ msgstr "Zurück zum Profil"
 #: account/templates/registration/password_change_form.html:13
 msgid "Errors"
 msgstr "Fehler"
-
-#: account/templates/registration/password_change_form.html:44
-#: upload_jobs/templates/upload_jobs/upload_job_create.html:87
-msgid "Submit"
-msgstr "Absenden"
 
 #: account/templates/registration/password_reset_complete.html:4
 msgid "Password complete"
@@ -313,7 +329,7 @@ msgid "Welcome to MMT Py!"
 msgstr "Willkommen zu MMT Py!"
 
 #: core/templates/core/welcome.html:14
-#: upload_jobs/templates/upload_jobs/upload_job_index.html:40
+#: upload_jobs/templates/upload_jobs/upload_job_index.html:42
 msgid "Create a new upload job"
 msgstr "Neuen Upload-Auftrag erstellen"
 
@@ -381,17 +397,17 @@ msgid "Log in"
 msgstr "Anmelden"
 
 #: downloads/templates/downloads/download_index.html:19
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:38
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:36
 msgid "Filename"
 msgstr "Dateiname"
 
 #: downloads/templates/downloads/download_index.html:20
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:39
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:37
 msgid "Type"
 msgstr "Typ"
 
 #: downloads/templates/downloads/download_index.html:21
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:40
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:38
 msgid "Size"
 msgstr "Größe"
 
@@ -400,23 +416,15 @@ msgid "Last modified"
 msgstr "Zuletzt geändert"
 
 #: downloads/templates/downloads/download_index.html:25
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:45
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:43
 msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
 #: downloads/templates/downloads/download_index.html:44
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:31
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:64
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:29
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:62
 msgid "Delete"
 msgstr "Löschen"
-
-#: mmt/settings.py:132 upload_jobs/forms.py:23
-msgid "German"
-msgstr "Deutsch"
-
-#: mmt/settings.py:133 upload_jobs/forms.py:23
-msgid "English"
-msgstr "Englisch"
 
 #: pages/templates/pages/legal_notice.html:4
 #: pages/templates/pages/legal_notice.html:8
@@ -476,7 +484,7 @@ msgstr "Neuer Auftrag"
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:24
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:22
 #: upload_jobs/templates/upload_jobs/upload_job_index.html:27
 #, python-format
 msgid "one file"
@@ -484,7 +492,7 @@ msgid_plural "%(counter)s files"
 msgstr[0] "eine Datei"
 msgstr[1] "%(counter)s Dateien"
 
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:41
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:39
 msgid "Created at"
 msgstr "Erstellt am"
 

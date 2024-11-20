@@ -4,8 +4,15 @@
   {% translate "Profile" %} | {{ block.super }}
 {% endblock %}
 {% block content %}
+  {% translate "Profile" as page_title %}
+  <nav class="breadcrumbs">
+    <p>
+      <a>{{ page_title }}</a>
+    </p>
+  </nav>
+
   <h1 class="h1">
-    {% translate "Profile" %}
+    {{ page_title }}
   </h1>
   <dl>
     <dt>
@@ -21,6 +28,12 @@
       {{ user.email }}
     </dd>
     <dt>
+      {% translate "Locale" %}
+    </dt>
+    <dd>
+      {{ profile.get_locale_display }}
+    </dd>
+    <dt>
       {% translate "Last login" %}
     </dt>
     <dd>
@@ -34,6 +47,11 @@
     </dd>
   </dl>
   <p class="paragraph u-mt">
+    <a href="{% url 'account:edit_profile' %}">
+      {% translate "Edit profile" %}
+    </a>
+  </p>
+  <p class="paragraph u-mt-small">
     <a href="{% url 'password_change' %}">
       {% translate "Change password" %}
     </a>

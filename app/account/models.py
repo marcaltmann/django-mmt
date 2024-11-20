@@ -35,6 +35,7 @@ class Profile(models.Model):
         max_length=2,
         choices=LOCALE_CHOICES,
         default=LOCALE_ENGLISH,
+        verbose_name=_("Locale")
     )
 
     def __str__(self):
