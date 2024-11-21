@@ -8,9 +8,11 @@ from django.utils.translation import gettext_lazy as _
 
 class User(AbstractUser):
     def upload_path(self) -> Path:
+        # TODO: Use safe filename here
         return settings.BASE_DIR / "user_files" / self.username / "uploads"
 
     def download_path(self) -> Path:
+        # TODO: Use safe filename here
         return settings.BASE_DIR / "user_files" / self.username / "downloads"
 
     def create_user_directories(self) -> None:
@@ -30,12 +32,14 @@ class Profile(models.Model):
     )
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=255, blank=True, null=False, verbose_name=_("Full name"))
+    full_name = models.CharField(
+        max_length=255, blank=True, null=False, verbose_name=_("Full name")
+    )
     locale = models.CharField(
         max_length=2,
         choices=LOCALE_CHOICES,
         default=LOCALE_ENGLISH,
-        verbose_name=_("Locale")
+        verbose_name=_("Locale"),
     )
 
     class Meta:

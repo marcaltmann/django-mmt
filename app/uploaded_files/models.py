@@ -12,9 +12,15 @@ class UploadedFile(models.Model):
     filename = models.CharField(max_length=255, verbose_name=_("Filename"))
     size = models.BigIntegerField(default=0, verbose_name=_("Size"))
     transferred = models.BigIntegerField(default=0, verbose_name=_("Transferred"))
-    media_type = models.CharField(max_length=255, blank=True, null=False, verbose_name=_("Media type"))
-    checksum_server = models.CharField(max_length=255, blank=True, null=False, verbose_name=_("Server checksum"))
-    checksum_client = models.CharField(max_length=255, blank=True, null=False, verbose_name=_("Client checksum"))
+    media_type = models.CharField(
+        max_length=255, blank=True, null=False, verbose_name=_("Media type")
+    )
+    checksum_server = models.CharField(
+        max_length=255, blank=True, null=False, verbose_name=_("Server checksum")
+    )
+    checksum_client = models.CharField(
+        max_length=255, blank=True, null=False, verbose_name=_("Client checksum")
+    )
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created at"))
     updated_at = models.DateTimeField(auto_now=True)

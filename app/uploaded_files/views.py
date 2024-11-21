@@ -24,7 +24,7 @@ async def upload(request, pk):
 
     # User#upload_path does not work with async.
     upload_path = settings.BASE_DIR / "user_files" / user.username / "uploads"
-    file_path = upload_path / uploaded_file.filename
+    file_path = upload_path / upload_job.directory_name() / uploaded_file.filename
 
     file = request.FILES["file"]
     await handle_uploaded_file(file, file_path)
@@ -67,12 +67,13 @@ def update(request, pk):
 @login_required
 def delete(request, pk):
     user = request.user
-    uploaded_file = UploadedFile.objects.get(pk=pk, upload_job__user_id=user.id)
+    uploaded_file = UploadedFile.objects.select_related("upload_job").get(pk=pk, upload_job__user_id=user.id)
+    upload_job = uploaded_file.upload_job
     uploaded_file.delete()
 
     # Remove actual file.
     uploads_directory = user.upload_path()
-    file_path = uploads_directory / uploaded_file.filename
+    file_path = uploads_directory / upload_job.directory_name() / uploaded_file.filename
     try:
         file_path.unlink()
     except FileNotFoundError:

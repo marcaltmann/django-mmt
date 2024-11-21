@@ -12,7 +12,13 @@ class ProfileInline(admin.StackedInline):
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
-    list_display = ['username', 'email', 'is_active', 'profile__full_name', 'profile__locale']
+    list_display = [
+        "username",
+        "email",
+        "is_active",
+        "profile__full_name",
+        "profile__locale",
+    ]
     inlines = [ProfileInline]
     actions = ["make_active"]
 

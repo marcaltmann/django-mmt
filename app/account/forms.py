@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.contrib.auth import get_user_model
 
 from .models import Profile
+
 User = get_user_model()
 
 

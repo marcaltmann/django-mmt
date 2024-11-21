@@ -34,7 +34,8 @@ def create(request):
         form = UploadJobForm(json_data)
         if form.is_valid():
             data = form.cleaned_data
-            upload_job = UploadJob(
+            upload_job = UploadJob.objects.create(
+                user=request.user,
                 title=data["title"],
                 description=data["description"],
                 language=data["language"],
@@ -43,8 +44,13 @@ def create(request):
                 check_media_files=data["check_media_files"],
                 replace_existing_files=data["replace_existing_files"],
             )
-            upload_job.user = request.user
-            upload_job.save()
+            # Create subdirectory.
+            # TODO: All file operations should be in separate functions
+            # or methods.
+            uploads_directory = request.user.upload_path()
+            subdirectory_path = uploads_directory / upload_job.directory_name()
+            subdirectory_path.mkdir()
+
             return JsonResponse({"id": upload_job.pk}, safe=False)
         else:
             return JsonResponse(form.errors, status=400)
