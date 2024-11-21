@@ -1,3 +1,6 @@
+import getCookie from "./get_cookie.js";
+
+const csrftoken = getCookie("csrftoken");
 const locale = document.documentElement.lang;
 
 export default function addFile(options) {
@@ -21,6 +24,7 @@ export default function addFile(options) {
 	});
 
 	request.open("POST", uploadEndPoint);
+	request.setRequestHeader("X-CSRFToken", csrftoken);
 
 	const formData = new FormData();
 	formData.append("file", file, filename);

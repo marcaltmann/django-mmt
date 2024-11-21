@@ -5,3 +5,7 @@
 	margin-top: 0;
 	padding-left: 0;
 }
+
+.queue:not(:has(li)) {
+	display: none;
+}

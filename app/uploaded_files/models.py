@@ -1,8 +1,5 @@
 from django.db import models
-from django.db.models.signals import post_delete
 from django.utils.translation import gettext_lazy as _
-
-from .filesystem import remove_file
 
 
 class UploadedFile(models.Model):
@@ -27,8 +24,3 @@ class UploadedFile(models.Model):
 
     def __str__(self):
         return self.filename
-
-
-post_delete.connect(
-    remove_file, sender=UploadedFile, dispatch_uid="core.uploaded_file.remove_file"
-)
