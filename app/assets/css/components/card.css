@@ -1,37 +1,37 @@
 .card {
-	border: 1px solid var(--ui-color-bright);
-	box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 10%);
+  border: 1px solid var(--ui-color-bright);
+  box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 10%);
 }
 
 .card--upload-job {
-	padding: 0.5rlh;
+  padding: 0.5rlh;
 }
 
 .card__image {
-	margin-left: -0.5rlh;
-	margin-right: -0.5rlh;
-	margin-top: -0.5rlh;
-	width: calc(100% + 1rlh);
+  margin-left: -0.5rlh;
+  margin-right: -0.5rlh;
+  margin-top: -0.5rlh;
+  width: calc(100% + 1rlh);
 }
 
 .card__title {
-	font-size: 1rem;
-	font-weight: bold;
-	line-height: 1rlh;
-	margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1rlh;
+  margin: 0;
 }
 
 .card__link:link,
 .card__link:visited {
-	color: #000;
+  color: #000;
 }
 
 .card__details {
-	color: var(--ui-color);
-	font-size: 0.875rem;
-	line-height: 1rlh;
-	list-style-type: none;
-	margin-bottom: 0;
-	margin-top: 0;
-	padding-left: 0;
+  color: var(--ui-color);
+  font-size: 0.875rem;
+  line-height: 1rlh;
+  list-style-type: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
 }

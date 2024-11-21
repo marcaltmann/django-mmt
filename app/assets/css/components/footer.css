@@ -1,9 +1,9 @@
 .footer {
-	background-color: var(--footer-color);
-	color: var(--text-color);
+  background-color: var(--footer-color);
+  color: var(--text-color);
 }
 
 .footer__inner {
-	padding-bottom: calc(var(--base-unit) * 2);
-	padding-top: calc(var(--base-unit) * 2);
+  padding-bottom: calc(var(--base-unit) * 2);
+  padding-top: calc(var(--base-unit) * 2);
 }
