@@ -28,7 +28,9 @@
 
   <form action="{% url 'upload_jobs:delete' upload_job.id %}" method="POST" class="form">
     {% csrf_token %}
-    <button type="submit" class="form__button">
+
+    <button onclick="return confirm('{% translate "Are you sure?" %}')"
+      type="submit" class="form__button">
       {% translate "Delete" %}
     </button>
   </form>
