@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-21 19:53+0000\n"
+"POT-Creation-Date: 2024-11-21 20:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "Activate selected users"
 msgstr "Ausgewählte Benutzer aktivieren"
 
-#: account/models.py:30 mmt/settings.py:134 upload_jobs/forms.py:23
+#: account/models.py:30 mmt/settings.py:134 upload_jobs/forms.py:25
 msgid "English"
 msgstr "Englisch"
 
-#: account/models.py:31 mmt/settings.py:133 upload_jobs/forms.py:23
+#: account/models.py:31 mmt/settings.py:133 upload_jobs/forms.py:26
 msgid "German"
 msgstr "Deutsch"
 
@@ -473,19 +473,43 @@ msgstr "Beschreibung"
 msgid "Language"
 msgstr "Sprache"
 
-#: upload_jobs/forms.py:27 upload_jobs/models.py:20
+#: upload_jobs/forms.py:24
+msgid "Other"
+msgstr "Andere"
+
+#: upload_jobs/forms.py:27
+msgid "Spanish"
+msgstr "Spanisch"
+
+#: upload_jobs/forms.py:28
+msgid "Russian"
+msgstr "Russisch"
+
+#: upload_jobs/forms.py:29
+msgid "Polish"
+msgstr "Polnisch"
+
+#: upload_jobs/forms.py:30
+msgid "Ukrainian"
+msgstr "Ukrainisch"
+
+#: upload_jobs/forms.py:31
+msgid "French"
+msgstr "Französisch"
+
+#: upload_jobs/forms.py:36 upload_jobs/models.py:20
 msgid "Make available on platform"
 msgstr "Auf der Plattform verfügbar machen"
 
-#: upload_jobs/forms.py:29 upload_jobs/models.py:22
+#: upload_jobs/forms.py:38 upload_jobs/models.py:22
 msgid "Transcribe"
 msgstr "Transkribieren"
 
-#: upload_jobs/forms.py:30 upload_jobs/models.py:24
+#: upload_jobs/forms.py:39 upload_jobs/models.py:24
 msgid "Check media files"
 msgstr "Mediendateien überprüfen"
 
-#: upload_jobs/forms.py:32 upload_jobs/models.py:27
+#: upload_jobs/forms.py:41 upload_jobs/models.py:27
 msgid "Replace existing files"
 msgstr "Vorhandene Dateien ersetzen"
 

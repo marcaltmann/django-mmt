@@ -67,7 +67,9 @@ def update(request, pk):
 @login_required
 def delete(request, pk):
     user = request.user
-    uploaded_file = UploadedFile.objects.select_related("upload_job").get(pk=pk, upload_job__user_id=user.id)
+    uploaded_file = UploadedFile.objects.select_related("upload_job").get(
+        pk=pk, upload_job__user_id=user.id
+    )
     upload_job = uploaded_file.upload_job
     uploaded_file.delete()
 

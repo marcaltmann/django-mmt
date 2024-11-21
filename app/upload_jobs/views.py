@@ -67,12 +67,11 @@ def delete(request, pk):
     uploads_directory = request.user.upload_path()
     subdirectory_path = uploads_directory / upload_job.directory_name()
     try:
-        for file in subdirectory_path.glob('*'):
+        for file in subdirectory_path.glob("*"):
             file.unlink()
         subdirectory_path.rmdir()
     except FileNotFoundError:
         print(f"Directory {subdirectory_path} does not exist.")
-
 
     upload_job.delete()
     # TODO: Maybe display message.

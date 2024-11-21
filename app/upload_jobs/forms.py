@@ -20,7 +20,16 @@ class UploadJobForm(forms.Form):
     )
     language = forms.ChoiceField(
         label=_("Language"),
-        choices=[("en", _("English")), ("de", _("German"))],
+        choices=[
+            ("other", _("Other")),
+            ("en", _("English")),
+            ("de", _("German")),
+            ("fr", _("French")),
+            ("es", _("Spanish")),
+            ("ru", _("Russian")),
+            ("po", _("Polish")),
+            ("uk", _("Ukrainian")),
+        ],
         required=False,
     )
     make_available_on_platform = forms.BooleanField(
