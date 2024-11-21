@@ -30,13 +30,17 @@ class Profile(models.Model):
     )
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=255, blank=True, null=False)
+    full_name = models.CharField(max_length=255, blank=True, null=False, verbose_name=_("Full name"))
     locale = models.CharField(
         max_length=2,
         choices=LOCALE_CHOICES,
         default=LOCALE_ENGLISH,
         verbose_name=_("Locale")
     )
+
+    class Meta:
+        verbose_name = _("Profile")
+        verbose_name_plural = _("Profiles")
 
     def __str__(self):
         return self.full_name

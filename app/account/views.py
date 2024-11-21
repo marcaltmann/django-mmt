@@ -34,6 +34,7 @@ def register(request):
                 username=form.cleaned_data["username"],
                 email=form.cleaned_data["email"],
                 password=form.cleaned_data["password1"],
+                is_active=False,
             )
             locale = get_preferred_language(request)
             Profile.objects.create(user=user, locale=locale)

@@ -11,6 +11,7 @@
     {% translate "Your registration is complete." %}
   </p>
   <p class="paragraph u-mt">
-    You can now <a href="{% url 'login' %}">log in</a> to this website.
+    {% url 'login' as login_url %}
+    {% blocktrans with link=login_url %}You can now <a href="{{ link }}">log in</a> to this website.{% endblocktrans %}
   </p>
 {% endblock content %}

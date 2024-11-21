@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-20 19:20+0000\n"
+"POT-Creation-Date: 2024-11-21 11:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: account/admin.py:19
+msgid "Activate selected users"
+msgstr "Ausgewählte Benutzer aktivieren"
+
 #: account/models.py:28 mmt/settings.py:134 upload_jobs/forms.py:23
 msgid "English"
 msgstr "Englisch"
@@ -26,9 +30,23 @@ msgstr "Englisch"
 msgid "German"
 msgstr "Deutsch"
 
+#: account/models.py:33
+msgid "Full name"
+msgstr "Vollständiger Name"
+
 #: account/models.py:38 account/templates/account/profile.html:31
 msgid "Locale"
 msgstr "Gebietsschema"
+
+#: account/models.py:42 account/templates/account/edit_profile.html:12
+#: account/templates/account/profile.html:4
+#: account/templates/account/profile.html:7
+msgid "Profile"
+msgstr "Profil"
+
+#: account/models.py:43
+msgid "Profiles"
+msgstr "Profile"
 
 #: account/tasks.py:21
 msgid "A new user has registered."
@@ -43,12 +61,6 @@ msgstr "Ihr Konto wurde aktiviert."
 #: account/templates/account/profile.html:51
 msgid "Edit profile"
 msgstr "Profil bearbeiten"
-
-#: account/templates/account/edit_profile.html:12
-#: account/templates/account/profile.html:4
-#: account/templates/account/profile.html:7
-msgid "Profile"
-msgstr "Profil"
 
 #: account/templates/account/edit_profile.html:13
 msgid "Edit"
@@ -106,6 +118,11 @@ msgstr "Registrierung fertig"
 #: account/templates/account/registration_complete.html:11
 msgid "Your registration is complete."
 msgstr "Sie sind fertig registriert."
+
+#: account/templates/account/registration_complete.html:15
+#, python-format
+msgid "You can now <a href=\"%(link)s\">log in</a> to this website."
+msgstr "Sie können sich jetzt <a href=\"%(link)s\">auf dieser Webseite anmelden.</a>"
 
 #: account/templates/new_user.txt:2
 #: uploaded_files/templates/file_uploaded_admin.txt:2
