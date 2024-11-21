@@ -19,7 +19,7 @@ class RegisterForm(UserCreationForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ["locale"]
+        fields = ["full_name", "locale"]
         widgets = {
             "locale": RadioSelect(),
         }

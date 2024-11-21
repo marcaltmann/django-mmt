@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-21 11:15+0000\n"
+"POT-Creation-Date: 2024-11-21 19:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,33 +18,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: account/admin.py:19
+#: account/admin.py:25
 msgid "Activate selected users"
 msgstr "Ausgewählte Benutzer aktivieren"
 
-#: account/models.py:28 mmt/settings.py:134 upload_jobs/forms.py:23
+#: account/models.py:30 mmt/settings.py:134 upload_jobs/forms.py:23
 msgid "English"
 msgstr "Englisch"
 
-#: account/models.py:29 mmt/settings.py:133 upload_jobs/forms.py:23
+#: account/models.py:31 mmt/settings.py:133 upload_jobs/forms.py:23
 msgid "German"
 msgstr "Deutsch"
 
-#: account/models.py:33
+#: account/models.py:36 account/templates/account/profile.html:31
 msgid "Full name"
 msgstr "Vollständiger Name"
 
-#: account/models.py:38 account/templates/account/profile.html:31
+#: account/models.py:42 account/templates/account/profile.html:37
 msgid "Locale"
 msgstr "Gebietsschema"
 
-#: account/models.py:42 account/templates/account/edit_profile.html:12
+#: account/models.py:46 account/templates/account/edit_profile.html:12
 #: account/templates/account/profile.html:4
 #: account/templates/account/profile.html:7
 msgid "Profile"
 msgstr "Profil"
 
-#: account/models.py:43
+#: account/models.py:47
 msgid "Profiles"
 msgstr "Profile"
 
@@ -58,7 +58,7 @@ msgstr "Ihr Konto wurde aktiviert."
 
 #: account/templates/account/edit_profile.html:6
 #: account/templates/account/edit_profile.html:18
-#: account/templates/account/profile.html:51
+#: account/templates/account/profile.html:57
 msgid "Edit profile"
 msgstr "Profil bearbeiten"
 
@@ -66,7 +66,7 @@ msgstr "Profil bearbeiten"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: account/templates/account/edit_profile.html:34
+#: account/templates/account/edit_profile.html:43
 #: account/templates/registration/password_change_form.html:44
 #: upload_jobs/templates/upload_jobs/upload_job_create.html:87
 msgid "Submit"
@@ -80,15 +80,15 @@ msgstr "Benutzername"
 msgid "Email"
 msgstr "E-Mail"
 
-#: account/templates/account/profile.html:37
+#: account/templates/account/profile.html:43
 msgid "Last login"
 msgstr "Letzte Anmeldung"
 
-#: account/templates/account/profile.html:43
+#: account/templates/account/profile.html:49
 msgid "Date joined"
 msgstr "Registrierungsdatum"
 
-#: account/templates/account/profile.html:56
+#: account/templates/account/profile.html:62
 #: account/templates/registration/password_change_form.html:5
 #: account/templates/registration/password_change_form.html:9
 #: account/templates/registration/password_reset_confirm.html:18
@@ -122,7 +122,8 @@ msgstr "Sie sind fertig registriert."
 #: account/templates/account/registration_complete.html:15
 #, python-format
 msgid "You can now <a href=\"%(link)s\">log in</a> to this website."
-msgstr "Sie können sich jetzt <a href=\"%(link)s\">auf dieser Webseite anmelden.</a>"
+msgstr ""
+"Sie können sich jetzt <a href=\"%(link)s\">auf dieser Webseite anmelden.</a>"
 
 #: account/templates/new_user.txt:2
 #: uploaded_files/templates/file_uploaded_admin.txt:2
@@ -414,37 +415,42 @@ msgstr "Abmelden"
 msgid "Log in"
 msgstr "Anmelden"
 
-#: downloads/templates/downloads/download_index.html:20
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:39
-#: uploaded_files/models.py:12
+#: downloads/templates/downloads/download_index.html:21
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:41
+#: uploaded_files/models.py:9
 msgid "Filename"
 msgstr "Dateiname"
 
-#: downloads/templates/downloads/download_index.html:21
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:40
+#: downloads/templates/downloads/download_index.html:22
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:42
 msgid "Type"
 msgstr "Typ"
 
-#: downloads/templates/downloads/download_index.html:22
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:41
-#: uploaded_files/models.py:13
+#: downloads/templates/downloads/download_index.html:23
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:43
+#: uploaded_files/models.py:10
 msgid "Size"
 msgstr "Größe"
 
-#: downloads/templates/downloads/download_index.html:23
+#: downloads/templates/downloads/download_index.html:24
 msgid "Last modified"
 msgstr "Zuletzt geändert"
 
-#: downloads/templates/downloads/download_index.html:26
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:48
+#: downloads/templates/downloads/download_index.html:27
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:32
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:50
 msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
-#: downloads/templates/downloads/download_index.html:50
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:32
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:82
+#: downloads/templates/downloads/download_index.html:51
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:34
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:84
 msgid "Delete"
 msgstr "Löschen"
+
+#: downloads/templates/downloads/download_index.html:60
+msgid "There are no downloadable files yet."
+msgstr "Es gibt noch keine herunterladbaren Dateien."
 
 #: pages/templates/pages/legal_notice.html:4
 #: pages/templates/pages/legal_notice.html:8
@@ -455,31 +461,31 @@ msgstr "Impressum"
 msgid "Files"
 msgstr "Dateien"
 
-#: upload_jobs/forms.py:17 upload_jobs/models.py:10
+#: upload_jobs/forms.py:17 upload_jobs/models.py:12
 msgid "Title"
 msgstr "Titel"
 
-#: upload_jobs/forms.py:19 upload_jobs/models.py:12
+#: upload_jobs/forms.py:19 upload_jobs/models.py:14
 msgid "Description"
 msgstr "Beschreibung"
 
-#: upload_jobs/forms.py:22 upload_jobs/models.py:15
+#: upload_jobs/forms.py:22 upload_jobs/models.py:17
 msgid "Language"
 msgstr "Sprache"
 
-#: upload_jobs/forms.py:27 upload_jobs/models.py:18
+#: upload_jobs/forms.py:27 upload_jobs/models.py:20
 msgid "Make available on platform"
 msgstr "Auf der Plattform verfügbar machen"
 
-#: upload_jobs/forms.py:29 upload_jobs/models.py:20
+#: upload_jobs/forms.py:29 upload_jobs/models.py:22
 msgid "Transcribe"
 msgstr "Transkribieren"
 
-#: upload_jobs/forms.py:30 upload_jobs/models.py:22
+#: upload_jobs/forms.py:30 upload_jobs/models.py:24
 msgid "Check media files"
 msgstr "Mediendateien überprüfen"
 
-#: upload_jobs/forms.py:32 upload_jobs/models.py:25
+#: upload_jobs/forms.py:32 upload_jobs/models.py:27
 msgid "Replace existing files"
 msgstr "Vorhandene Dateien ersetzen"
 
@@ -508,18 +514,18 @@ msgid_plural "%(counter)s files"
 msgstr[0] "eine Datei"
 msgstr[1] "%(counter)s Dateien"
 
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:42
-#: uploaded_files/models.py:19
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:44
+#: uploaded_files/models.py:22
 msgid "Created at"
 msgstr "Erstellt am"
 
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:43
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:45
 #: uploaded_files/models.py:16
 msgid "Server checksum"
 msgstr "Server-Prüfsumme"
 
-#: upload_jobs/templates/upload_jobs/upload_job_detail.html:44
-#: uploaded_files/models.py:17
+#: upload_jobs/templates/upload_jobs/upload_job_detail.html:46
+#: uploaded_files/models.py:19
 msgid "Client checksum"
 msgstr "Client-Prüfsumme"
 
@@ -527,11 +533,11 @@ msgstr "Client-Prüfsumme"
 msgid "There are no upload jobs yet."
 msgstr "Es gibt noch keine Upload-Aufträge."
 
-#: uploaded_files/models.py:14
+#: uploaded_files/models.py:11
 msgid "Transferred"
 msgstr "Übertragen"
 
-#: uploaded_files/models.py:15
+#: uploaded_files/models.py:13
 msgid "Media type"
 msgstr "Medientyp"
 

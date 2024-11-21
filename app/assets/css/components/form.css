@@ -4,9 +4,10 @@
   vertical-align: bottom; /* Because it is in a div. */
 }
 
-.form__input {
+input.form__input:not([type=file]),
+textarea.form__input {
   line-height: var(--line-height);
-  padding: calc(var(--base-unit) / 4) calc(var(--base-unit) / 2);
+  padding: 0.25rlh 0.5rlh;
   border: 1px solid var(--ui-mid-neutral-color);
   border-radius: var(--border-radius);
 }
