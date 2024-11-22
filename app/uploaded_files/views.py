@@ -2,7 +2,7 @@ import json
 
 import aiofiles
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse, JsonResponse, HttpResponseNotFound, Http404
 from django.views.decorators.http import require_POST
 
@@ -11,7 +11,7 @@ from .tasks import calculate_server_checksum, send_file_uploaded_emails
 
 
 @require_POST
-@login_required
+@permission_required("uploaded_files.add_uploadedfile")
 async def upload(request, pk):
     uploaded_file = await UploadedFile.objects.select_related("upload_job").aget(pk=pk)
     upload_job = uploaded_file.upload_job
@@ -42,7 +42,7 @@ async def handle_uploaded_file(file, file_path):
 
 
 @require_POST
-@login_required
+@permission_required("uploaded_files.change_uploadedfile")
 def update(request, pk):
     uploaded_file = UploadedFile.objects.select_related("upload_job").get(pk=pk)
     upload_job = uploaded_file.upload_job
@@ -64,7 +64,7 @@ def update(request, pk):
 
 
 @require_POST
-@login_required
+@permission_required("uploaded_files.delete_uploadedfile")
 def delete(request, pk):
     user = request.user
     uploaded_file = UploadedFile.objects.select_related("upload_job").get(

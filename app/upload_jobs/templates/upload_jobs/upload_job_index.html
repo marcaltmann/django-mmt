@@ -42,7 +42,9 @@
     </p>
   {% endif %}
 
-  <p class="u-ll u-mt">
-    <a href="{% url 'upload_jobs:create' %}">{% translate "Create a new upload job" %}</a>
-  </p>
+  {% if perms.upload_jobs.add_uploadjob %}
+    <p class="u-ll u-mt">
+      <a href="{% url 'upload_jobs:create' %}">{% translate "Create a new upload job" %}</a>
+    </p>
+  {% endif %}
 {% endblock content %}

@@ -1,9 +1,9 @@
 import json
 
-from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse, StreamingHttpResponse
+from django.contrib.auth.decorators import permission_required
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.http import require_GET, require_POST, require_http_methods
 
 from .forms import UploadJobForm
 from .models import UploadJob
@@ -11,7 +11,7 @@ from uploaded_files.models import UploadedFile
 
 
 @require_GET
-@login_required
+@permission_required("upload_jobs.view_uploadjob")
 def index(request):
     upload_jobs = UploadJob.objects.filter(user=request.user).order_by("-created_at")
     context = {"upload_jobs": upload_jobs}
@@ -19,7 +19,7 @@ def index(request):
 
 
 @require_GET
-@login_required
+@permission_required("upload_jobs.view_uploadjob")
 def detail(request, pk):
     upload_job = get_object_or_404(UploadJob, pk=pk, user=request.user)
     uploaded_files = upload_job.uploaded_files.order_by("-created_at")
@@ -27,7 +27,8 @@ def detail(request, pk):
     return render(request, "upload_jobs/upload_job_detail.html", context)
 
 
-@login_required
+@require_http_methods(["GET", "POST"])
+@permission_required("upload_jobs.add_uploadjob")
 def create(request):
     if request.method == "POST":
         json_data = json.loads(request.body)
@@ -61,7 +62,7 @@ def create(request):
 
 
 @require_POST
-@login_required
+@permission_required("upload_jobs.delete_uploadjob")
 def delete(request, pk):
     upload_job = get_object_or_404(UploadJob, pk=pk, user=request.user)
     uploads_directory = request.user.upload_path()
@@ -79,7 +80,7 @@ def delete(request, pk):
 
 
 @require_POST
-@login_required
+@permission_required("uploaded_files.add_uploadedfile")
 def create_uploaded_file(request, pk):
     user = request.user
     upload_job = UploadJob.objects.get(pk=pk)

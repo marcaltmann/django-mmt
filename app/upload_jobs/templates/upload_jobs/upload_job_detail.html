@@ -26,14 +26,16 @@
     </li>
   </ul>
 
-  <form action="{% url 'upload_jobs:delete' upload_job.id %}" method="POST" class="form">
-    {% csrf_token %}
+  {% if perms.upload_jobs.delete_uploadjob %}
+    <form action="{% url 'upload_jobs:delete' upload_job.id %}" method="POST" class="form">
+      {% csrf_token %}
 
-    <button onclick="return confirm('{% translate "Are you sure?" %}')"
-      type="submit" class="form__button">
-      {% translate "Delete" %}
-    </button>
-  </form>
+      <button onclick="return confirm('{% translate "Are you sure?" %}')"
+        type="submit" class="form__button">
+        {% translate "Delete" %}
+      </button>
+    </form>
+  {% endif %}
 
   <table class="u-mt">
     <thead>
@@ -79,10 +81,12 @@
             </span>
           </td>
           <td>
-            <button class="form__button"
-                    hx-post="{% url 'uploaded_files:delete' file.id %}">
-              {% translate "Delete" %}
-            </button>
+            {% if perms.uploaded_files.delete_uploadedfile %}
+              <button class="form__button"
+                      hx-post="{% url 'uploaded_files:delete' file.id %}">
+                {% translate "Delete" %}
+              </button>
+            {% endif %}
           </td>
         </tr>
       {% endfor %}
