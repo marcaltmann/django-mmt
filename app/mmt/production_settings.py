@@ -15,7 +15,7 @@ SECRET_KEY = os.environ.get(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.environ.get("DEBUG", default=1)))
+DEBUG = False
 
 ALLOWED_HOSTS = os.environ.get(
     "DJANGO_ALLOWED_HOSTS", default="localhost 127.0.0.1"
@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "uploaded_files.apps.UploadedFilesConfig",
     "django_htmx",
     "widget_tweaks",
-    "debug_toolbar",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,7 +53,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -152,17 +150,16 @@ LOGOUT_REDIRECT_URL = "welcome"
 AUTH_USER_MODEL = "account.User"
 
 
-if not DEBUG:
-    sentry_sdk.init(
-        dsn=os.environ.get("SENTRY_URL"),
-        # Set traces_sample_rate to 1.0 to capture 100%
-        # of transactions for tracing.
-        traces_sample_rate=1.0,
-        # Set profiles_sample_rate to 1.0 to profile 100%
-        # of sampled transactions.
-        # We recommend adjusting this value in production.
-        profiles_sample_rate=1.0,
-    )
+sentry_sdk.init(
+    dsn=os.environ.get("SENTRY_URL"),
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for tracing.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
