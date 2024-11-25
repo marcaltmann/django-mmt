@@ -75,7 +75,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs
 
 # Install JavaScript dependencies.
-RUN npm install && npm run build
+RUN npm install
+RUN DJANGO_SETTINGS_MODULE=mmt.production_settings npm run build
 
 # chown all the files to the app user
 RUN chown -R app:app $APP_HOME
