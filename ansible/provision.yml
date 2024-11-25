@@ -20,8 +20,6 @@
           - ca-certificates
           - curl
           - dbus-user-session
-          - gettext
-          - gettext-base
           - git
           - python3-dev
           - python3-docker
