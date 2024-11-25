@@ -31,8 +31,7 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requir
 #    && apt-get install -y nodejs
 
 # Install JavaScript dependencies.
-# RUN npm install --prefix ./frontend \
-#    && npm run build --prefix ./frontend
+# RUN npm install && npm run build
 
 
 #########
@@ -76,10 +75,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs
 
 # Install JavaScript dependencies.
-RUN npm install --prefix ./frontend \
-    && npm run build --prefix ./frontend
-
-RUN rm -rf ./frontend
+RUN npm install && npm run build
 
 # chown all the files to the app user
 RUN chown -R app:app $APP_HOME
