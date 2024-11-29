@@ -50,4 +50,4 @@ class User(AbstractUser):
         downloads_directory.mkdir(parents=True, exist_ok=True)
 
     def create_profile(self) -> None:
-        Profile.objects.create(user=self)
+        obj, created = Profile.objects.get_or_create(user=self)
