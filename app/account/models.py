@@ -6,23 +6,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class User(AbstractUser):
-    def upload_path(self) -> Path:
-        # TODO: Use safe filename here
-        return settings.BASE_DIR / "user_files" / self.username / "uploads"
-
-    def download_path(self) -> Path:
-        # TODO: Use safe filename here
-        return settings.BASE_DIR / "user_files" / self.username / "downloads"
-
-    def create_user_directories(self) -> None:
-        user_directory = settings.BASE_DIR / "user_files" / self.username
-        uploads_directory = user_directory / "uploads"
-        downloads_directory = user_directory / "downloads"
-        uploads_directory.mkdir(parents=True, exist_ok=True)
-        downloads_directory.mkdir(parents=True, exist_ok=True)
-
-
 class Profile(models.Model):
     LOCALE_ENGLISH = "en"
     LOCALE_GERMAN = "de"
@@ -48,3 +31,23 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
+class User(AbstractUser):
+    def upload_path(self) -> Path:
+        # TODO: Use safe filename here
+        return settings.BASE_DIR / "user_files" / self.username / "uploads"
+
+    def download_path(self) -> Path:
+        # TODO: Use safe filename here
+        return settings.BASE_DIR / "user_files" / self.username / "downloads"
+
+    def create_user_directories(self) -> None:
+        user_directory = settings.BASE_DIR / "user_files" / self.username
+        uploads_directory = user_directory / "uploads"
+        downloads_directory = user_directory / "downloads"
+        uploads_directory.mkdir(parents=True, exist_ok=True)
+        downloads_directory.mkdir(parents=True, exist_ok=True)
+
+    def create_profile(self) -> None:
+        Profile.objects.create(user=self)
