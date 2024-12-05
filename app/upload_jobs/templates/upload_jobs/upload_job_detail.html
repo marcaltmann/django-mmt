@@ -71,14 +71,10 @@
             </time>
           </td>
           <td>
-            <span title="{{ file.checksum_server }}">
-              {{ file.checksum_server|truncatechars:12 }}
-            </span>
+            {{ file.checksum_server }}
           </td>
           <td>
-            <span title="{{ file.checksum_client}}">
-              {{ file.checksum_client|truncatechars:12 }}
-            </span>
+            {{ file.checksum_client }}
           </td>
           <td>
             {% if perms.uploaded_files.delete_uploadedfile %}
