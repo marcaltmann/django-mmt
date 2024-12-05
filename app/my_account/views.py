@@ -6,10 +6,10 @@ from django.urls import reverse
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.decorators.http import require_GET, require_http_methods
 
-from account.forms import RegisterForm
-from account.models import Profile
-from account.tasks import send_new_user_email, send_user_activation_email
 from .forms import ProfileForm
+from .forms import RegisterForm
+from .models import Profile
+from .tasks import send_new_user_email
 
 User = get_user_model()
 

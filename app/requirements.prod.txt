@@ -1,6 +1,7 @@
 aiofiles==24.1.0
 celery==5.4.0
 django_vite_plugin==3.0.4
+django-allauth[mfa,socialaccount]==65.3.0
 django-dotenv==1.4.2
 django-htmx==1.21.0
 django-json-widget==2.0.1

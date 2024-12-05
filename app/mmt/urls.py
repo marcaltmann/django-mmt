@@ -13,7 +13,8 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path("admin/", admin.site.urls),
     path("account/", include("django.contrib.auth.urls")),
-    path("account/", include("account.urls")),
+    path("account/", include("my_account.urls")),
+    path('accounts/', include('allauth.urls')),
     path("downloads/", include("downloads.urls")),
     path("pages/", include("pages.urls")),
     path("upload-jobs/", include("upload_jobs.urls")),

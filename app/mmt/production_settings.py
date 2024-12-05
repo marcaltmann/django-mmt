@@ -28,7 +28,7 @@ INTERNAL_IPS = [
 # Application definition
 
 INSTALLED_APPS = [
-    "account.apps.AccountConfig",
+    "my_account.apps.MyAccountConfig",
     "core.apps.CoreConfig",
     "downloads.apps.DownloadsConfig",
     "pages.apps.PagesConfig",
@@ -36,6 +36,11 @@ INSTALLED_APPS = [
     "uploaded_files.apps.UploadedFilesConfig",
     "django_htmx",
     "widget_tweaks",
+    'allauth',
+    'allauth.account',
+    'allauth.mfa',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,6 +59,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
 ]
@@ -92,6 +98,10 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -140,7 +150,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "account:profile"
 LOGOUT_REDIRECT_URL = "welcome"
-AUTH_USER_MODEL = "account.User"
+AUTH_USER_MODEL = "my_account.User"
 
 
 sentry_sdk.init(
@@ -164,3 +174,12 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 # CELERY_BACKEND = "redis://localhost"
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", default="redis://localhost")
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+
+SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        'APP': {
+            'client_id': '123',
+            'secret': '456',
+        }
+    }
+}
